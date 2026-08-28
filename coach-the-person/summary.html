@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教练其人，而非问题 · 全书章节综述</title>
+<style>
+:root{
+  --bg:#f2f7f5;
+  --paper:#ffffff;
+  --ink:#1c2b27;
+  --muted:#5f726c;
+  --accent:#0f8a6d;
+  --accent-deep:#0b5f4c;
+  --accent-soft:#dff0ea;
+  --line:#dcebe5;
+  --gold:#c98a2d;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+}
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(150deg,#0b5f4c 0%,#0f8a6d 55%,#16a085 100%);
+  color:#fff;
+  padding:72px 24px 60px;
+  text-align:center;
+}
+.hero .badge{
+  display:inline-block;
+  font-size:13px;
+  letter-spacing:.18em;
+  color:#cfeadd;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  padding:6px 18px;
+  margin-bottom:22px;
+}
+.hero h1{
+  font-size:clamp(30px,4.5vw,48px);
+  font-weight:700;
+  letter-spacing:.02em;
+  margin-bottom:12px;
+}
+.hero .en{
+  font-size:clamp(14px,1.8vw,18px);
+  color:#e6f4ee;
+  font-style:italic;
+  letter-spacing:.04em;
+}
+.hero .meta{
+  margin-top:22px;
+  font-size:14px;
+  color:#d4ebe1;
+}
+.hero .meta span{padding:0 10px;}
+/* ===== Layout ===== */
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 22px;
+  display:grid;
+  grid-template-columns:230px 1fr;
+  gap:40px;
+  align-items:start;
+}
+/* ===== TOC ===== */
+.toc{
+  position:sticky;
+  top:24px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px 16px;
+  margin-top:-30px;
+  box-shadow:0 8px 30px rgba(11,95,76,.08);
+}
+.toc h3{
+  font-size:13px;
+  letter-spacing:.15em;
+  color:var(--accent-deep);
+  margin-bottom:12px;
+  font-weight:600;
+}
+.toc a{
+  display:block;
+  font-size:13px;
+  color:var(--muted);
+  text-decoration:none;
+  padding:5px 8px;
+  border-radius:8px;
+  transition:all .15s;
+}
+.toc a:hover{background:var(--accent-soft);color:var(--accent-deep);}
+.toc .part{
+  margin-top:8px;
+  font-size:11px;
+  letter-spacing:.12em;
+  color:var(--gold);
+  font-weight:600;
+  padding-left:8px;
+}
+/* ===== Main ===== */
+main{min-width:0;}
+.overview{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:34px 38px;
+  margin-top:34px;
+}
+.overview h2{
+  font-size:22px;
+  color:var(--accent-deep);
+  margin-bottom:14px;
+}
+.overview p{color:var(--muted);font-size:15px;margin-bottom:14px;}
+.overview p:last-child{margin-bottom:0;}
+.route{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.route .step{
+  flex:1 1 160px;
+  background:var(--accent-soft);
+  border-radius:12px;
+  padding:12px 14px;
+  font-size:13px;
+  color:var(--accent-deep);
+}
+.route .step b{display:block;font-size:14px;margin-bottom:2px;}
+/* ===== Article ===== */
+article{
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:34px 38px;
+  margin-top:26px;
+  scroll-margin-top:20px;
+}
+article .kicker{
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:6px;
+}
+article h2{
+  font-size:clamp(20px,2.6vw,27px);
+  color:var(--ink);
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:4px;
+}
+article .sub{
+  font-size:13px;
+  color:var(--muted);
+  font-style:italic;
+  margin-bottom:18px;
+}
+article p{
+  font-size:15.5px;
+  margin-bottom:13px;
+  text-align:justify;
+}
+article p:last-of-type{margin-bottom:16px;}
+article .chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:16px 0 0;
+}
+article .chips span{
+  font-size:12px;
+  color:var(--accent-deep);
+  background:var(--accent-soft);
+  border-radius:999px;
+  padding:4px 12px;
+}
+article blockquote{
+  margin:18px 0 0;
+  padding:14px 18px;
+  border-left:3px solid var(--accent);
+  background:var(--bg);
+  border-radius:0 12px 12px 0;
+  font-size:14.5px;
+  color:var(--ink);
+  font-style:italic;
+}
+article blockquote::before{
+  content:"✦ ";
+  color:var(--accent);
+  font-style:normal;
+}
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  padding:46px 22px 60px;
+}
+footer .note{
+  max-width:620px;
+  margin:0 auto 10px;
+}
+/* ===== Responsive ===== */
+@media(max-width:880px){
+  .wrap{grid-template-columns:1fr;padding:0 16px;}
+  .toc{position:static;margin-top:18px;}
+  article,.overview{padding:26px 22px;}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="badge">壹點學園图书馆 · 章节综述</div>
+  <h1>教练其人，而非问题</h1>
+  <div class="en">Coach the Person, Not the Problem</div>
+  <div class="meta"><span>玛西亚·雷诺兹 Marcia Reynolds</span><span>第 2 版</span><span>全书章节综述</span></div>
+</header>
+
+<div class="wrap">
+
+<nav class="toc">
+  <h3>章节目录</h3>
+  <a href="#overview">全书导览</a>
+  <div class="part">导言</div>
+  <a href="#intro">是什么让教练如此强大</a>
+  <div class="part">第一部 · 什么是教练对话</div>
+  <a href="#ch1">第 1 章 当教练不是教练</a>
+  <a href="#ch2">第 2 章 误导性教练信念</a>
+  <div class="part">第二部 · 共同调节的三个心智习惯</div>
+  <a href="#ch3">第 3 章 校准你的神经系统</a>
+  <a href="#ch4">第 4 章 接收，不只是倾听</a>
+  <a href="#ch5">第 5 章 抓住并放下评判</a>
+  <div class="part">第三部 · 五项必备教练技巧</div>
+  <a href="#ch6">第 6 章 专注</a>
+  <a href="#ch7">第 7 章 主动回放</a>
+  <a href="#ch8">第 8 章 导航渴望</a>
+  <a href="#ch9">第 9 章 大脑黑客</a>
+  <a href="#ch10">第 10 章 新与下一步</a>
+  <div class="part">结语</div>
+  <a href="#wrapup">超越对话</a>
+</nav>
+
+<main>
+
+<section class="overview" id="overview">
+  <h2>全书导览</h2>
+  <p>《教练其人，而非问题》是一本写给专业教练与领导者的大脑科学实践手册。全书的核心命题只有一句话：<b>教练的本质，是带着目的去扰动客户的思维，催生创造性洞见，从而改变其心智与行为</b>——而做到这一切的前提，不是问出更聪明的问题，而是教练先把自己调节好：校准神经系统、学会"接收"、放下评判，再运用五项核心技巧把客户从"问题"带回"人"。</p>
+  <p>全书按"先修己、再施术"的顺序组织为三部：</p>
+  <div class="route">
+    <div class="step"><b>第一部 · 破迷</b>什么是教练对话<br>（第 1–2 章）识别真教练，拆除五大误解</div>
+    <div class="step"><b>第二部 · 调己</b>共同调节的三个心智习惯<br>（第 3–5 章）神经系统、接收、放下评判</div>
+    <div class="step"><b>第三部 · 施术</b>五项必备教练技巧<br>（第 6–10 章）专注、主动回放、导航渴望、大脑黑客、新与下一步</div>
+  </div>
+</section>
+
+<article id="intro">
+  <div class="kicker">导言 · INTRODUCTION</div>
+  <h2>是什么让教练如此强大</h2>
+  <div class="sub">What Makes Coaching so Powerful</div>
+  <p>导言为全书立下总纲：教练是"带着目的扰动思想"的艺术——扰动不是为了制造混乱，而是为了让创造性洞见破土而出，进而改变心智与行为。人们之所以需要教练，是因为在困惑与恐惧中，客户往往只知道自己"不想要"什么，看不见自己故事里被负面滤镜遮住的部分；教练的作用，是把他们的思想摊开在面前，绕过过度保护的大脑，让洞见自己跳出来。</p>
+  <p>神经科学给出了机制：创造性洞见来自旧知识与经验的重组。当大脑被允许在自己的记忆库中自由翻找，创造力就会蓬勃生长——这正是"啊哈时刻"（眼睛一亮、恍然大悟）的生物学基础。因此作者提出，教练对话本质上是一种"以洞见为基础的学习"（insight-based learning），它优于单纯的信息传递。</p>
+  <p>针对 AI 时代，作者明确划界：归纳、映照、确认这类"理解性回应"，AI 可以胜任；但用情绪去缓解客户的恐惧、敞开其心扉，是一种属于人的能量交换，需要心理安全感作为前提，这无法被算法复制。第二版的改写重点，正是把第一部分的重心转向"我们如何用带字与不带字的情绪建立人的联结"。</p>
+  <div class="chips"><span>扰动思想</span><span>洞见式学习</span><span>啊哈时刻</span><span>AI 无法复制的人际联结</span></div>
+  <blockquote>人的灵魂不想要被劝告、被修理或被拯救，它只想被见证——如其本然地被看见、被听见、被陪伴。</blockquote>
+</article>
+
+<article id="ch1">
+  <div class="kicker">第 1 章 · 第一部</div>
+  <h2>当教练不是教练</h2>
+  <div class="sub">When Coaching Isn't Coaching</div>
+  <p>这一章为"教练"正名：许多被冠以教练之名的行为，其实不是教练。作者用三组对照拆开真相。<b>教练 vs 告知</b>：当你告诉对方该怎么做，你只是在激活他的认知脑——如果建议与他的既有观点吻合，他点头；如果不吻合，他反驳。而认知脑擅长解决问题，却不擅长学习。创造力住在中脑（边缘系统），那里存放着长时记忆，靠记忆与动机加工思想、生成洞见。教练要触达的，正是这个区域。</p>
+  <p><b>教练 vs 威胁（反馈迷思）</b>：教练常被混同于给反馈。但即便反馈被愉快接受，若接下来直接告诉对方该怎么改，结果依然不会理想。除非对方主动索要建议，否则"告知式反馈"只是另一种形式的威胁。</p>
+  <p>那么何时才该教练？作者给出三条判断：先确认客户是否有被教练的渴望；再确认教练是不是此刻恰当的选择；并学会识别何时不能教练（例如涉及创伤时，应转介而非硬上）。本章同时点出理想教练场景的模样，并留下一句宽慰：教练不该那么难——难，往往是因为你走错了路。</p>
+  <div class="chips"><span>告知 ≠ 教练</span><span>反馈迷思</span><span>中脑与洞见式学习</span><span>何时教练、何时转介</span></div>
+  <blockquote>认知脑擅长解决问题，但不擅长学习；创造力住在中脑，那里存放着你的长时记忆。</blockquote>
+</article>
+
+<article id="ch2">
+  <div class="kicker">第 2 章 · 第一部</div>
+  <h2>误导性教练信念</h2>
+  <div class="sub">Misleading Coaching Beliefs</div>
+  <p>这一章拆解教练圈流传最广的五个"金科玉律"，每一条都按"信念从哪来—什么是对的—什么不对且受限—替代观点"四步论证，逻辑严密。</p>
+  <p><b>迷思一：教练最重要的技能是提出有力的问题。</b>作者是 ICF 领导成员，她披露了一个关键事实：2019 年 ICF 更新能力模型时，特意取消了"有力提问"这项能力，将其行为并入新的"唤起觉察"。因为保持临在、别待在脑袋里，比问出完美的问题更重要。</p>
+  <p><b>迷思二：不要问封闭式问题。</b>封闭式问题可以快速确认方向、敲定主题，在对话开局阶段尤其好用；<b>迷思三：绝不要打断客户。</b>有目的的打断能帮客户保持焦点；从不打断的对话往往四处弹跳，教练一路追着客户跑，最后得到的解决方案和客户最初想谈的毫无关系；<b>迷思四：对话一开始就要客户有清晰愿景。</b>很多时候客户就是不知道自己要什么——先花时间看清并商定"他因这次对话想改变或创造什么"，才是起点；<b>迷思五：成为好教练要很久。</b>你可以边学边教练，只要忍住不给建议，就不会造成伤害。</p>
+  <div class="chips"><span>ICF 2019 取消"有力提问"</span><span>封闭式问题可确认方向</span><span>有目的的中断</span><span>边学边教练</span></div>
+  <blockquote>教练的角色是思考伙伴，用反映式陈述与提问，促成客户的洞见与学习——而非炫技式地抛问题。</blockquote>
+</article>
+
+<article id="ch3">
+  <div class="kicker">第 3 章 · 第二部</div>
+  <h2>校准你的神经系统</h2>
+  <div class="sub">Align Your Nervous System</div>
+  <p>进入第二部"共同调节的三个心智习惯"。本章的前提很硬核：教练对话的有效性，取决于教练全身临在所生成的能量联结。这份临在不仅让客户免于被评判的心理威胁，更通过共同调节（co-regulation）奠定联结的神经基础。作者引临床心理学家 Deb Dana 的多迷走神经理论：带来安全感与信任的联结，是一种"生物性命令"——即便成年后大脑学会了用"保护模式"覆盖"联结模式"，自主神经系统始终需要、并渴望着共同调节。</p>
+  <p>也因此，作者主张教练培训应该从共同调节的技巧教起，而不是一上来就教话术。本章给出唤醒完整临在的三把钥匙：<b>选择好奇、慈悲与勇气</b>（临在是一种主动选择，不是天赋）；<b>回想你与这位客户伙伴关系的意图</b>（你在这里是为了什么）；<b>相信你的客户能够实现并践行洞见</b>（信任本身会改变能量场）。配套的"打开头、心、腹"练习，是把觉察同时安放在认知、情感与直觉三个中心，让身体替你说话。</p>
+  <div class="chips"><span>共同调节</span><span>多迷走神经理论</span><span>生物性命令</span><span>好奇·慈悲·勇气</span><span>头心腹练习</span></div>
+  <blockquote>联结是自主神经系统的生物性命令——它从未停止需要被看见、被调谐。</blockquote>
+</article>
+
+<article id="ch4">
+  <div class="kicker">第 4 章 · 第二部</div>
+  <h2>接收，不只是倾听</h2>
+  <div class="sub">Receive（Don't Just Listen）</div>
+  <p>"倾听"与"接收"是两种不同的意图。倾听的意图是理解并准备回应；接收的意图则更彻底——它是接住客户表达的一切（话语、情绪、能量），原样捧在手里，再不带评判地回映给他。作者借一句精炼的总结点题：当你作为思考伙伴而不是专家去教练，你的工作是接收并回馈客户所表达的，你不需要炮制出大师级的问题，也不需要拥有所有答案。</p>
+  <p>接收的载体是感官觉察：不止于听内容，还要捕捉能量转变、语调快慢、身体动作与面部表情——这些往往比话语更诚实。当情绪阻断对话的流动，作者提供一套四步快速回归法：<b>放松身体 → 脱离思绪、清空头脑 → 把觉察中心带回身体 → 吸入你想感受的情绪</b>（比如勇气、慈悲）。这套动作的价值在于：教练先把自己调回流动状态，客户才能跟着平静下来。</p>
+  <div class="chips"><span>倾听 vs 接收</span><span>感官觉察</span><span>四步回归临在</span><span>思考伙伴</span></div>
+  <blockquote>你不需要拥有所有答案。你是一位好教练，只要你提供一个没有评判的空间，并把客户的话回映给他自己。</blockquote>
+</article>
+
+<article id="ch5">
+  <div class="kicker">第 5 章 · 第二部</div>
+  <h2>抓住并放下评判</h2>
+  <div class="sub">Catch and Release Judgment</div>
+  <p>评判是保护性大脑的默认产物：它快速、省力、让我们感到安全。但教练一旦带着评判临在，客户会立刻嗅到危险，缩回保护壳。本章的关键动作是"抓住"——评判没法被命令消失，只能被觉察；先看见它，才谈得上放下它。</p>
+  <p>作者给出三个具体的觉察入口。<b>第一，抓住你对客户情绪反应的评判</b>：客户的愤怒、犹豫、反复，是否被你悄悄贴上了"不该这样"的标签？<b>第二，注意你对话中"我"的使用频率</b>：当"我觉得""我认为""如果是我"密集出现，往往是教练从思考伙伴滑向了专家与裁判。<b>第三，警惕"知道什么最好"的评判</b>：哪怕你的判断是对的，一旦客户感到被评判，洞见就熄灭了。章末的"评判实地考察"练习，要求教练带着觉察器出门一天，记录自己每小时冒出的评判——看见它们，就是放下的开始。</p>
+  <div class="chips"><span>抓住 → 放下</span><span>评判情绪反应</span><span>留意"我"字</span><span>评判实地考察</span></div>
+  <blockquote>评判无法被命令消失，只能被觉察。先看见它，才谈得上放下它。</blockquote>
+</article>
+
+<article id="ch6">
+  <div class="kicker">第 6 章 · 第三部</div>
+  <h2>专注 · 转向教练其人而非问题</h2>
+  <div class="sub">Focus — Shifting to Coaching the Person, Not the Problem</div>
+  <p>第三部开篇，作者先为"交易型 vs 转化型"正名：教练对话可以同时是两者的——先帮客户解决眼前问题（交易），再借问题看见背后的人（转化）。五项必备技巧的第一项"专注"，就是完成这关键一跃。</p>
+  <p>核心张力在于<b>支持 vs 挑战客户思维</b>。支持让客户感到安全，挑战则扰动其思维——两者缺一不可：只有支持，对话舒适却原地打转；只有挑战，客户防御关闭。真正的"专注"是动态地拿捏这架天平：始终把注意力锚定在"客户这个人"身上——他的信念、他的渴望、他此刻是谁——而不是被问题本身牵着走。当教练聚焦于人，问题会自己显出原形：它往往只是更深层信念的表象。</p>
+  <div class="chips"><span>交易型 × 转化型</span><span>支持与挑战的天平</span><span>从问题回到人</span></div>
+  <blockquote>专注，是把镜头从"问题"缓缓拉回"人"——因为问题只是人内在信念的影子。</blockquote>
+</article>
+
+<article id="ch7">
+  <div class="kicker">第 7 章 · 第三部</div>
+  <h2>主动回放 · 把关键片段回放给客户检视</h2>
+  <div class="sub">Active Replay — Playing Back the Pivotal Pieces for Review</div>
+  <p>作者自创的核心技法"主动回放"（active replay）：教练用陈述句（而非提问）举起镜子，把客户说过的关键话语、信念与情绪变化回映给他，促使他自己审视。这比追问更有力——因为陈述句不设防，洞见更愿意露头。</p>
+  <p>回放有三档精度。<b>复述</b>（recapping）：忠实重述客户的核心内容，确认理解；<b>转述</b>（paraphrasing）：换一种说法重新表述，帮客户换个角度看见自己的话；<b>封装</b>（encapsulating）：用隐喻、标签或一句话点破本质——例如"你一直在把自己放回组织里，尽管你说你想自由职业"。封装之后通常配对一个小提问，把觉察落回客户手上。</p>
+  <p>除了话语，还要回放<b>身心转变</b>：当客户情绪、姿势、语速变化时，教练指出它并邀请其命名。作者同时给出边界提醒：欣赏所有情绪（情绪无对错），善用"非反应式共情"（接住情绪而不被卷走），并警惕共情过度——共情一旦变成替客户承担，就夺走了他自己的功课。</p>
+  <div class="chips"><span>陈述句举镜</span><span>复述·转述·封装</span><span>映照身心转变</span><span>非反应式共情</span></div>
+  <blockquote>用一句陈述把客户的话还给他，胜过十句精妙的提问——因为陈述句不设防，洞见更愿意露头。</blockquote>
+</article>
+
+<article id="ch8">
+  <div class="kicker">第 8 章 · 第三部</div>
+  <h2>导航渴望 · 拨开迷雾看见路</h2>
+  <div class="sub">Navigating Desire — Clearing the Fog to See the Road</div>
+  <p>这一章处理教练对话的"方向盘"：期望成果（desired outcome）。作者先破一个常见误区——<b>成果不是话题，也不是决定</b>。客户带来的"主题"（比如想换工作）只是入口，成果是他真正想为自己创造或改变的东西，需要被一层层拆开才能看清。</p>
+  <p>拆解的工具是<b>水平 vs 垂直教练</b>的区分：水平教练在问题表面横向铺开更多选项、更多分析；垂直教练则向下钻探——客户想要这个成果，是出于什么信念、渴望与自我认同？定义成果靠的是垂直。对话开始后，教练要循着成果追踪方向：当客户漂移（这是常态），用"邀请与再邀请"温柔地把他拉回——邀请不是质问，是重新点燃他对成果的渴望。同时警惕自己的假设：你以为客户想要的东西，未必是他真正渴望的；把假设交出来核对，而不是默默执行。</p>
+  <div class="chips"><span>成果 ≠ 话题 ≠ 决定</span><span>水平 vs 垂直</span><span>邀请与再邀请</span><span>核对假设</span></div>
+  <blockquote>客户不是迷路了，他只是站在雾里——教练的活儿，是把雾拨开，让他看见自己其实一直想去的那条路。</blockquote>
+</article>
+
+<article id="ch9">
+  <div class="kicker">第 9 章 · 第三部</div>
+  <h2>大脑黑客 · 你在听什么</h2>
+  <div class="sub">Brain Hacking — What Are You Listening For?</div>
+  <p>本章是"教练其人"最深的落点，关键词是故事与情境的区分。<b>故事</b>是客户讲出的事件叙述——发生了什么、谁说了什么；<b>情境</b>（context）则是这些故事日积月累后显影出的模式：反复出现的主题、未被满足的社会需求、底层的价值观。教练如果只听故事，就会在事件层面打转；听进情境，才触得到"人"。</p>
+  <p>作者给出两层的听法。第一层，<b>教练故事</b>：留意客户的叙事方式与其中的偏见（比如把所有责任归于他人、或把一切归结于自己），偏见本身就是素材。第二层，<b>教练情境</b>：捕捉模式背后的<b>社会需求</b>（被认可、归属、自主、公平……）与<b>人生价值观</b>——当对话触及价值观层，客户的能量会明显变化，那就是转化发生的现场。章末的"价值观探索"练习，帮客户把自己的价值清单摊开，排序并对照现实落差，让渴望浮出水面。</p>
+  <div class="chips"><span>故事 vs 情境</span><span>叙事中的偏见</span><span>社会需求</span><span>人生价值观</span><span>价值观探索</span></div>
+  <blockquote>故事是浮在水面的冰，情境是水下的那七分之六——教练要听进情境，才触得到人。</blockquote>
+</article>
+
+<article id="ch10">
+  <div class="kicker">第 10 章 · 第三部</div>
+  <h2>新与下一步 · 洞见与承诺</h2>
+  <div class="sub">New and Next — Coaching Insights and Commitments</div>
+  <p>收束技巧的最后一章，处理两件事：让洞见显形，让承诺落地。<b>看见洞见，与看见信念同等重要</b>——当客户出现情绪、姿势、沉默的转变，教练要主动邀请他命名："有什么在你心里松动了吗？""你愿意说说刚刚冒出来的念头吗？"洞见一旦被说出来，才真正属于客户。</p>
+  <p>随后是"现在呢"：把洞见转化为承诺。作者给出一个重要提醒——<b>成功不等于一定要迈出朝向具体成果的步骤</b>；有时客户此刻唯一能承诺的，只是"花时间想想这次对话里我发现了什么"。允许小步、允许停顿，承诺反而更真实。收尾要"高光结束"：在对话的积极能量点收束，而不是拖到疲软；至于关系，教练要知道何时、以及如何体面地结束一段教练关系——把客户稳稳地交还给他自己。</p>
+  <div class="chips"><span>邀请洞见显形</span><span>承诺可以很小</span><span>高光收尾</span><span>体面地结束关系</span></div>
+  <blockquote>洞见一旦被说出来，才真正属于客户；承诺不必宏大，真实即可。</blockquote>
+</article>
+
+<article id="wrapup">
+  <div class="kicker">结语 · WRAP-UP</div>
+  <h2>超越对话 · 教练作为生活方式与文化</h2>
+  <div class="sub">Beyond the Conversation — Coaching as a Lifestyle and Culture</div>
+  <p>结语把教练从"对话技术"升维为"存在方式"。<b>做一个教练</b>：教练不是一份工作时长，而是一种待人接物的姿态——带着好奇、慈悲与勇气临在，把评判暂放一旁，相信对面这个人能自己长出答案。作者以近乎劝慰的口吻收束全书：你可以边学边教练，只要忍住不给建议，就不会造成伤害。</p>
+  <p><b>做一种教练文化</b>：当教练式对话渗入组织与日常，管理者不再急着给答案，团队开始彼此见证、彼此扰动、彼此成全——教练文化的底色，是把每个人都视为有能力自我生成的人。<b>教练带来改变</b>：改变不来自技巧的堆砌，而来自人与人的联结，来自那股在情绪层面真实发生的能量交换。这也呼应了导言的开篇之问——是什么让教练如此强大？答案始终是：关系本身。</p>
+  <div class="chips"><span>教练是存在方式</span><span>教练文化</span><span>边学边教练</span><span>关系即力量</span></div>
+  <blockquote>只要忍住不给建议，就不会造成伤害——然后，把信任交给关系本身。</blockquote>
+</article>
+
+</main>
+</div>
+
+<footer>
+  <div class="note">本书 · 章节综述 · 基于《Coach the Person, Not the Problem》（第 2 版）中文对照电子书提炼，供讲课与自学使用。</div>
+  <div>壹點學園图书馆 · 青绿主题版</div>
+</footer>
+
+</body>
+</html>

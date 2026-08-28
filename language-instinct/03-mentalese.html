@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>语言本能 · 精读讲义 · 第三章 心语</title>
+<style>
+  :root{
+    --ink:#1d1d1f;
+    --faint:#6e6e73;
+    --rule:#e6e3ef;
+    --accent:#7b5cc4;
+    --accent-deep:#5a3a9e;
+    --accent-soft:#f1ebfb;
+    --accent-softer:#f8f5fd;
+    --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{font-family:var(--sans);color:var(--ink);background:#f5f5f7;line-height:1.72;font-size:16px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:980px;margin:0 auto;padding:44px 20px 64px;}
+  .sheet{background:#fff;border-radius:22px;box-shadow:0 12px 44px rgba(90,58,158,.14);overflow:hidden;}
+  .hero{width:100%;height:340px;object-fit:cover;display:block;}
+  .content{padding:50px 58px 58px;}
+  .masthead{font-size:12px;letter-spacing:.24em;color:var(--accent);text-align:center;text-transform:uppercase;font-weight:600;margin-bottom:20px;}
+  .title{font-size:33px;font-weight:700;line-height:1.3;text-align:center;margin:0 0 8px;letter-spacing:-.01em;}
+  .subtitle{font-size:15px;color:var(--faint);text-align:center;font-style:italic;margin:0 0 18px;}
+  .byline{text-align:center;font-size:15px;margin:0 0 3px;}
+  .meta{text-align:center;font-size:12.5px;color:var(--faint);margin:0 0 24px;line-height:1.5;}
+  .abstract{background:var(--accent-softer);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:14px;padding:16px 22px;font-size:14.5px;line-height:1.75;color:#3a3350;margin:0 0 12px;}
+  .abstract .lab{font-weight:700;color:var(--accent-deep);margin-right:8px;}
+  .keywords{font-size:13px;color:var(--faint);text-align:center;margin:0 0 30px;}
+  .keywords b{color:var(--ink);}
+  .body{column-count:1;column-gap:36px;column-rule:1px solid var(--rule);text-align:justify;}
+  .body p{margin:0 0 12px;text-indent:2em;break-inside:avoid;}
+  .body h2{column-span:all;font-size:21px;font-weight:700;color:var(--accent-deep);margin:32px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--accent);break-after:avoid;}
+  .body h2:first-child{margin-top:6px;}
+  .summary{column-span:all;break-inside:avoid;background:var(--accent-soft);border-radius:14px;padding:13px 20px;margin:8px 0 16px;font-size:14px;line-height:1.7;color:#3a2f55;}
+  .summary .lab{font-weight:700;color:var(--accent-deep);margin-right:6px;}
+  .quotes{column-span:all;break-inside:avoid;border-left:3px solid var(--accent);background:var(--accent-softer);border-radius:0 14px 14px 0;padding:13px 20px;margin:0 0 20px;}
+  .quotes .lab{display:block;font-weight:700;color:var(--accent-deep);font-size:13px;margin-bottom:8px;letter-spacing:.06em;}
+  .quotes p{margin:0 0 9px;text-indent:0;font-style:italic;color:#4a3a66;font-size:14px;line-height:1.68;}
+  .quotes p:last-child{margin-bottom:0;}
+  .figure{column-span:all;margin:6px 0 24px;text-align:center;}
+  .figure img{width:100%;max-width:760px;border-radius:16px;box-shadow:0 10px 28px rgba(123,92,196,.18);}
+  .figure figcaption{font-size:12.5px;color:var(--faint);margin-top:9px;}
+  .foot{column-span:all;border-top:1px solid var(--rule);margin-top:32px;padding-top:18px;font-size:12.5px;color:var(--faint);line-height:1.7;}
+  .foot b{color:var(--ink);}
+  @media (max-width:680px){.body{column-count:1;}.content{padding:34px 22px;}.hero{height:220px;}}
+  @media print{body{background:#fff;}.sheet{box-shadow:none;border-radius:0;}.wrap{padding:0;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <article class="sheet">
+    <img class="hero" src="images_clean/Minimalist_Apple_style_abstrac_2026-08-10T13-45-15.png" alt="心智中的语言星云">
+    <div class="content">
+      <div class="masthead">壹點學園图书馆 · 语言本能精读讲义</div>
+      <h1 class="title">第三章　心语：思想的語言</h1>
+      <div class="subtitle">Chapter 3 · Mentalese: The Language of Thought</div>
+      <div class="byline">主讲：崔老师　|　整理：小E</div>
+      <div class="meta">底本：Steven Pinker《The Language Instinct》第三章 Mentalese（书版标号 02/03，英文原版第三章）<br>蓝本：崔老师周三晚《语言本能》精读课（第 3 次课，2026-08-05）</div>
+
+      <div class="abstract"><span class="lab">摘要</span>本文为崔老师周三晚《语言本能》精读课（第 3 次课）整理稿，对应原书第三章 Mentalese（心语）。全章围绕「心智里的那门语言」展开：先辨明 Mentalese 与口头 Language 的不同层，再以「名可名非恒名」与萨丕尔—沃尔夫假说说明语言不决定思维，继而借 gist、颜色光谱、虚拟语气、海伦·凯勒的命名、图灵机与普遍心语，层层论证——思想深深在头脑中，语言只是其载体之一。</div>
+      <div class="keywords"><b>关键词：</b>心语；Mentalese；萨丕尔—沃尔夫；语言相对论；gist；表征；普遍心语</div>
+
+      <div class="body">
+
+        <h2>一、Mentalese：心智里的那门"语言"</h2>
+        <p>本章主角是一个合成词 Mentalese（mental + ese，类比 chinese / japanese）。崔老师把它译作"心语"，也可扩展理解为"心智语言 / 心智思维 / 心智模式"——但强调它不是 model（模型），是跟心智、意识维度相关的东西。</p>
+        <p>关键区分：Mentalese（心语）≠ Language（我们说出口的话）。Language 是传递沟通的外显语言；Mentalese 是底层想要表达的意思。崔老师用 NLP 的"内在对话"（auditory dialogue）来锚定：当你向左下方看、脑子里冒出"这是发生了啥"时，那就是内在自我对话，它干扰了你的 Language 表达——说明底层的 Mentalese 和表层的 Language 是两回事。</p>
+        <div class="summary"><span class="lab">本节总结</span>Mentalese 是心智里的"语言"，是我"想表达的那个意思"；Language 是说出嘴的载体。二者不同层，NLP 的内在对话可锚定前者。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"我们底层想要去表达的意思，那个东西就是 mentalist 在后面，我还有一个更经典的词，我们等一会儿气氛烘托到了，我们再来把那个词扔出来，效果就会更好。"</p>
+          <p>"它翻译成心语也没毛病……它其实是一种叫心智语言或者是心智思维或者是心智模式。当然它不是 model。"</p>
+          <p>"mentalist 我们一个思维的语言，它不等于 language，不等于我们表达的语言。"</p>
+        </div>
+
+        <figure class="figure">
+          <img src="images_clean/Abstract_concept_of_inner_lang_2026-08-10T13-45-15.png" alt="内在语言化为光粒">
+          <figcaption>心语：说不出时，光已在。</figcaption>
+        </figure>
+
+        <h2>二、语言≠思维：名可名，非恒名</h2>
+        <p>崔老师引入"新话（newspeak）"破题：每一代人都编新词应对新事（火星文 xswl、大哥大、小灵通、BB 机）。但语言（Language）在变，Mentalese 没变——秦朝人也得吃饭，只是管土豆叫白薯或马铃薯。</p>
+        <p>他引《道德经》"名可名，非恒名"（据马王堆帛书，原作"非恒名"，避汉文帝刘恒讳改"常"）：东西一直这么个东西，但不一定一直这么叫。西夏文为何消失？因为能学明白的人太少、用不广。语言会消失，底层概念不消失。</p>
+        <p>那么——是思想决定语言，还是语言框定思想？崔老师给了一个教练视角的硬判断：思想是思想，它不是语言所限定。你管东西叫"手机"，下回也这么说，是约定俗成；但思想本身独立。</p>
+        <div class="summary"><span class="lab">本节总结</span>语言表层流变（新话、消亡语言），底层 Mentalese 恒定。思想不被语言限定——"名可名非恒名"正是这层意思。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"语言在 language 在发展，mental list 它没有变，比如说，秦朝的人他也得吃饭，他也说得管土豆叫土豆，虽然他可能不用土豆这个词，他叫白薯或者叫什么薯，叫马铃薯。"</p>
+          <p>"名可名非恒名……这个东西，它是一直是这么个东西，但是，不一定一直这么叫。"</p>
+          <p>"思想是思想，它不是语言所限定。"</p>
+        </div>
+
+        <h2>三、语言决定思维吗？萨丕尔-沃尔夫与"地图不是疆域"</h2>
+        <p>这一节是全书辩论核心。崔老师先点出三位"普通语义学"前辈：柯日布斯基（Korzybski，"地图不是疆域"）、斯图亚特·蔡斯、早川一荣——正是壹點學園 NLP 线的源头。</p>
+        <p>接着是萨丕尔（Sapir）与沃尔夫（Whorf）师徒的"语言决定论 / 语言相对论"：思想由语言提供的范畴决定。崔老师不客气地称其为"谬论"——举了几个反例：爱斯基摩人有一堆"雪"的词？平克说这是讹传；汉语没有时态、没有性（法语 le/la），但中国人时间概念清晰，照样分得清过去现在；修辞操控（"扩充收入渠道"=征税、"mistakes were made"掩盖了"谁犯的错"）——说明语言能影响思维，但不等于决定。</p>
+        <p>崔老师用两句话收口这层哲学："地图不是疆域"（柯日布斯基）、"子非鱼，焉知鱼乐"（庄子）。你不是狗，咋知道狗没意识？你不是我，咋知道我没乐？</p>
+        <div class="summary"><span class="lab">本节总结</span>萨丕尔-沃尔夫主张语言决定思维，平克与崔老师都否之。语言可影响思维（修辞操控为证），但非决定；"地图≠疆域""子非鱼"是最利落的回应。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"科尔布斯基这个人，这哥们说的，他后面普通语义学，他有两个学生，一个是斯图亚特蔡斯，是早川一荣……这仨人其实是跟我理解，是跟史蒂文平克是类似，反正也都是语言学家。"</p>
+          <p>"萨丕尔，一个人是，这叫沃尔夫他们两个假说是什么？是语言，决定了人们的思想。思想，它是由语言所提供的范畴所决定。"</p>
+          <p>"我们一直提到的经典的前提，假设叫地图，不是疆域，那叫什么，庄子的标准说法叫子非鱼，焉知鱼乐？那你不是我，你咋知道我不知道娱乐？"</p>
+          <p>"语言决定论，绝对是无稽之谈。"</p>
+        </div>
+
+        <h2>四、gist：你听懂的是"大意"而非每个字</h2>
+        <p>平克在书里（49 页）提到一个词 gist——要点、大意（≈ main point）。崔老师特别点出：翻译把它处理成"大概其"，但咱壹點學園的学习风格"不大概齐，每个字要清楚"；不过听人讲话，你确实只 get 到 gist。</p>
+        <p>例子鲜活：群里几百条消息，他下午看书没看，但 get 到"他们明天下午要来吃饭、白山点名吃羊蝎子"。你没逐字听，却掌握了要点。这说明：思维对语言的承载，是"大意级"的，不依赖逐字复现。</p>
+        <div class="summary"><span class="lab">本节总结</span>gist = 大意/要点。人听话抓的是 gist 而非逐字；思维承载信息在"大意层"，这正是语言≠思维的又一佐证。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"gist，beast，意思叫梗概，或者说大意，我们，微言大义的意思……gist 就是 main point。"</p>
+          <p>"你听话，你也没，你也没说，非得要记住个啥，但是，他刚才跟你表达大概的意思，我听懂了。"</p>
+          <p>"你也不可能全看完……大概的意思我 get 了就是他们要来吃饭，准确时间是在明天下午。"</p>
+        </div>
+
+        <h2>五、沃尔夫的颜色光谱与汉语无时态</h2>
+        <p>沃尔夫认为人类用语言把光谱"微积分"了（红归红、黄归黄）。平克骂他，崔老师却站在中立："大家说的都有点道理，能为我所用就行。"他引入中文的"呈现"词——蓝靛、桃红、蘸紫，都在脑海唤起色谱；徐志摩"轻轻的我走了"、戴望舒"雨巷"，不自觉就"呈现"出画面。这恰恰说明 Mentalese 在起作用：词是锚定，呈现是底层。</p>
+        <p>汉语的硬证据更妙：汉语无时态、无性别。"我买本书"（将要买）、"我买了两本字帖"（过去）——靠时间状语锚定，动词不变形；法语一听 le/la 知男女，英语 bought 知过去；汉语没有，但中国人时间概念一点不差。</p>
+        <p>沃尔夫说"汉语无时态→中国人没时间概念"被证伪。语言是社区习惯（community habit），是约定俗成，不是思维的决定者。</p>
+        <div class="summary"><span class="lab">本节总结</span>沃尔夫"语言切割光谱决定思维"站不住；汉语无时态却有清晰时间概念，证伪语言决定论。语言是社区约定，非思维主宰。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"沃尔夫会认为人类用语言。把这一个光谱都给微积分了，就都给微分了……我倒是觉得吧，我更喜欢用识别这个词……他其实是一个反向，我们反向理解他这事，好像也不是说人家完全不对。"</p>
+          <p>"汉语是没有时间节奏的，或者是没有时态，也没有什么女男女格的……但是咱们说比如说我买，我买本书，那我买本书大大概意思你应该能猜出来，是我还没买，我要去买本书。"</p>
+          <p>"语言是社区的一个习惯，我们是 community habit。"</p>
+        </div>
+
+        <h2>六、虚拟语气 if 与 as if：精神疆域的构建</h2>
+        <p>崔老师抠了一个精微区别：if ≠ as if。if 是条件状语，表示"这事没发生"（语法虚拟语气）；as if 是 NLP"假如框架"——你仿佛在脑海已构建出画面，已 describe / construct / model 了一个东西。</p>
+        <p>"精神出轨算不算出轨？"——他在脑海已无数次 describe 出轨场景，事虽未发生，在思想中已经发生了。所以 as if 在精神疆域里是"已构建、已有"。平克用玩笑讽刺："我祖母有睾丸的话，他就是我祖父了"——反证"没发生的事用语言说成假，但脑中构建是真的"。</p>
+        <div class="summary"><span class="lab">本节总结</span>if（未发生）与 as if（精神疆域已构建）不同。as if 在内在已建模，证明思维可独立于真实语言发生——精神疆域不亚于外在宇宙。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"as if 和 if 不一样哈，大家一定要注意，这两者是不能等同的……as if，衣服不等于。不等于 if 他们两个所起到的东西不一样。If 是一个条件状语。"</p>
+          <p>"as if 我们用假如框架是你仿佛在你脑海当中已经构建出来了，或者已经 describe 了，或者已经 construct 了，或者已经 structuring 了，已经 modeling 了一个东西。"</p>
+          <p>"在我们的脑海当中，他其实是有一片精神疆域的这个精神疆域，我觉得不亚于外在宇宙。"</p>
+        </div>
+
+        <h2>七、海伦·凯勒的领悟：naming 点亮内在</h2>
+        <p>崔老师最动情的一段。海伦·凯勒又聋又盲，当她突然知道"可以把眼前黄色升起的命名为太阳""把书命名为书"——这是一种"多么痛的领悟"（enlighten，内在被点亮）。</p>
+        <p>naming（命名）不是嘴上功夫，是内在触动：当你某刻突然知道"这是妈妈、这是爸爸、这是世界、这称之为爱"，那种流过内在的思维触动，无法用语言穷尽。崔老师联想到下山时、伊犁雪山前——眼前效果很多，正因"翻译不出"才显"心语"之深。这正回答前文：思维高度常无法被语言完全表达，它是"心里面发出的声音、直觉或感觉"。</p>
+        <div class="summary"><span class="lab">本节总结</span>海伦·凯勒的 naming 是内在点亮，证明思维触动远早于且深于语言。命名触动直觉，而直觉常不可言说——这正是心语的本质。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"当一个人他听不到，他看不到，他感受不到，海伦凯勒一样，当他有一天突然知道说，我们可以把前面东西命名，或者 naming 叫做一本书。我可以把眼前看到黄色升起的东西称之为太阳……这是一种领悟，我没有放，这是一种多么痛的领悟，因为它太痛了。"</p>
+          <p>"我们内在的那种心语，我们 mental 或者我们思维高度，它已经很多时候是没有办法能够用语言去表达。"</p>
+          <p>"它并不是用嘴说出的话，而更多的是一种感，就是直觉或者感觉，它是心里面发出的声音。"</p>
+        </div>
+
+        <h2>八、婴儿、猴子与艺术家：没有语言也有思维</h2>
+        <p>平克用三例证明"有思维、无语言"：1. 婴儿还不会说话，就会对人笑、有喜好——有思想；2. 猴子叽叽喳喳说"不是人话"，但能抢人香蕉、认得同伴——有思维；3. 艺术家 / 科学家（如毕加索）用画、用抽象表达无法言说之物——艺术形式也是一种思维语言（心语），只是用画呈现。</p>
+        <p>崔老师加料：狗绝对有思想（摇尾迎主、咬敌），窗台薄荷都"朝着太阳长"；「举头三尺有神明」，别拿局限概念定义"谁没意识"。科学上没有证据证明思维由语言塑造，也没有证据证明语言塑造思维——二者互通、互影响，是关联而非决定。</p>
+        <div class="summary"><span class="lab">本节总结</span>婴儿笑、猴抢蕉、毕加索作画，三例共证：思维可完全独立于语言存在。科学与常识都不支持"语言决定思维"。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"我们有了很多的例证来证明说这件事情，沃尔夫他们这帮人说的是不对的，有三个例子，第一个。婴儿还不会说话的时候，他仍然可以跟别人笑，他内在也有喜好证明他有思想。第二是猴子……它仍然可以吃人吃的香蕉，它仍然可以跟人抢着抢东西吃。第三，很多艺术家和这些科学家，他没有去能够用语言那么清楚的表达他的思想，他可以用一种画……艺术形式当然也是一种思维语言。"</p>
+          <p>"科学上没有证据证明人的思维是由语言塑造，也没有能够证明说语言就塑造了思维或者思维塑造语言。"</p>
+          <p>"狗绝对是有思想的……我们从来不搞不灵的，如果当真正我们可以唤醒自己唤或者唤醒内在的那个部分的时候，你是可以链接到所有东西的。"</p>
+        </div>
+
+        <h2>九、心象与胸有成竹：思维的非语言呈现</h2>
+        <p>平克书里（63 页）有词 mental image（心象）。崔老师接 NLP 感官体验：内在视觉画面、郑板桥"胸有成竹"——竹长啥样、虾咋画，下笔如有神。这证明思维不只在语言里体现。</p>
+        <p>化学家梦见蛇咬尾、悟出苯环；科学家用几何图形思考——都是"横向归类 / 相似性"的概念化。崔老师给了一个词：意境。"心象系统、视觉思维工具不是语言"——脑海里两个小人打架，是你的 Mentalese。</p>
+        <div class="summary"><span class="lab">本节总结</span>心象（mental image）证明思维可借画面、几何、意境呈现，不依赖语言。胸有成竹即"思维先于言语"。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"郑板桥有一句很经典的话，咱们原来经常讲就叫胸有成竹……因为我们在脑海当中已经构建出来了，竹子什么样……下笔如有神。"</p>
+          <p>"我们的心象系统，或者我们的思维，视觉思维工具。不是语言，是在我们内在会有这么一套图形系统。"</p>
+          <p>"意境……我们就会发现，我们对于语言，他不一定非得要去强求他得到一个什么东西，反而是他真正的能够进入到我们那样一个体系里面去。"</p>
+        </div>
+
+        <h2>十、图灵机与表征：认知科学的基础是心智理论</h2>
+        <p>平克举图灵机讲三段论：Socrates is a man / Every man is mortal → Socrates is mortal。给机器一套主谓宾逻辑体系，它自动推出结论——证明认知科学的基础是"心智理论"，不是"语言理论"。这正是崔老师"为什么转向平克、不再死磕乔姆斯基"的理由：乔姆斯基是语言学家顺带解释心理学，平克是心理学家做语义学研究，根红苗正。</p>
+        <p>图灵机引出 representational（表征）——即咱们 NLP 的"表象系统 / 表征系统"：语言表征思想，思想被语言表征，但语言没有框定思想。大脑是"主谓宾结构的一组神经元群"，与芯片放电同理。</p>
+        <div class="summary"><span class="lab">本节总结</span>图灵机证明认知科学基石是心智理论而非语言理论；representational（表征）对应 NLP 表象系统——语言表征思想却不框定思想。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"图灵的，计算机，它就证明了一个事，认知科学的基础是有一种心智理论的，不是语言理论。这个也是我们为什么要去转向学史蒂文评课？而不再去死乞白赖再继续搞 chrom 斯基？"</p>
+          <p>"representational 我们原来一直在讲的表象系统……我们的语言表征了我们的思想。我们的思想一定程度上被语言所表征了。但是语言没有，没有，没有限定住，没有框定住我们的思想。"</p>
+          <p>"我们的大脑，是主谓宾结构的一种神经元群，它产生了一种11对应。"</p>
+        </div>
+
+        <h2>十一、普遍心语：feel the rest</h2>
+        <p>全章收束于第 75 页那句被崔老师标红的话：要实现正确推理，这些思维语言"必然极其相似"——很可能是同一种语言，called 普遍的心语（universal mentalese）。</p>
+        <p>回到"名可名非恒名"：新话老话终归回归 Mentalese。每个想法都含海量信息，无法用语言穷尽表达——平克原词 feel the rest（你自己把剩下的补上）。崔老师把它当成口头禅："你没整明白自己脑补，因为我没说那么多。"</p>
+        <p>最后落点：不管英汉日阿，我们都是用思维决定语言——因为有想法，才有要说的话。纵使删减扭曲总结，底层 meaning 仍在。</p>
+        <div class="summary"><span class="lab">本节总结</span>全章归于"普遍心语"：人类思维语言底层同一。语言承载不下全部想法，故 feel the rest；终究是思维决定语言，而非相反。</div>
+        <div class="quotes"><span class="lab">金句摘录</span>
+          <p>"这些思维语言是同一种语言，东西被称之为叫做普遍的心语，评课他在整个书里面写到的很多东西都是跟我们东西有关。"</p>
+          <p>"我们不管是用英语还是用汉语用日语，用阿拉伯语，我们都是在用思维去决定了语言。因为我们有了这种想法和思维和思考，所以才得出了我们要说的东西。"</p>
+          <p>"feel the rest 就是反正你自己把剩下那些补上……因为我没说那么多。"</p>
+          <p>"语言不是思维的唯一的方式……思想，是深深的在我们的头脑当中，用我们的标准的称呼，就在于处于旷浪之眼，由于无何有之乡。"</p>
+        </div>
+
+        <div class="foot">
+          <b>讲义信息</b><br>
+          蓝本：崔老师周三晚《语言本能》精读课（第 3 次课，2026-08-05）<br>
+          底本：Steven Pinker《The Language Instinct》第三章 Mentalese（书版标号 02/03，英文原版第三章）<br>
+          整理原则：以崔老师口授为蓝本，整合改写、保留主要观点；每节末「金句摘录」为崔老师原话。
+        </div>
+
+      </div><!-- /body -->
+    </div>
+  </article>
+</div>
+</body>
+</html>

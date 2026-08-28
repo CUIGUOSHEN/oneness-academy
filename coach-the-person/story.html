@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>教练其人，而非问题 · 故事书</title>
+<style>
+:root{
+  --bg:#f5f5f7; --paper:#fff; --ink:#1d1d1f; --muted:#86868b;
+  --accent:#7b5cc4; --accent-deep:#5a3a9e; --accent-soft:#f3eefc;
+  --line:#e8e6ef; --zh-ink:#3c3c42;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+  line-height:1.8;-webkit-font-smoothing:antialiased}
+
+/* ===== 顶部导航 ===== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:14px;
+  background:rgba(245,245,247,.86);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);padding:9px 18px}
+.nav .brand{font-weight:800;font-size:13.5px;color:var(--accent-deep);white-space:nowrap;letter-spacing:.02em}
+.nav .chips{display:flex;gap:6px;overflow-x:auto;flex:1;scrollbar-width:none;padding:2px 0}
+.nav .chips::-webkit-scrollbar{display:none}
+.nav a{font-size:12px;color:var(--muted);text-decoration:none;padding:3px 11px;border-radius:999px;
+  border:1px solid var(--line);background:#fff;white-space:nowrap;transition:.2s}
+.nav a:hover{color:var(--accent-deep);border-color:var(--accent)}
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:60;
+  background:linear-gradient(90deg,var(--accent),var(--accent-deep));transition:width .15s linear}
+
+/* ===== Hero 封面 ===== */
+.hero{min-height:94vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;overflow:hidden;padding:70px 24px;
+  background:linear-gradient(165deg,#4a2f8a 0%,#5a3a9e 40%,#7b5cc4 72%,#9b83d8 100%);color:#fff}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(900px 420px at 78% 12%,rgba(255,255,255,.16),transparent 60%),
+             radial-gradient(700px 380px at 12% 88%,rgba(255,255,255,.10),transparent 60%)}
+.hero .kicker{font-size:12.5px;letter-spacing:.26em;color:#d9c8f5;font-weight:700;position:relative}
+.hero h1{font-size:clamp(42px,7vw,74px);margin:20px 0 8px;letter-spacing:.03em;line-height:1.15;position:relative}
+.hero .sub{font-size:clamp(17px,2.6vw,25px);color:#efe8fb;font-weight:600;position:relative}
+.hero .en{font-size:clamp(13px,1.8vw,16px);color:#cbb9ec;margin-top:14px;font-style:italic;position:relative}
+.hero .by{font-size:14.5px;color:#d9c8f5;margin-top:30px;position:relative}
+.hero .by b{color:#fff}
+.hero .scrollhint{position:relative;margin-top:64px;font-size:13.5px;color:#cbb9ec;animation:bob 2.2s ease-in-out infinite}
+.hero .scrollhint .arr{display:inline-block;margin-left:6px;animation:bob2 1.4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes bob2{0%,100%{transform:translateY(0);opacity:.6}50%{transform:translateY(5px);opacity:1}}
+
+/* ===== 故事主线容器 ===== */
+.story{max-width:940px;margin:0 auto;padding:0 22px 140px}
+.track{position:relative;padding-left:60px;padding-top:10px}
+.track::before{content:"";position:absolute;left:26px;top:0;bottom:0;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,transparent 0%,var(--accent) 4%,var(--accent) 96%,transparent 100%);
+  opacity:.32}
+
+/* ===== 章节 ===== */
+.chapter{position:relative;margin:96px 0}
+.node{position:absolute;left:26px;top:8px;width:15px;height:15px;border-radius:50%;transform:translateX(-50%);
+  background:#fff;border:3px solid var(--accent);box-shadow:0 0 0 6px rgba(123,92,196,.14);transition:.5s}
+.chapter.in .node{background:var(--accent);box-shadow:0 0 0 9px rgba(123,92,196,.20)}
+
+.sec-head{background:linear-gradient(150deg,var(--accent),var(--accent-deep));color:#fff;
+  border-radius:22px;padding:28px 32px;margin-bottom:24px;box-shadow:0 14px 34px rgba(90,58,158,.22)}
+.sec-head .no{font-size:12px;letter-spacing:.2em;color:#d9c8f5;font-weight:700}
+.sec-head h2{margin:8px 0 4px;font-size:clamp(24px,3.4vw,32px);line-height:1.3}
+.sec-head .en{font-size:14px;color:#e6dcf7;font-style:italic;margin-top:2px}
+.sec-head .lead{font-size:14.5px;color:#f0e9fb;margin-top:12px;line-height:1.85}
+
+/* 小标题（章内节） */
+.h3{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;margin:34px 0 14px;color:var(--ink)}
+.h3::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none}
+
+/* 卡片 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(29,29,31,.03)}
+.card.soft{background:var(--accent-soft);border-color:rgba(123,92,196,.35)}
+.card .tag{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em;margin-bottom:6px}
+.card h4{font-size:16.5px;margin:0 0 8px;color:var(--ink);line-height:1.45}
+.card p{font-size:14.3px;color:var(--zh-ink);margin:0;line-height:1.85}
+.card p + p{margin-top:10px}
+.card .hot{color:var(--accent-deep);font-weight:700}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* 步骤条 */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:6px 0 8px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:18px}
+.step .dot{width:30px;height:30px;border-radius:50%;background:linear-gradient(150deg,var(--accent),var(--accent-deep));
+  color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;margin-bottom:12px}
+.step h5{font-size:15px;margin:0 0 8px;color:var(--ink)}
+.step p{font-size:13.5px;color:var(--zh-ink);margin:0;line-height:1.8}
+
+/* 金句 */
+.quote{position:relative;padding:30px 34px;margin:28px 0;background:var(--accent-soft);border-radius:18px;
+  border-left:4px solid var(--accent);font-size:clamp(19px,2.6vw,24px);font-weight:600;color:var(--accent-deep);line-height:1.65}
+.quote::before{content:"“";position:absolute;left:13px;top:-8px;font-size:70px;color:var(--accent);opacity:.28;font-family:Georgia,serif}
+.quote .src{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:14px;font-style:normal}
+
+/* 对话气泡 */
+.dlg{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.bubble{max-width:84%;padding:13px 18px;border-radius:18px;font-size:14.5px;line-height:1.75}
+.bubble.c{background:#fff;border:1px solid var(--line);align-self:flex-start;border-bottom-left-radius:4px}
+.bubble.k{background:var(--accent-soft);border:1px solid rgba(123,92,196,.45);align-self:flex-end;border-bottom-right-radius:4px}
+.bubble .who{display:block;font-size:11.5px;font-weight:700;color:var(--accent-deep);margin-bottom:3px}
+.bubble.c .who{color:#9a9aa2}
+
+/* 迷思 vs 真相 */
+.mv{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{border-radius:16px;padding:18px 20px;border:1px solid var(--line);background:var(--paper)}
+.box.t{background:var(--accent-soft);border-color:rgba(123,92,196,.5)}
+.box h5{font-size:13.5px;font-weight:700;margin:0 0 8px;display:flex;align-items:center;gap:6px}
+.box.m h5{color:#9a9aa2}
+.box.t h5{color:var(--accent-deep)}
+.box p{font-size:13.8px;color:var(--zh-ink);margin:0;line-height:1.85}
+@media(max-width:760px){.mv{grid-template-columns:1fr}}
+
+/* 三脑 / 头心胆 模型 */
+.brain3{display:flex;gap:14px;margin:10px 0}
+.brain3 .b{flex:1;background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:16px;text-align:center}
+.brain3 .b h5{font-size:15px;margin:0 0 6px;color:var(--ink)}
+.brain3 .b p{font-size:13px;color:var(--muted);margin:0;line-height:1.7}
+.brain3 .b.hot{background:linear-gradient(150deg,var(--accent),var(--accent-deep));border:none;color:#fff}
+.brain3 .b.hot h5{color:#fff}
+.brain3 .b.hot p{color:#e6dcf7}
+@media(max-width:760px){.brain3{flex-direction:column}}
+
+/* 故事盒子同心圆 */
+.boxwrap{display:flex;gap:28px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.rings{position:relative;width:300px;height:300px;margin:0 auto;flex:none}
+.rings .r{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-size:13px;font-weight:700;transition:.3s}
+.rings .r small{font-weight:400}
+.r1{inset:0;background:var(--accent-soft);border:1.5px solid var(--accent);color:var(--accent-deep)}
+.r2{inset:42px;background:#e7def7;border:1.5px solid var(--accent);color:var(--accent-deep)}
+.r3{inset:84px;background:var(--accent);color:#fff}
+.r4{inset:126px;background:var(--accent-deep);color:#fff}
+.ringside{flex:1;min-width:280px}
+
+/* 标签条 */
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.chip{font-size:12.5px;font-weight:600;color:#fff;background:linear-gradient(150deg,var(--accent),var(--accent-deep));
+  border-radius:999px;padding:6px 15px}
+.chip.ghost{background:none;color:var(--accent-deep);border:1.5px solid var(--accent)}
+
+/* 收尾 */
+.finale{text-align:center;margin-top:110px}
+.finale .f-box{background:linear-gradient(150deg,var(--accent),var(--accent-deep));color:#fff;border-radius:26px;
+  padding:48px 36px;box-shadow:0 18px 44px rgba(90,58,158,.28)}
+.finale h2{font-size:clamp(24px,3.4vw,32px);margin:0 0 10px}
+.finale .f-sub{color:#e6dcf7;font-size:15px;margin-bottom:30px}
+.finale .endmark{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border-radius:50%;
+  background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.4);font-size:22px;margin-top:34px}
+.finale .foot{color:var(--muted);font-size:13px;margin-top:30px}
+
+/* 滚动渐显 */
+html.js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+html.js .reveal.in{opacity:1;transform:none}
+html.no-js .reveal{opacity:1;transform:none}
+
+@media(max-width:640px){
+  .track{padding-left:40px}
+  .track::before{left:18px}
+  .node{left:18px}
+  .sec-head{padding:22px 20px}
+  .quote{padding:24px 22px}
+}
+@media print{
+  .nav,.progress{display:none}
+  body{background:#fff}
+  .hero{min-height:auto;background:#5a3a9e !important;border-radius:0}
+  .chapter{break-inside:avoid;margin:60px 0}
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="brand">教练其人，而非问题</div>
+  <div class="chips">
+    <a href="#prologue">序章</a>
+    <a href="#map">地图</a>
+    <a href="#part1">Part I</a>
+    <a href="#ch1">Ch1</a>
+    <a href="#ch2">Ch2</a>
+    <a href="#part2">Part II</a>
+    <a href="#ch3">Ch3</a>
+    <a href="#ch4">Ch4</a>
+    <a href="#ch5">Ch5</a>
+    <a href="#part3">Part III</a>
+    <a href="#ch6">Ch6</a>
+    <a href="#ch7">Ch7</a>
+    <a href="#ch8">Ch8</a>
+    <a href="#ch9">Ch9</a>
+    <a href="#ch10">Ch10</a>
+    <a href="#epilogue">尾声</a>
+    <a href="#finale">终章</a>
+  </div>
+</div>
+<div class="progress" id="pbar"></div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="kicker">壹點學園图书馆 · 反思式探询教练系列</div>
+  <h1>教练其人，而非问题</h1>
+  <div class="sub">Coach the Person, Not the Problem</div>
+  <div class="en">用反思式探询（Reflective Inquiry）做教练 · 第二版</div>
+  <div class="by">著 · <b>Marcia Reynolds</b>　|　一个关于「教练本质」的故事，从上到下，慢慢讲给你听</div>
+  <div class="scrollhint">从这里开始，一路往下读<span class="arr">↓</span></div>
+</header>
+
+<main class="story">
+<div class="track">
+
+<!-- ============ 序章 ============ -->
+<section class="chapter" id="prologue">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">PROLOGUE · 序章</div>
+    <h2>为什么人需要教练？</h2>
+    <div class="en">Why People Need to Be Coached</div>
+    <div class="lead">故事从一个有点反直觉的事实开始：<b>大脑会保护我们的信念，哪怕这些信念已经不再服务于我们。</b>这正是教练存在的理由。</div>
+  </div>
+
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">第 1 层</div><h4>大脑建造自我概念</h4><p>日常生活中，大脑建立信念与规则，定义「我是谁」、定义我们如何解读世界，然后保护这些概念，给我们确定感。</p></div>
+    <div class="card reveal"><div class="tag">第 2 层</div><h4>确定感被保护</h4><p>即便我们知道某些心智习惯已不再服务于更高的自我，大脑也不喜欢这种确定感被打破。</p></div>
+    <div class="card reveal"><div class="tag">第 3 层</div><h4>外部挑战被拦截</h4><p>除非我们主动邀请他人帮忙换个角度看，否则外部对思绪的挑战会被挡在外面——被问「为什么」时，我们立刻编理由辩解。</p></div>
+  </div>
+
+  <div class="card soft reveal" style="margin-top:6px">
+    <p class="hot" style="font-size:15.5px">➤ 结论：靠自己，我们很难改变。教练的价值，正是那个「被邀请的破壁者」——受客户之邀，进入他的思维。</p>
+  </div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card reveal">
+      <div class="tag">什么是「Aha 时刻」</div>
+      <h4>安全 → 剖析 → 重组</h4>
+      <p>当客户对评判感到足够安全，便能剖析自己的思维；听到自己的思考被映照出来、深入探究其含义时，大脑重组信息，触发领悟。</p>
+      <p class="hot">灵光一闪 · 眼睛睁大 · 窃笑或「哎呀」一刻</p>
+    </div>
+    <div class="card reveal">
+      <div class="tag">AI 能替代教练吗</div>
+      <h4>讨论可以，转化不行</h4>
+      <p>分析解决方案可从 AI 辅助学习中获益；但当情绪与问题或成果纠缠、人们害怕改变时，需要人与人之间的联结——这正是教练催生转化性改变的核心。</p>
+      <p class="hot">教练的护城河：临在 + 联结</p>
+    </div>
+  </div>
+  <div class="card soft reveal" style="margin-top:6px">
+    <h4 style="color:var(--accent-deep)">第二版的一个关键调整</h4>
+    <p style="margin-top:6px">把「心智习惯」（Part II）与「具体技巧」（Part III）对调——<b>先关系性、人本的练习，再实用性技巧</b>：因为人本练习能让技巧的运用更见成效。</p>
+  </div>
+</section>
+
+<!-- ============ 全书地图 ============ -->
+<section class="chapter" id="map">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">THE JOURNEY · 全书地图</div>
+    <h2>这一程，我们要走五站</h2>
+    <div class="lead">从「教练不是什么」出发，一路走到「教练成为生活方式」。五个站点，一条主线。</div>
+  </div>
+  <div class="steps">
+    <div class="step reveal"><div class="dot">序</div><h5>导言</h5><p>教练为什么如此有力</p></div>
+    <div class="step reveal"><div class="dot">Ⅰ</div><h5>Part I</h5><p>什么是教练对话</p></div>
+    <div class="step reveal"><div class="dot">Ⅱ</div><h5>Part II</h5><p>三个心智习惯<br>神经系统 · 接收 · 放下评判</p></div>
+    <div class="step reveal"><div class="dot">Ⅲ</div><h5>Part III</h5><p>五项核心教练技能</p></div>
+    <div class="step reveal"><div class="dot">终</div><h5>收尾</h5><p>教练作为生活方式与文化</p></div>
+  </div>
+</section>
+
+<!-- ============ Part I ============ -->
+<section class="chapter" id="part1">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">PART I · 什么是教练对话</div>
+    <h2>教练，是一场「结为伙伴」的对话</h2>
+    <div class="en">What Is a Coaching Conversation</div>
+    <div class="lead">ICF 首个教练定义里的关键词，是「结为伙伴」——教练不充当专家或分析者，而是<b>思维伙伴（thinking partner）</b>。</div>
+  </div>
+
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">源流</div><h4>来自 John Dewey</h4><p>1910 年《How We Think》：不是多提问，而是促使学生<b>怀疑自以为知道的</b>，从而敞开学习之门。教练的实践可追溯到他的学习理论。</p></div>
+    <div class="card reveal"><div class="tag">核心工具</div><h4>主动重播 Active Replay</h4><p>归纳、转述、确认关键措辞、分享客户的情绪与姿态——把客户的思考<b>原样映照回去</b>，客户通过解释或修正拓展话语的意义。</p></div>
+    <div class="card reveal"><div class="tag">反面</div><h4>不是 rah-rah</h4><p>「你能行」这类话对高成就者显得居高临下。好的教练常激起<b>「尴尬不确定」</b>的一刻——那正是学习发生的时刻。</p></div>
+  </div>
+
+  <div class="dlg">
+    <div class="bubble c reveal"><span class="who">客户（停顿、眼神游移）</span>……我不确定该不该接受那份工作。</div>
+    <div class="bubble k reveal"><span class="who">教练（映照 + 邀请）</span>看起来你在思考什么。你愿意分享此刻浮现在你心头的是什么吗？</div>
+  </div>
+</section>
+
+<!-- ============ Ch1 ============ -->
+<section class="chapter" id="ch1">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">CHAPTER 1 · 教练不是什么</div>
+    <h2>当教练不再是教练</h2>
+    <div class="en">When Coaching Isn't Coaching</div>
+    <div class="lead">要理解教练是什么，先得看清它不是什么。界定边界，才知道何时该出手、何时不该出手。</div>
+  </div>
+
+  <div class="h3 reveal">告知与威胁：为什么都不是教练</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>教练 vs 告知</h5><p>告知触达的是<b>认知脑</b>——客户在已知语境里分析你的话，可能同意，却需要外部确认才敢行动。<br><br>风险：客户开始<b>依赖你给答案或批准</b>，你无法培养出独立的思想者。你省了时间，却错过了让客户自己长本事的机会。</p></div>
+    <div class="box t reveal"><h5>教练 vs 威胁（反馈迷思）</h5><p>威胁——包括负面反馈与「否则就得」——让人进入<b>防御姿态</b>。<br><br>若顺从，大脑把指令与反馈一起存为「否则就得」的关键：这是<b>基于恐惧的学习</b>，编码进原始脑。面对类似情境，人会反射性照旧反应——<b>抗拒改变，正因学习根植于恐惧</b>。</p></div>
+  </div>
+
+  <div class="h3 reveal">教练触达的是哪一层？</div>
+  <div class="brain3">
+    <div class="b reveal"><h5>认知脑</h5><p>思考 · 分析<br>告知所触达</p></div>
+    <div class="b hot reveal"><h5>中间脑（边缘系统）</h5><p>长期记忆 · 动机 · 创造力<br><b>洞见式学习发生之处</b></p></div>
+    <div class="b reveal"><h5>原始脑</h5><p>生存 · 恐惧<br>威胁记忆的存放处</p></div>
+  </div>
+
+  <div class="h3 reveal">什么时候该教练、什么时候该做别的</div>
+  <div class="steps">
+    <div class="step reveal"><div class="dot">1</div><h5>先建立教练意愿</h5><p>「此刻你需要我什么？」有人只想被听见（愤怒或哀悼时）。即便想要教练，也要确认他愿意与你共事、愿意被质疑想法与动机。</p></div>
+    <div class="step reveal"><div class="dot">2</div><h5>确认教练是对的选择</h5><p>他说「不知道怎么办」时，常是有想法、怕失败或怕被评价。「若你毫无损失，你会试什么？」——若仍无想法，他可能真正需要的是指导。</p></div>
+    <div class="step reveal"><div class="dot">3</div><h5>学会「不能教练」的时刻</h5><p>三条硬条件，缺一不可：① 放得下对对话走向的执念；② 相信客户能搞清该做什么；③ 心怀希望、好奇与关怀。做不到，就提供指导而非教练。</p></div>
+  </div>
+
+  <div class="card soft reveal" style="margin-top:18px">
+    <h4 style="color:var(--accent-deep)">适合教练的理想场景</h4>
+    <p style="margin-top:6px;font-size:14px">改善沟通与关系 · 降低对冲突或情绪反应的恐惧 · 为应对难缠的人找方案 · 强化关系 · 澄清目的、愿景与承诺 · 管理压力改善福祉 · 在转变中茁壮成长 · 带领他人穿越改变 · 承担新的领导角色 · 体验更大的满足与成功。</p>
+  </div>
+
+  <div class="h3 reveal">思维伙伴，不是专家</div>
+  <div class="grid2">
+    <div class="card reveal"><h4>不用做的</h4><p>· 不必抛出高明问题<br>· 不必拥有所有答案<br>· 不必记「最佳问题」清单<br>· 不必把对话变成盘问</p></div>
+    <div class="card soft reveal"><h4 style="color:var(--accent-deep)">要做的</h4><p>· 提供一个<b>无评判的言说空间</b><br>· 真心关怀客户<br>· 分享你所闻所见<br>· 不带「我对」的执念，给出客户似乎意指之物</p></div>
+  </div>
+
+  <div class="quote reveal">
+    在你分享所闻所见后，你大概会问个问题，但问题出自你的反映，而非你用滥的「最佳问题」清单。
+    <span class="src">—— Marcia Reynolds《教练其人，而非问题》</span>
+  </div>
+</section>
+
+<!-- ============ Ch2 ============ -->
+<section class="chapter" id="ch2">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">CHAPTER 2 · 五个误导性信念</div>
+    <h2>教练圈流传最广的五条「规则」</h2>
+    <div class="en">Misleading Coaching Beliefs</div>
+    <div class="lead">恰恰是最需要被质疑的。每一条，我们都先看看它从哪来、哪些是真的，再把它拆开。</div>
+  </div>
+
+  <div class="h3 reveal">信念 1 · 「教练最重要的技能，是问出有力的问题」</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>这信念的来源</h5><p>院校教反思性陈述，却过度强调「该问哪类问题」；畅销书兜售「最佳问题清单」。观察示范时，人们收集自认为绝佳的问题，脱离语境也照搬。</p></div>
+    <div class="box t reveal"><h5>替代观点</h5><p>给予建议的对立面，不只是提问。<b>反思性陈述</b>——总结、释义、把关键短语用隐喻封装、分享观察到的情绪转变——即使不追问，也极具力量。<br><b>「听到自己的话被重述」，这一震动可能开启一扇门。</b></p></div>
+  </div>
+
+  <div class="h3 reveal">信念 2 · 「千万别问封闭式问题」</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>哪些是真的</h5><p>一字回答会掐断对话；<b>信任建立之前</b>使用封闭式问题可能让对话彻底停摆；封闭式问题有时是伪装起来的评判。</p></div>
+    <div class="box t reveal"><h5>哪些是假的、限制性的</h5><p>「所有封闭式问题都会扼杀思考」并不成立。当你简洁总结后问「对吗」，双方都获得清晰；封闭式问题同样能发人深省。</p></div>
+  </div>
+  <div class="card soft reveal" style="margin-top:8px">
+    <h4 style="color:var(--accent-deep)">封闭式问题的三种正当用途</h4>
+    <div class="grid3" style="margin-top:10px">
+      <div><p style="font-size:13.8px;line-height:1.7"><b>① 澄清并确认成果</b><br>确认客户此刻想创造/改变、尚未发生的事，成为对话焦点。</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>② 检验反映是否准确</b><br>「我说对了吗？」「我有没有漏掉什么？」</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>③ 邀请说出洞见</b><br>情绪、姿态、沉默出现转变时：「你愿意分享刚才脑中浮现的念头吗？」</p></div>
+    </div>
+  </div>
+
+  <div class="h3 reveal">信念 3 · 「教练绝不应该打断客户」</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>哪些是真的</h5><p>打断可能让人觉得侵入、变得防备；有些教练用「嗯哼」「我明白」表示倾听，有时令人安心，有时也打断流动——要觉察自己的习惯。</p></div>
+    <div class="box t reveal"><h5>哪些是假的、限制性的</h5><p>「打断总是破坏性」并不成立。打断有助于聚焦并维持方向：当客户转换话题、或重复问题却毫无新意时，请求暂停澄清焦点，是有用的。</p></div>
+  </div>
+  <div class="card soft reveal" style="margin-top:8px">
+    <p style="font-size:14.5px;line-height:1.85;margin:0">关键不是「能不能打断」，而是<b>「打断是否带着明确目的」</b>。当客户已转移焦点、或说出了当前故事之外却重要到值得探索的内容——打断以反映焦点的游移，可能改变整场对话的成果。</p>
+  </div>
+
+  <div class="h3 reveal">信念 4 · 「开场就要客户有清晰的未来愿景」</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>哪些是真的</h5><p>成果清晰，对话不易绕圈；模糊的成果让对话循环回到问题细节或「应该」——客户收尾时可能「有点」去做，或找个理由不立即做。</p></div>
+    <div class="box t reveal"><h5>哪些是假的、限制性的</h5><p>客户往往一开始就不确定想要什么，最多只能描述「令自己焦虑、困住的情形」。<b>强迫他们描绘想要的画面，反而会把他们推远。</b></p></div>
+  </div>
+  <div class="dlg">
+    <div class="bubble c reveal"><span class="who">客户</span>我还没准备好宣告自己未来想要什么。我想先谈谈此刻手头的选项——帮我看看，是什么在阻碍我去主张自己想要的。</div>
+    <div class="bubble k reveal"><span class="who">教练（替代做法）</span>好，那我们不急着要画面。就从「想看清是什么挡住了你」这个渴望开始，让它随探索慢慢成形。</div>
+  </div>
+  <p class="reveal" style="font-size:14px;color:var(--muted);margin:4px 0 0">➤ 替代观点：<b>成果往往在教练过程中浮现，而非之前</b>。客户先给一个渴望，恐惧、最坏情境、被评判的担忧随反思与追问浮现，一个个人化的愿景就此成形。</p>
+
+  <div class="h3 reveal">信念 5 · 「成为好教练需要很长时间」</div>
+  <div class="mv">
+    <div class="box m reveal"><h5>哪些是真的</h5><p>要改掉「告知与建议」的习惯、拥抱「好奇与对未知的自在」，需要时间；对自己和教练魔力的信任，需要刻意练习与耐心。</p></div>
+    <div class="box t reveal"><h5>哪些是假的、限制性的</h5><p>「必须很熟练才能去找客户」并不成立。<b>当你给忙碌的人片刻毫无评判的言说空间，你就在提供价值</b>——那可能是他一天中唯一能放松、呼吸、自由交谈的时刻。</p></div>
+  </div>
+</section>
+
+<!-- ============ Part II ============ -->
+<section class="chapter" id="part2">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">PART II · 三个心智习惯</div>
+    <h2>共同调节的三个心智习惯</h2>
+    <div class="en">Three Mental Habits for Co-Regulation</div>
+    <div class="lead">一次教练对话的效力，取决于由教练<b>全人临在</b>所生成的能量联结。先对齐自己，再谈技巧。</div>
+  </div>
+
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">机制</div><h4>神经系统会「互相调音」</h4><p>Deb Dana《The Polyvagal Theory in Therapy》：当互动是接纳且尊重的，双方的神经系统便能共同调节，激发出平静、快乐、投入、专注、兴趣、热情、就绪、喜悦等一系列反应。</p></div>
+    <div class="card reveal"><div class="tag">为什么技能遮蔽临在</div><h4>学生先要「怎么做」</h4><p>学生想先知道问什么问题、遵循什么模型、展示哪些能力才能拿证照。但先教自我觉察与临在，才能让人从劝告、指导、开处方转向真正的教练。</p></div>
+    <div class="card reveal"><div class="tag">心理安全</div><h4>信任 ≠ 安全</h4><p>William Kahn：人们不担心「自我形象、地位或生涯的负面后果」时才感到安全。人们必须先感到免受嘲笑、报复或损失，才会把信任交给你。</p></div>
+  </div>
+
+  <div class="card soft reveal" style="margin-top:8px">
+    <p class="hot" style="font-size:15px;margin:0">➤ 领导力场景：「不管我说什么，他们都不对我敞开。」——「你是怎么听的？」先确立心理安全，下属才敢分享。</p>
+  </div>
+
+  <!-- Ch3 -->
+  <div class="h3 reveal" id="ch3">习惯一 · 对齐你的神经系统（Ch3）</div>
+  <div class="steps">
+    <div class="step reveal"><div class="dot">1</div><h5>选择去感受</h5><p>好奇、慈悲与勇敢——把它们呼吸进身体，直到你完全体现这些感受。</p></div>
+    <div class="step reveal"><div class="dot">2</div><h5>回想你的意图</h5><p>与客户结为伙伴、为其最佳利益而来——而非想把他推向你认为最好的方向。</p></div>
+    <div class="step reveal"><div class="dot">3</div><h5>相信客户</h5><p>相信你的客户能够实现并落实洞见（Maslow：先感到被关怀被尊重，才能进入最好状态）。</p></div>
+  </div>
+  <div class="brain3" style="margin-top:14px">
+    <div class="b reveal"><h5>头脑</h5><p>开放 · 不预设</p></div>
+    <div class="b hot reveal"><h5>心</h5><p>慈悲 · 关怀 · 被看见</p></div>
+    <div class="b reveal"><h5>胆识</h5><p>勇气 · 愿涉险境</p></div>
+  </div>
+
+  <!-- Ch4 -->
+  <div class="h3 reveal" id="ch4">习惯二 · 接收，而非只听（Ch4）</div>
+  <div class="quote reveal">
+    注意力在于悬置我们的思想……等待，不寻求任何东西，却准备好接收。
+    <span class="src">—— 西蒙娜·薇依</span>
+  </div>
+  <div class="mv">
+    <div class="box m reveal"><h5>习惯性倾听（为了自己）</h5><p>收集数据：知道接下来该说什么或做什么 · 构建自己的论点、挑对方思考的毛病 · 盘算如何利用所听到的，或如何脱身。即便想协作，对方也几乎感受不到情感连接。</p></div>
+    <div class="box t reveal"><h5>接收（为了客户）</h5><p>欢迎并重视客户分享的一切 · 听到言语，也注意到表情、姿态、犹豫与话题跳转 · 带着开放的心与胆识、开放的头脑进入对话。接收创造信任与安全，客户才愿意一同探索思考。</p></div>
+  </div>
+  <div class="card soft reveal" style="margin-top:8px">
+    <h4 style="color:var(--accent-deep)">感官觉察：三个处理中心全开</h4>
+    <p style="margin-top:6px;font-size:14.3px">你不只是倾听客户——你<b>感受</b>他们的渴望与迟疑、希望与怀疑、最珍视之物，以及自我怀疑如何阻挡渴望。这要求开放神经系统全部三个中心：头脑、心与胆识。</p>
+  </div>
+  <div class="h3 reveal">情绪堵住流动时：四步快速回归临在</div>
+  <div class="steps">
+    <div class="step reveal"><div class="dot">1</div><h5>放松身体</h5><p>压力先发生于身体。吸 4 秒 · 屏 5–7 秒 · 缓慢呼 8 秒，重复两次；再扫描面部、颈部、肩部释放张力。</p></div>
+    <div class="step reveal"><div class="dot">2</div><h5>剥离思绪</h5><p>让脑中喋喋不休飘走，直到平静、开放的头脑。每天刻意暂停 1 分钟，养成剥离的习惯。</p></div>
+    <div class="step reveal"><div class="dot">3</div><h5>居中 Centering</h5><p>把觉察移出头部、向下进入身体核心，聚焦肚脐正下方。运动员、演说者、武术家都从中心出发行动与言说。</p></div>
+    <div class="step reveal"><div class="dot">4</div><h5>呼吸进情绪</h5><p>选一两种想感受的情绪——平静与慈悲，或好奇与勇敢——呼吸进去。话语总会浮现。</p></div>
+  </div>
+  <p class="reveal" style="font-size:13.5px;color:var(--muted);margin-top:6px">➤ 来自 1998 年对顶级运动员的访谈：最优秀的竞争者通过「选择不去想任何事」压制焦虑——积极自我对话在关键时刻并无帮助，空净的头脑才是。</p>
+
+  <!-- Ch5 -->
+  <div class="h3 reveal" id="ch5">习惯三 · 捕捉并放下评判（Ch5）</div>
+  <div class="quote reveal">
+    我们不能让我们的观念，令自己对无知视而不见。
+    <span class="src">—— 简·赫斯菲尔德</span>
+  </div>
+  <div class="grid2">
+    <div class="card reveal">
+      <div class="tag">现场故事 · 北京示范</div>
+      <h4>一个念头掠过，我抓住了它</h4>
+      <p>客户是中国一家大型公司的人力资源副总裁，想探索退休后是否当教练。他说热爱培养人、热爱看到人们眼中的光——<b>「最重要的是，我热爱与他们分享共产主义的原则」</b>。</p>
+      <p style="margin-top:8px">我心中一动：这是我的评判。我当即选择放下它，回到教练——聚焦他对「培养人」的热爱。</p>
+    </div>
+    <div class="card reveal">
+      <div class="tag">三类常见评判</div>
+      <h4>认出你的反应</h4>
+      <p>· <b>社交评判</b>：声音多大、怎么穿着、如何驾驶——习惯性到认不出其中的不敬。<br>· <b>情绪反应评判</b>：紧张性的笑（尴尬时的笑，常被误读为轻描淡写）等最易被误解。<br>· <b>「知道什么最好」</b>：给出未经请求的建议、强加对话方向——你正在评判客户有所不足。</p>
+    </div>
+  </div>
+  <div class="card soft reveal" style="margin-top:8px">
+    <h4 style="color:var(--accent-deep)">关于「我」的使用</h4>
+    <p style="margin-top:6px;font-size:14.3px">「我注意到」「我听到你想处理三个话题」——反思性的「我」是<b>邀请</b>，把所见所闻奉还客户考量；而「我也有过类似经历」式的「我」，把焦点从客户身上转移到了自己。问自己：此刻说「我」，是为了客户，还是为了自己？</p>
+  </div>
+</section>
+
+<!-- ============ Part III ============ -->
+<section class="chapter" id="part3">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">PART III · 五项核心技能</div>
+    <h2>五项核心教练技能</h2>
+    <div class="en">Five Core Coaching Skills</div>
+    <div class="lead">教练可以既是<b>交易型</b>（厘清选项、行动计划）又是<b>转化型</b>（面对「语言型处理者」、情绪卷入时）。线性步骤模型之外，关系性技能让对话真正深入。</div>
+  </div>
+
+  <!-- Ch6 -->
+  <div class="h3 reveal" id="ch6">技能一 · 聚焦：把焦点从「问题」移到「人」（Ch6）</div>
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">常见的错误聚焦</div><h4>困境 ≠ 对话焦点</h4><p>对话通常始于客户描述一个困境或话题——这是好的起点，却是「整场对话错误的聚焦之处」。</p></div>
+    <div class="card reveal"><div class="tag">支持</div><h4>帮客户分析感知</h4><p>问重要问题帮客户分析对问题的感知：什么让困境难以解决、哪些优势可用来减少损失。有用，但还不够。</p></div>
+    <div class="card reveal"><div class="tag">挑战</div><h4>挑战「使问题看似难解的思维」</h4><p>若教练关系结束后，任何事重新点燃了困境——说明我们只处理了表象。要挑战客户<b>赋予问题意义的那套思维</b>，教练才带来发现与成长。</p></div>
+  </div>
+
+  <!-- Ch7 -->
+  <div class="h3 reveal" id="ch7">技能二 · 主动重播：当一面动态的镜子（Ch7）</div>
+  <p class="reveal" style="font-size:14.5px;color:var(--zh-ink);margin-top:6px">当你运用反思性陈述，你就成了一面<b>动态的镜子</b>，让客户能更客观地审视自己所身处其中的故事。六件工具：</p>
+  <div class="grid2">
+    <div class="card reveal"><div class="tag">① 概述</div><h4>Summarizing</h4><p>目的不是逐字复述，而是提取反复出现、具描述性的短语，用客户自己的话，让他更清晰地观察自己的思考。单单简洁的概述，就能促成一次洞见。</p></div>
+    <div class="card reveal"><div class="tag">② 重述</div><h4>Recapping · 「所以你是说……」</h4><p>简明总结问题、客户说此刻需要做什么、以及让行动变难的因素。别漏掉旁注——「我知道这很疯狂」「没人在乎」正暗示让客户卡住的核心信念。</p></div>
+    <div class="card reveal"><div class="tag">③ 释义</div><h4>Paraphrasing</h4><p>重述内容 + 分享你感受到的情绪潜台词。「听起来你的愿望和你认为自己应该做的事相互冲突——你觉得自己错了，甚至因为想要别的可能而觉得自己很糟。」</p></div>
+    <div class="card reveal"><div class="tag">④ 凝练</div><h4>Encapsulating</h4><p>把故事主要元素打包成一句话甚至一个词：<b>贴标签</b>（「你的支持系统没了」）· <b>底线归纳</b>（留意「但是」——大脑在编不行动的理由）· <b>区分辨析</b>（「果敢与有创意，哪一样更关系到你的韧性？」）。</p></div>
+    <div class="card reveal"><div class="tag">⑤ 配对问题</div><h4>Reflection + Question</h4><p>概述、重述、释义、凝练之后，紧跟一个带着好奇的问题——即便是封闭式（「你是这样看的吗？」）。问题会从你分享的反思中自然涌现，不必记清单。</p></div>
+    <div class="card reveal"><div class="tag">⑥ 反映身体与情绪转变</div><h4>Shifts</h4><p>分享观察到的手势、犹豫、停顿、眼神游移：「你愿意分享那一刻涌上心头之念吗？」——新念头正在形成。</p></div>
+  </div>
+  <div class="h3 reveal" style="margin-top:26px">情绪的功课：欣赏、陪伴，但不越界</div>
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">欣赏所有情绪</div><h4>客户不需要你打气</h4><p>提供一个安全、免于评判的空间，让客户能流泪、呐喊、宣告希望的终结。客户想要你确认：<b>无论感受到什么，他们都还好</b>。你可以表达在乎，而不必照顾客户。</p></div>
+    <div class="card reveal"><div class="tag">非反应性共情</div><h4>关怀的沉默</h4><p>只要你不觉得有受伤害的风险，你关怀的沉默会带客户走完情绪反应的全过程——触发、高潮、平息。平息时，是问「愿意分享那一刻涌上心头之念吗」的最佳时机。</p></div>
+    <div class="card reveal"><div class="tag">共情过度</div><h4>镜像 ≠ 同感</h4><p>Sara Hodges &amp; Biswas-Diener：<b>共情关切</b>（悲悯与温暖）vs <b>共情困扰</b>（去镜像对方全部情绪展露）。细微表情可示理解；复述全部情绪就过头了——共情过度会耗尽你、模糊界限。</p></div>
+  </div>
+
+  <!-- Ch8 -->
+  <div class="h3 reveal" id="ch8">技能三 · 导航渴望：拨开迷雾，看见道路（Ch8）</div>
+  <div class="quote reveal">
+    一个人的目的地从来不是一个地方，而是一种看待事物的全新方式。
+    <span class="src">—— 亨利·米勒</span>
+  </div>
+  <div class="mv">
+    <div class="box m reveal"><h5>横向教练（浅）</h5><p>把客户最初的成果当作<b>确定终点</b> · 澄清用词含义、问达成成果的重要性 · 很快转向<b>列行动清单</b>。<br>适合：问题不再反复、只需厘清选项时。</p></div>
+    <div class="box t reveal"><h5>纵向教练（深）</h5><p>把最初成果当作<b>入口</b>，而非终点 · 成果每次偏移，就问：「<b>是什么阻碍了你想要的？</b>」 · 剥洋葱：剥去旧信念与恐惧定义的层层外壳 · 底下潜藏的<b>渴望</b>显露，愿景成果随之改变。<b>这是转化发生处。</b></p></div>
+  </div>
+  <div class="grid2" style="margin-top:8px">
+    <div class="card reveal"><div class="tag">成果 ≠ 话题或决定</div><h4>从主题到成果的两问</h4><p>「一旦我们探讨完这个主题，你希望得到什么结果？」<br>「你如何会知道，你正在创造自己渴望的改变？」——教练客户描述一个场景，作为成功的标准。</p></div>
+    <div class="card reveal"><div class="tag">邀请与再邀请 · 小心假设</div><h4>保持对话在正轨上</h4><p>随时问「这场对话要去往哪里？」；客户跳回旧故事时再邀请他选择。「自以为知道」的假设让你停止倾听——<b>事件发生在每个人生活中，但每个人都以自己的方式加工它</b>（David Brooks）。</p></div>
+  </div>
+
+  <!-- Ch9 -->
+  <div class="h3 reveal" id="ch9">技能四 · 脑黑客：你到底在听什么？（Ch9）</div>
+  <div class="quote reveal">
+    人类是糟糕的检验者，受迷信、偏见、成见支配，深刻地倾向于看见自己想看见的。
+    <span class="src">—— M. Scott Peck</span>
+  </div>
+  <div class="boxwrap">
+    <div class="rings">
+      <div class="r r1">情境场域<small><br>Context</small></div>
+      <div class="r r2">社会需求<small><br>Social Needs</small></div>
+      <div class="r r3">价值观<small><br>Values</small></div>
+      <div class="r r4">故事<small><br>Story</small></div>
+    </div>
+    <div class="ringside">
+      <div class="card reveal" style="margin-bottom:14px">
+        <h4>故事（内核）</h4>
+        <p>长期记忆里的「故事盒子」，由经验与学习的马赛克构成，定义我们赋予每一刻的意义（现实）与身份。客户无意识地依赖旧故事为当下赋义。</p>
+      </div>
+      <div class="card reveal">
+        <h4>情境（场域）</h4>
+        <p>故事积累形成环绕它的场域：<b>价值观</b>（我们相信最值得依此生活的）与<b>社会需求</b>（我们希望从他人那里得到的，以支撑安全感与成功感）定义我们在世界中的对错好坏。教练情境，是比教练故事更深的一层。</p>
+      </div>
+      <div class="chips">
+        <span class="chip">偏见 Bias：短路同理心</span>
+        <span class="chip">社会需求：关注 · 认可 · 掌控</span>
+        <span class="chip ghost">练习：找最看重的五项价值观（covisioning.com/values-to-live-by）</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ch10 -->
+  <div class="h3 reveal" id="ch10">技能五 · 新与下一步：把洞见变成承诺（Ch10）</div>
+  <div class="quote reveal">
+    在做出承诺之前，总有三心二意、退却的可能，终归一事无成。
+    <span class="src">—— 威廉·H·默里</span>
+  </div>
+  <div class="grid2">
+    <div class="card reveal">
+      <div class="tag">学习时刻</div>
+      <h4>捕捉那一丝微笑、倒吸气、懊悔神情</h4>
+      <p>教练常见的遗憾：错过在对话中询问客户正在学习什么，一直等到最后。那丝微笑或停顿，正是新想法浮现的时刻。即便客户感到内疚、悲伤或愤怒——<b>不要淡化感受</b>；你的责任是把他们的想法从脑中引出、带入对话。</p>
+    </div>
+    <div class="card reveal">
+      <div class="tag">书挡问题：洞见 → 承诺</div>
+      <h4>先问学到了什么，再转入行动</h4>
+      <p>在转述「接下来将采取的行动」之前，先问：「你对自己和情境学到了什么？」——确保计划建立在把洞见付诸行动之上，而非把洞见悬在对话结尾晃荡。</p>
+    </div>
+  </div>
+  <div class="card soft reveal" style="margin-top:8px">
+    <h4 style="color:var(--accent-deep)">五个收尾问题（让愿景成真）</h4>
+    <div class="grid3" style="margin-top:12px">
+      <div><p style="font-size:13.8px;line-height:1.7"><b>①</b> 你现在要做什么？</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>②</b> 你何时去做（或启动这个过程）？</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>③</b> 什么可能阻碍你的承诺？</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>④</b> 还有什么支持或资源会有帮助？</p></div>
+      <div><p style="font-size:13.8px;line-height:1.7"><b>⑤</b> 如果这一步没有达成，你如何复盘？</p></div>
+    </div>
+    <p style="font-size:13.8px;color:var(--muted);margin-top:12px">高光收尾：认可客户愿意探索、发现阻碍、找到前路；把进步归功于客户自己；提醒一路的里程碑。若客户要结束关系——尊重并满足请求，也可主动推荐另一位教练，或问他们从会话中获得了什么价值。</p>
+  </div>
+</section>
+
+<!-- ============ 尾声 ============ -->
+<section class="chapter" id="epilogue">
+  <div class="node"></div>
+  <div class="sec-head reveal">
+    <div class="no">EPILOGUE · 尾声</div>
+    <h2>超越对话：教练成为生活方式与文化</h2>
+    <div class="en">Beyond the Conversation</div>
+    <div class="lead">「我们是谁，与我们做什么，紧密相连。」——赫尔米尼亚·伊瓦拉</div>
+  </div>
+  <div class="grid3">
+    <div class="card reveal"><div class="tag">成为教练</div><h4>身份从第一天开始转变</h4><p>Herminia Ibarra：我们每天通过「所做的事、所交往的人、关于工作与生活的故事」来定义自己。你教练得越多，就越能坦然说「我是一名教练」。</p></div>
+    <div class="card reveal"><div class="tag">教练文化</div><h4>个人影响 → 团队 → 组织</h4><p>当周围每个人都发展出教练心态，团队与组织便以速度与关怀并进。ICF 二十多年研究：更多创新、更高投入，常常还能超越目标。</p></div>
+    <div class="card reveal"><div class="tag">教练带来改变</div><h4>提振精神，拓展意识</h4><p>Margaret Wheatley：我们或许拯救不了世界，但可以与尽可能多的人一起，通过提振精神、拓展意识，共同带来改变。</p></div>
+  </div>
+  <div class="dlg">
+    <div class="bubble c reveal"><span class="who">老朋友（午餐时）</span>Marcia，我想让你知道，这些天和你在一起多令人愉快。你似乎对我们更感兴趣了……你听得更认真，联结也更好了些。</div>
+    <div class="bubble k reveal"><span class="who">Marcia 的心得</span>那顿饭，是我听到的、关于教练如何成为生活方式的、最好的证词。</div>
+  </div>
+</section>
+
+<!-- ============ 终章 ============ -->
+<section class="chapter" id="finale">
+  <div class="node"></div>
+  <div class="finale">
+    <div class="f-box reveal">
+      <h2>故事讲完了，带走三件事</h2>
+      <div class="f-sub">Coach the Person, Not the Problem · Marcia Reynolds</div>
+      <div class="grid3" style="text-align:left">
+        <div class="card reveal" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff">
+          <div class="tag" style="color:#d9c8f5">1 · 定位</div><h4 style="color:#fff">教练是思维伙伴，不是专家</h4>
+          <p style="color:#efe8fb">先建立教练意愿（「此刻你需要我什么？」），再谈技巧。告知触达认知脑，威胁编码恐惧；教练触达中间脑，让洞见式学习发生。</p>
+        </div>
+        <div class="card reveal" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff">
+          <div class="tag" style="color:#d9c8f5">2 · 心法</div><h4 style="color:#fff">临在是底色，主动重播是刀法</h4>
+          <p style="color:#efe8fb">神经系统先对齐（好奇·慈悲·勇敢，头心胆全开），再举起手里的镜子：概述、重述、释义、凝练、反映转变——把客户的思考奉还给他。</p>
+        </div>
+        <div class="card reveal" style="background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff">
+          <div class="tag" style="color:#d9c8f5">3 · 路径</div><h4 style="color:#fff">成果在过程中浮现，洞见在对话里诞生</h4>
+          <p style="color:#efe8fb">横向铺开、纵向深钻（「是什么阻碍了你想要的？」），最后用书挡问题把洞见变成承诺。</p>
+        </div>
+      </div>
+      <div class="quote reveal" style="background:rgba(255,255,255,.1);border-left-color:#c9b8ec;color:#fff;margin-top:34px">
+        教练的本质 = 用你的临在，映照客户的思考，让洞见从他们自己脑中诞生。
+        <span class="src" style="color:#d9c8f5">——《教练其人，而非问题》故事书 · 壹點學園图书馆</span>
+      </div>
+      <div class="endmark">完</div>
+    </div>
+    <div class="foot">壹點學園图书馆 · 双语对照电子书 / 讲课演示 / 故事书 三件套 · 全馆统一浅紫苹果风</div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<script>
+(function(){
+  var html=document.documentElement;
+  html.classList.remove('no-js');
+  html.classList.add('js');
+
+  /* 顶部进度条 */
+  var pbar=document.getElementById('pbar');
+  function onScroll(){
+    var h=document.documentElement;
+    var max=h.scrollHeight-h.clientHeight;
+    var p=max>0?(h.scrollTop||document.body.scrollTop)/max*100:0;
+    pbar.style.width=p+'%';
+  }
+  addEventListener('scroll',onScroll,{passive:true});
+  onScroll();
+
+  /* 滚动渐显 + 章节节点点亮 */
+  var targets=document.querySelectorAll('.reveal, .chapter');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(el){ io.observe(el); });
+  } else {
+    targets.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
