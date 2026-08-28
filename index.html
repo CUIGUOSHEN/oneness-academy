@@ -3,148 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>壹點學園 · 首页</title>
+<title>byat2048.com</title>
 <style>
-  :root{
-    --bg:#f5f5f7; --paper:#fff; --ink:#1d1d1f; --muted:#86868b;
-    --accent:#7b5cc4; --accent-deep:#5a3a9e; --accent-soft:#f3eefc;
-    --radius:20px;
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f5;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: #888;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 28px 80px}
-  /* Hero */
-  .hero{text-align:center;padding:88px 24px 60px;background:linear-gradient(180deg,#efeafb 0%,var(--bg) 100%)}
-  .hero .logo{display:inline-block;background:var(--accent);color:#fff;font-size:14px;font-weight:600;letter-spacing:2px;padding:8px 20px;border-radius:999px;margin-bottom:26px}
-  .hero h1{font-size:46px;font-weight:800;letter-spacing:1px;margin-bottom:14px}
-  .hero h1 span{color:var(--accent)}
-  .hero p{color:var(--muted);font-size:17px;max-width:560px;margin:0 auto}
-  /* Section */
-  .sec{margin-top:64px}
-  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
-  .sec-head h2{font-size:24px;font-weight:700}
-  .sec-head .en{color:var(--muted);font-size:14px;letter-spacing:1px}
-  .sec-head .tag{font-size:12px;color:var(--accent);background:var(--accent-soft);padding:4px 12px;border-radius:999px;font-weight:600}
-  /* Book intro */
-  .book-intro{background:var(--paper);border-radius:var(--radius);padding:24px 28px;margin-bottom:22px;border:1px solid rgba(0,0,0,.04);box-shadow:0 4px 20px rgba(0,0,0,.04)}
-  .book-intro h3{font-size:19px;font-weight:700;margin-bottom:6px}
-  .book-intro .meta{color:var(--muted);font-size:13px;margin-bottom:10px}
-  .book-intro p{font-size:15px;color:#3a3a3c}
-  /* Card grid */
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-  .card{background:var(--paper);border-radius:var(--radius);padding:22px 24px;border:1px solid rgba(0,0,0,.04);box-shadow:0 4px 20px rgba(0,0,0,.04);transition:transform .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
-  .card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(123,92,196,.14)}
-  .card .ico{font-size:26px;margin-bottom:10px}
-  .card h4{font-size:16px;font-weight:700;margin-bottom:6px}
-  .card p{font-size:13px;color:var(--muted);margin-bottom:16px;flex:1}
-  .card a{display:inline-block;text-decoration:none;color:var(--accent-deep);font-size:13px;font-weight:600;background:var(--accent-soft);padding:7px 16px;border-radius:999px;align-self:flex-start;transition:background .2s}
-  .card a:hover{background:#e6dcf8}
-  .board-card{background:linear-gradient(135deg,#7b5cc4,#5a3a9e);color:#fff;border-radius:var(--radius);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 8px 28px rgba(123,92,196,.28)}
-  .board-card h3{font-size:20px;font-weight:700;margin-bottom:4px}
-  .board-card p{font-size:14px;opacity:.85}
-  .board-card a{color:#fff;text-decoration:none;font-size:14px;font-weight:600;border:1.5px solid rgba(255,255,255,.6);padding:9px 22px;border-radius:999px;white-space:nowrap;transition:background .2s}
-  .board-card a:hover{background:rgba(255,255,255,.14)}
-  footer{margin-top:72px;text-align:center;color:var(--muted);font-size:13px}
-  footer .brand{color:var(--accent);font-weight:600}
-  @media(max-width:640px){
-    .hero{padding:56px 16px 40px}
-    .hero h1{font-size:32px}
+  .box { text-align: center; }
+  .box h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: #333;
+    margin-bottom: 16px;
   }
+  .box p { font-size: 14px; letter-spacing: 0.1em; }
 </style>
 </head>
 <body>
-
-<div class="hero">
-  <div class="logo">壹 點 學 園 · 首 页</div>
-  <h1>把书读透，<span>再讲给你听</span></h1>
-  <p>教练 · 语言 · 思维的深度阅读空间 —— 双语电子书、精读讲义、章节综述，全部可在线翻阅。</p>
-</div>
-
-<div class="wrap">
-
-  <!-- ============ 教练的本质 ============ -->
-  <div class="sec" id="coach">
-    <div class="sec-head">
-      <h2>教练的本质</h2>
-      <span class="en">COACH THE PERSON, NOT THE PROBLEM</span>
-      <span class="tag">第 2 版</span>
-    </div>
-    <div class="book-intro">
-      <h3>Marcia Reynolds · 教练其人，而非问题</h3>
-      <div class="meta">用反思性提问，唤醒客户自己的觉察与行动力</div>
-      <p>全书双语对照电子书 + 章节综述 + 讲课演示 + 故事书 + 金句长卷 + 关键词手册，六个视角读透这一本。</p>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="ico">📖</div><h4>双语对照电子书</h4><p>逐段中英对照，三态切换，左侧目录，全馆标准版式。</p><a href="coach-the-person/ebook.html">打开电子书</a></div>
-      <div class="card"><div class="ico">📝</div><h4>全书章节综述</h4><p>导言 + 10 章 + 结语，每篇 ≤800 字，青绿主题速览全书。</p><a href="coach-the-person/summary.html">读综述</a></div>
-      <div class="card"><div class="ico">🎤</div><h4>讲课演示</h4><p>PPT 效果 HTML，逐页讲稿，可直接用于课堂分享。</p><a href="coach-the-person/talk.html">看演示</a></div>
-      <div class="card"><div class="ico">📜</div><h4>故事书长卷</h4><p>纵向流水型长卷，把全书讲成一个故事。</p><a href="coach-the-person/story.html">翻故事书</a></div>
-      <div class="card"><div class="ico">✨</div><h4>金句与重点长卷</h4><p>全书金句精选，细长版式，讲课分享专用。</p><a href="coach-the-person/quotes.html">看金句</a></div>
-      <div class="card"><div class="ico">🔑</div><h4>关键词手册</h4><p>核心术语速查，一书一册，随查随用。</p><a href="coach-the-person/keywords.html">查手册</a></div>
-    </div>
+  <div class="box">
+    <h1>byat2048.com</h1>
+    <p>网站正在重新设计中，敬请期待。</p>
   </div>
-
-  <!-- ============ 天才的策略 ============ -->
-  <div class="sec" id="dilts">
-    <div class="sec-head">
-      <h2>天才的策略 · 第四卷</h2>
-      <span class="en">STRATEGIES OF GENIUS, VOL. IV</span>
-      <span class="tag">Dilts &amp; Meza</span>
-    </div>
-    <div class="book-intro">
-      <h3>Generative Intelligence · 生成式智能</h3>
-      <div class="meta">Erickson · Bateson · Feldenkrais · Roth 四位天才的策略解码</div>
-      <p>双语 / 中文 / 英文三个版本电子书，同一本书三种读法。</p>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="ico">🌐</div><h4>双语对照电子书</h4><p>逐段中英对照，三态切换，标准版式。</p><a href="strategies-of-genius/ebook-bilingual.html">打开双语版</a></div>
-      <div class="card"><div class="ico">🇨🇳</div><h4>中文全译本</h4><p>全文中译，连续阅读无障碍。</p><a href="strategies-of-genius/ebook-zh.html">读中文版</a></div>
-      <div class="card"><div class="ico">🇬🇧</div><h4>英文原文本</h4><p>原文精读，保留原汁原味。</p><a href="strategies-of-genius/ebook-en.html">读英文版</a></div>
-    </div>
-  </div>
-
-  <!-- ============ 语言本能 ============ -->
-  <div class="sec" id="pinker">
-    <div class="sec-head">
-      <h2>语言本能 · 精读讲义</h2>
-      <span class="en">THE LANGUAGE INSTINCT</span>
-      <span class="tag">Steven Pinker</span>
-    </div>
-    <div class="book-intro">
-      <h3>周三晚精读课 · 逐讲讲义</h3>
-      <div class="meta">开篇导览 → 引言 → 话匣子 → 心语 → 语言的运作</div>
-      <p>每讲含本节总结与金句摘录，论文版式，配图精排。</p>
-    </div>
-    <div class="grid">
-      <div class="card"><div class="ico">🧭</div><h4>开篇与全书导览</h4><p>平克生平、前言、全书 13 章译名导览。</p><a href="language-instinct/00-overview.html">打开导览</a></div>
-      <div class="card"><div class="ico">🪶</div><h4>引言 · 习得一门艺术的本能</h4><p>语言是一种本能，而非文化的产物。</p><a href="language-instinct/01-intro.html">读引言</a></div>
-      <div class="card"><div class="ico">💬</div><h4>话匣子 · 有人类的地方就有语言</h4><p>语言的普遍性与儿童的语言天赋。</p><a href="language-instinct/02-chatterbox.html">读话匣子</a></div>
-      <div class="card"><div class="ico">🧠</div><h4>心语 · 思想的语言</h4><p>Mentalese 心语假说与思维的语言学。</p><a href="language-instinct/03-mentalese.html">读心语</a></div>
-      <div class="card"><div class="ico">⚙️</div><h4>语言的运作 · 备课拆解与精华</h4><p>第 4 章可讲单元归并 + 精华速记。</p><a href="language-instinct/04-how-language-works.html">读备课精华</a></div>
-      <div class="card"><div class="ico">🔬</div><h4>语言的运作 · 逐段拆解</h4><p>第 4 章逐段大意完整拆解。</p><a href="language-instinct/04b-passage.html">读逐段拆解</a></div>
-      <div class="card"><div class="ico">🏁</div><h4>课程总结 · L4 语言的运作</h4><p>第 4 讲课堂总结与要点回顾。</p><a href="language-instinct/L4-summary.html">看总结</a></div>
-    </div>
-  </div>
-
-  <!-- ============ 看板 ============ -->
-  <div class="sec" id="board">
-    <div class="sec-head">
-      <h2>全馆总览</h2>
-      <span class="en">LIBRARY BOARD</span>
-    </div>
-    <div class="board-card">
-      <div>
-        <h3>图书馆看板</h3>
-        <p>全馆书目盘点 · 搜索 · 流派地图 · 卡片浏览</p>
-      </div>
-      <a href="library-board.html">进入看板 →</a>
-    </div>
-  </div>
-
-  <footer>
-    <span class="brand">壹點學園</span> · 图书馆 · 持续上新中
-  </footer>
-
-</div>
 </body>
 </html>
