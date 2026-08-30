@@ -197,3 +197,61 @@ ul { list-style: none; }
   .hero { padding: 56px 0 48px; }
   .nav { gap: 12px; overflow-x: auto; }
 }
+
+/* ---------- MCC 研究中心 · 特色入口带 ---------- */
+.feature-entry {
+  margin-top: 28px;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 28px 32px;
+  background: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.feature-entry .txt .zh { font-family: var(--serif); font-size: 21px; font-weight: 600; color: var(--ink); }
+.feature-entry .txt .en { font-size: 11px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin: 4px 0 8px; }
+.feature-entry .txt p { font-size: 14px; color: var(--ink-2); max-width: 60ch; }
+.feature-entry .go { font-size: 15px; color: var(--accent); white-space: nowrap; font-weight: 600; }
+
+/* ---------- 研究中心 · 文章正文 ---------- */
+.article { max-width: 760px; margin: 0 auto; }
+.article .source { font-size: 13px; color: var(--ink-3); margin-bottom: 28px; }
+.article h2 { font-family: var(--serif); font-size: 24px; font-weight: 600; margin: 44px 0 16px; letter-spacing: 0.03em; }
+.article h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; margin: 30px 0 10px; color: var(--accent); }
+.article p { margin-bottom: 14px; }
+.article .en-line { color: var(--ink-3); font-style: italic; font-size: 15px; margin-bottom: 4px; }
+.article blockquote {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  padding: 12px 18px;
+  margin: 14px 0;
+  color: var(--ink-2);
+  font-style: italic;
+}
+.article .meta {
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 6px 0 14px;
+  line-height: 1.7;
+}
+.article .meta b { color: var(--ink-2); font-weight: 600; }
+.article .note {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0 24px;
+  background: #fff;
+  font-size: 14.5px;
+  line-height: 1.8;
+}
+.article .note b { color: var(--accent); }
+.article table { width: 100%; border-collapse: collapse; margin: 16px 0 28px; font-size: 14px; }
+.article th, .article td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+.article th { background: var(--paper-deep); font-weight: 600; }
+.article ol { padding-left: 22px; }
+.article ol li { margin-bottom: 12px; line-height: 1.8; }
+.article .back-link { display: inline-block; margin-bottom: 24px; font-size: 14px; color: var(--accent); }
+.article .back-link:hover { text-decoration: underline; }
