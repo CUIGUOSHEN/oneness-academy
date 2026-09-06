@@ -370,8 +370,281 @@ ul { list-style: none; }
 }
 .article code { background: var(--paper-deep); padding: 1px 6px; border-radius: 5px; font-size: 13px; }
 
+/* ---------- 早间马拉松 · 论文页 ---------- */
+.page-head .paper-title { font-size: clamp(26px, 3.4vw, 36px); margin-top: 4px; }
+.paper-meta {
+  margin-top: 16px; display: flex; align-items: center; gap: 14px;
+  flex-wrap: wrap; font-size: 13.5px; color: var(--ink-3);
+}
+.paper-meta .tag-course {
+  background: var(--accent-soft); border: 1px solid var(--accent-soft);
+  color: var(--accent); padding: 3px 12px; border-radius: 999px; font-size: 12.5px;
+}
+.article ul { padding-left: 22px; margin-bottom: 14px; }
+.article ul li { margin-bottom: 8px; line-height: 1.8; }
+.article ul li::marker { color: var(--accent); }
+.article pre {
+  background: var(--paper-deep); border: 1px solid var(--line); border-radius: 8px;
+  padding: 14px 18px; margin: 14px 0 24px; overflow-x: auto;
+  font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; line-height: 1.7;
+}
+.article pre code { background: none; padding: 0; font-size: 13px; }
+.paper-hr { border: 0; border-top: 1px dashed var(--line); margin: 30px 0; }
+.article blockquote p { margin-bottom: 8px; }
+.article blockquote p:last-child { margin-bottom: 0; }
+.article .lead {
+  font-size: 16.5px; color: var(--ink-2); line-height: 1.9;
+  border-left: 3px solid var(--accent); padding-left: 16px; margin-bottom: 28px;
+}
+.day-nav {
+  margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  font-size: 14px;
+}
+.day-nav a { color: var(--accent); }
+.day-nav a:hover { text-decoration: underline; }
+.day-nav .muted { color: var(--ink-3); }
+.day-nav .next { margin-left: auto; }
+
+/* 论文卡（课页列表） */
+.paper-card {
+  border: 1px solid var(--line); border-radius: 8px; background: #fff;
+  padding: 22px 26px; margin-bottom: 14px; display: block; transition: 0.18s;
+}
+.paper-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.paper-card .meta { font-size: 12.5px; color: var(--ink-3); margin-bottom: 6px; }
+.paper-card h3 { font-family: var(--serif); font-size: 19px; font-weight: 600; margin-bottom: 8px; }
+.paper-card p { font-size: 14px; color: var(--ink-2); margin-bottom: 10px; }
+.paper-card .chips { margin-top: 0; }
+
+/* ============================================================
+   论文内芯（早间马拉松 · 学习论文）
+   版式照《壹點學園 ICF 八项核心能力研究论文集（合订本）》：
+   灰白底 · 蓝紫重点 · 胶囊锚点目录 · 渐变 Hero · 无衬线宽行距
+   ============================================================ */
+:root {
+  --pm-bg: #f5f5f7;
+  --pm-card: #ffffff;
+  --pm-ink: #1d1d1f;
+  --pm-ink2: #515154;
+  --pm-ink3: #86868b;
+  --pm-line: #e6e6e8;
+  --pm-acc: #5b6ef5;
+  --pm-accbg: #eef0ff;
+  --pm-red: #c0392b;
+  --pm-redbg: #fdecea;
+  --pm-radius: 16px;
+}
+
+/* ---------- Hero（照合订本 .hero） ---------- */
+.pm-hero-wrap {
+  background: linear-gradient(160deg, #ffffff 0%, #eef0ff 100%);
+  border-bottom: 1px solid var(--pm-line);
+}
+.pm-hero { max-width: 840px; margin: 0 auto; padding: 34px 22px 30px; text-align: center; }
+.pm-hero .crumbs {
+  font-size: 12px; color: var(--pm-ink3); margin-bottom: 18px; letter-spacing: .02em;
+}
+.pm-hero .crumbs a { color: var(--pm-ink2); }
+.pm-hero .crumbs a:hover { color: var(--pm-acc); }
+.pm-hero .crumbs .sep { color: #c7c7cc; margin: 0 6px; }
+.pm-hero img.logo { height: 44px; margin-bottom: 14px; }
+.pm-hero .kicker {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--pm-acc); font-weight: 600; margin-bottom: 8px;
+}
+.pm-hero h1 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 28px; line-height: 1.4; letter-spacing: -.4px; font-weight: 700;
+  color: var(--pm-ink); margin: 0 0 10px;
+}
+.pm-hero .sub { margin: 0; color: var(--pm-ink2); font-size: 15px; line-height: 1.7; }
+.pm-hero .meta {
+  margin-top: 16px; font-size: 12.5px; color: var(--pm-ink3);
+  display: flex; gap: 8px 18px; flex-wrap: wrap; justify-content: center;
+}
+.pm-hero .meta b { color: var(--pm-acc); font-weight: 600; }
+
+/* ---------- 胶囊锚点目录（照合订本 nav.toc） ---------- */
+.pm-toc {
+  position: sticky; top: 60px; z-index: 5;
+  background: rgba(255, 255, 255, .88);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--pm-line);
+  padding: 11px 18px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+}
+.pm-toc a {
+  font-size: 12.5px; color: var(--pm-ink2); text-decoration: none;
+  padding: 5px 12px; border: 1px solid var(--pm-line); border-radius: 999px;
+  background: #fff; transition: .15s; white-space: nowrap;
+}
+.pm-toc a:hover { color: var(--pm-acc); border-color: var(--pm-acc); }
+
+/* ---------- 论文卡片 ---------- */
+.page-body--paper { background: var(--pm-bg); padding: 34px 0 70px; }
+.article--paper {
+  max-width: 840px; margin: 0 auto; background: var(--pm-card);
+  border: 1px solid var(--pm-line); border-radius: var(--pm-radius);
+  padding: 42px 46px 44px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 8px 24px rgba(0,0,0,.04);
+  color: var(--pm-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Helvetica Neue", "Hiragino Sans GB", sans-serif;
+  font-size: 15px; line-height: 1.85;
+  scroll-margin-top: 130px;
+}
+.article--paper > *:first-child { margin-top: 0; }
+
+/* 摘要卡（照合订本 blockquote 色系） */
+.pm-abstract {
+  background: var(--pm-accbg); border-left: 4px solid var(--pm-acc);
+  border-radius: 10px; padding: 18px 24px; margin: 0 0 34px;
+  scroll-margin-top: 130px;
+}
+.pm-abstract h2 {
+  font-size: 12px; letter-spacing: .2em; color: var(--pm-acc);
+  margin: 0 0 12px; font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+}
+.pm-abstract p { font-size: 15px; line-height: 1.88; color: var(--pm-ink2); text-align: justify; }
+.pm-abstract p:last-of-type { margin-bottom: 0; }
+.pm-kw { font-size: 13px; color: var(--pm-ink3); padding-top: 14px; margin-top: 16px; border-top: 1px dashed #d6daff; }
+.pm-kw b { color: var(--pm-acc); font-weight: 600; margin-right: 8px; }
+.pm-kw span {
+  display: inline-block; padding: 2px 11px; margin: 0 6px 6px 0;
+  border: 1px solid #d6daff; border-radius: 999px; background: #fff;
+  font-size: 12.5px; color: var(--pm-ink2);
+}
+
+/* 章节标题：蓝紫下划线（照合订本 .chapter h2） */
+.article--paper h2 {
+  display: flex; align-items: baseline; gap: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+  font-size: 22px; letter-spacing: -.2px; font-weight: 700; color: var(--pm-ink);
+  margin: 38px 0 16px; padding-bottom: 10px; border-bottom: 2px solid var(--pm-acc);
+  scroll-margin-top: 130px;
+}
+.article--paper h2 .no {
+  flex: none; font-size: 12px; font-weight: 700; letter-spacing: .04em;
+  color: var(--pm-acc); background: #fff; border: 1px solid #d6daff;
+  padding: 2px 9px; border-radius: 999px; line-height: 1.6;
+}
+.article--paper h2:first-of-type { margin-top: 4px; }
+.article--paper h3 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", sans-serif;
+  font-size: 17px; font-weight: 700; margin: 26px 0 8px; color: var(--pm-ink);
+}
+.article--paper h4 {
+  font-size: 15px; font-weight: 700; margin: 18px 0 6px; color: var(--pm-ink2);
+}
+.article--paper p { text-align: justify; margin: 10px 0; color: var(--pm-ink); font-size: 15px; }
+.article--paper ul, .article--paper ol { padding-left: 22px; margin: 10px 0; }
+.article--paper li { margin: 6px 0; font-size: 15px; line-height: 1.85; }
+.article--paper em { color: var(--pm-ink2); font-style: italic; }
+.article--paper strong, .article--paper b { color: var(--pm-ink); font-weight: 700; }
+.article--paper a { color: var(--pm-acc); text-decoration: none; border-bottom: 1px solid #c9d0fb; }
+.article--paper a:hover { border-bottom-color: var(--pm-acc); }
+.article--paper hr { border: none; border-top: 1px dashed var(--pm-line); margin: 24px 0; }
+.article--paper code {
+  background: #ececf0; padding: 1px 6px; border-radius: 6px; font-size: 13px;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* 引文 + 出处（照合订本 blockquote） */
+.article--paper blockquote {
+  margin: 16px 0; padding: 13px 18px; background: var(--pm-accbg);
+  border-left: 4px solid var(--pm-acc); border-radius: 10px;
+  color: var(--pm-ink2); font-size: 14.5px; line-height: 1.85;
+}
+.article--paper blockquote p { margin: 4px 0; font-size: 14.5px; }
+.article--paper blockquote p:last-child { margin-bottom: 0; }
+.pm-src { display: block; margin-top: 8px; font-size: 12.5px; color: var(--pm-ink3); text-align: right; }
+
+/* 主讲人判断 / 课堂讲法段 */
+.pm-voice {
+  margin: 18px 0; padding: 16px 20px; background: #f7f8ff;
+  border: 1px dashed #c9d0fb; border-radius: 12px;
+  font-size: 15px; line-height: 1.85; color: var(--pm-ink);
+}
+.pm-voice .tag {
+  display: inline-block; font-size: 11.5px; letter-spacing: .1em; color: #fff;
+  background: var(--pm-acc); padding: 3px 11px; border-radius: 999px;
+  margin-bottom: 9px; font-weight: 600;
+}
+.pm-voice p { margin: 0 0 8px; }
+.pm-voice p:last-child { margin-bottom: 0; }
+
+/* 结论框（今日一问 · 待考） */
+.pm-concl {
+  margin: 30px 0 24px; padding: 22px 26px; background: var(--pm-bg);
+  border: 1px solid var(--pm-line); border-radius: 14px; scroll-margin-top: 130px;
+}
+.pm-concl h2 { margin-top: 0; }
+.pm-concl > *:last-child { margin-bottom: 0; }
+
+/* 参考文献 */
+.pm-refs {
+  font-size: 13.5px; line-height: 1.9; color: var(--pm-ink2);
+  background: var(--pm-bg); border: 1px solid var(--pm-line);
+  border-radius: 14px; padding: 20px 26px; margin: 24px 0 0; scroll-margin-top: 130px;
+}
+.pm-refs h2 { font-size: 17px; margin: 0 0 12px; border-bottom: none; padding-bottom: 0; }
+.pm-refs ol { padding-left: 22px; }
+.pm-refs li { margin-bottom: 9px; text-align: justify; }
+.pm-refs em { font-style: italic; }
+
+/* 论文头表格（〇、论文头） */
+.article--paper table {
+  border-collapse: collapse; width: 100%; font-size: 13.5px; margin: 14px 0 22px;
+}
+.article--paper th, .article--paper td {
+  border: 1px solid var(--pm-line); padding: 8px 11px; text-align: left; vertical-align: top;
+  line-height: 1.7;
+}
+.article--paper th { background: #f0f0f3; font-weight: 600; color: var(--pm-ink); }
+.article--paper th:first-child { width: 92px; white-space: nowrap; }
+
+/* 待考／存疑提示段 */
+.pm-warn {
+  background: #fff8e6; border-left: 3px solid #e0a800; border-radius: 0 8px 8px 0;
+  padding: 12px 16px; font-size: 14.5px; color: #6b4e14; line-height: 1.8;
+}
+
+/* 底本注（文末「本文以…为唯一底本」） */
+.pm-source { margin: 28px 0 0; }
+.pm-source blockquote {
+  background: transparent; border-left: none; border-top: 1px solid var(--pm-line);
+  padding: 16px 0 0; border-radius: 0; font-size: 13px; color: var(--pm-ink3); line-height: 1.85;
+}
+.pm-source blockquote p { margin: 0; }
+
+/* 上一篇 / 下一篇（胶囊按钮） */
+.day-nav {
+  max-width: 840px; margin: 22px auto 0; display: flex; gap: 12px; flex-wrap: wrap;
+}
+.day-nav a, .day-nav .muted {
+  flex: 1 1 240px; text-align: center; font-size: 13.5px; padding: 11px 16px;
+  border: 1px solid var(--pm-line); border-radius: 999px; background: #fff;
+  color: var(--pm-ink2); transition: .15s;
+}
+.day-nav a:hover { color: var(--pm-acc); border-color: var(--pm-acc); }
+.day-nav .muted { color: var(--pm-ink3); background: transparent; }
+
+@media (max-width: 640px) {
+  .pm-hero { padding: 26px 18px 24px; }
+  .pm-hero h1 { font-size: 22px; }
+  .pm-toc { position: static; }
+  .page-body--paper { padding: 20px 0 46px; }
+  .article--paper { padding: 26px 20px 30px; font-size: 14.5px; border-radius: 12px; }
+  .article--paper h2 { font-size: 19px; }
+  .article--paper table { font-size: 12.5px; }
+  .article--paper th:first-child { width: auto; }
+}
+
 @media print {
-  .lang-switch, .site-header { display: none; }
-  .article-body .en, .article-body .zh { display: block !important; }
-  .cat-card, .master-card { page-break-inside: avoid; }
+  .pm-toc, .day-nav, .site-header { display: none; }
+  .page-body--paper { background: #fff; padding: 0; }
+  .article--paper { border: none; box-shadow: none; }
+  .article--paper h2 { page-break-after: avoid; }
+  .pm-voice, blockquote, table { page-break-inside: avoid; }
 }
