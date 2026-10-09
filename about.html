@@ -4,22 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2048 · 壹點學園 Oneness Academy</title>
-<meta name="description" content="关于我们 · 让我们一起朝向 2048">
+<meta name="description" content="属于我们自己精神空间的一个故事。让我们一起朝向 2048，用生命丈量时间，探寻纯粹的纯粹。">
 <link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
+<!-- 顶部彩虹装饰条 -->
 <div class="rainbow-bar" aria-hidden="true"></div>
 
+<!-- 顶部全局导航 -->
 <nav class="globalnav" aria-label="全局导航">
   <div class="globalnav-content">
     <a class="nav-logo" href="index.html" aria-label="壹點學園首页">
       <img src="assets/img/logo-red-128.png" alt="壹點學園" width="22" height="22">
     </a>
     <div class="nav-menu">
-      <a href="about.html">2048</a>
+      <a href="about.html" class="active">2048</a>
       <a href="library.html">图书馆</a>
+      <a href="marathon.html">早课马拉松</a>
       <a href="coaching.html">教练</a>
       <a href="business.html">商学院</a>
       <a href="ai.html">人工智能</a>
@@ -46,18 +49,116 @@
   </div>
 </nav>
 
+<!-- 页首：2048 的定位 -->
 <header class="page-hero">
   <img class="page-logo" src="assets/img/logo-red-128.png" alt="" width="64" height="64">
   <h1>2048</h1>
-  <p class="page-sub">关于我们 · 让我们一起朝向 2048</p>
+  <p class="page-sub">属于我们自己精神空间的一个故事</p>
   <div class="page-rule"></div>
 </header>
 
-<main class="page-body">
-  <p class="page-note">内容筹备中，敬请期待。</p>
-  <a class="back-home" href="index.html">返回首页 &gt;</a>
+<main class="story-wrap">
+
+  <!-- 导言 -->
+  <section class="story-lead">
+    <div class="story-lead-inner">
+      <p class="lead-kicker">OUR STORY · 我们的故事</p>
+      <p class="lead-text">
+        2048，是一处我们为自己留白的精神空间。<br>
+        这里没有标准答案，只有我们一路走来、正在发生的故事。<br>
+        把书读在讲台后面，把人放在问题前面——<br>
+        我们想用一生的时间，慢慢把日子过成想要的样子。
+      </p>
+    </div>
+  </section>
+
+  <!-- 第一章 缘起 -->
+  <section class="story-chapter" style="--chap: #c3272b">
+    <div class="chapter-inner">
+      <span class="chapter-num">壹</span>
+      <h2 class="chapter-title">缘起 · 我们为什么出发</h2>
+      <div class="chapter-body">
+        <p>写一写 2048 是怎么来的：那一个念头、那一场对话、那个让「我们」决定一起往前走的时刻。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第二章 同行 -->
+  <section class="story-chapter" style="--chap: #d9a441">
+    <div class="chapter-inner">
+      <span class="chapter-num">贰</span>
+      <h2 class="chapter-title">同行 · 这一路遇见的人</h2>
+      <div class="chapter-body">
+        <p>写一写一起走的人：那些同行者、那些被彼此点亮的瞬间，以及我们如何彼此成就。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第三章 远望 -->
+  <section class="story-chapter" style="--chap: #2f8c7c">
+    <div class="chapter-inner">
+      <span class="chapter-num">叁</span>
+      <h2 class="chapter-title">远望 · 朝向 2048 的远方</h2>
+      <div class="chapter-body">
+        <p>写一写我们要去哪里：2048 不止是一个数字，更是我们愿意用一生去靠近的那个远方。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 时间线 -->
+  <section class="story-timeline">
+    <div class="timeline-inner">
+      <h2 class="timeline-head">一路走来</h2>
+      <ol class="timeline-list">
+        <li class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-time">起点</span>
+          <p class="timeline-text">那一天，我们第一次说起 2048。</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-time">同行</span>
+          <p class="timeline-text">慢慢聚起来的人，渐渐清晰的方向。</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-time">此刻</span>
+          <p class="timeline-text">今天，这处精神空间被点亮。</p>
+        </li>
+        <li class="timeline-item">
+          <span class="timeline-dot"></span>
+          <span class="timeline-time">远方</span>
+          <p class="timeline-text">2048，我们继续往前走。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 图片 -->
+  <section class="story-photos">
+    <figure class="story-photo">
+      <div class="photo-frame">此处放图<br>建议 16:9 · JPG / PNG</div>
+      <figcaption class="photo-caption">图注：写一句与这张图相关的话。</figcaption>
+    </figure>
+    <figure class="story-photo">
+      <div class="photo-frame">此处放图<br>建议 16:9 · JPG / PNG</div>
+      <figcaption class="photo-caption">图注：写一句与这张图相关的话。</figcaption>
+    </figure>
+  </section>
+
+  <!-- 结语 -->
+  <section class="story-epilogue">
+    <p class="epilogue-text">
+      让我们一起朝向 <span class="rainbow-text">2048</span>。<br>
+      用生命丈量时间，探寻纯粹的纯粹。<br>
+      这个世界，因为我们的存在而变得越来越好。
+    </p>
+    <a class="back-home" href="index.html">返回首页 &gt;</a>
+  </section>
+
 </main>
 
+<!-- Footer -->
 <footer class="footer">
   <div class="footer-content">
     <div class="footer-links">

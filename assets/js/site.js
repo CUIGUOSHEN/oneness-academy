@@ -7,85 +7,93 @@
   var MEGA = {
     'about.html': [
       { head: '探索 2048', items: [
-        ['缘起与初心', 'about.html'],
-        ['主理人崔老师', 'about.html'],
-        ['我们在做什么', 'about.html']
+        ['缘起与初心', '/about.html'],
+        ['主理人崔老师', '/about.html'],
+        ['我们在做什么', '/about.html']
       ]},
       { head: '加入我们', items: [
-        ['成为会员', 'login.html'],
-        ['联系小管家', 'about.html']
+        ['成为会员', '/login.html'],
+        ['联系小管家', '/about.html']
       ]}
     ],
     'library.html': [
       { head: '馆藏', items: [
-        ['精读讲义', 'library.html'],
-        ['双语电子书', 'library.html'],
-        ['教练大咖精读', 'library.html']
+        ['精读讲义', '/library.html'],
+        ['双语电子书', '/library.html'],
+        ['教练大咖精读', '/library.html']
       ]},
       { head: '延伸', items: [
-        ['讲书播客', 'library.html'],
-        ['术语研究', 'library.html']
+        ['讲书播客', '/library.html'],
+        ['术语研究', '/library.html']
+      ]}
+    ],
+    'marathon.html': [
+      { head: '早课马拉松', items: [
+        ['与家庭一起改变', '/marathon/family.html'],
+        ['没有疆界', '/marathon/boundary.html'],
+        ['神奇的结构 2', '/marathon/structure2.html'],
+        ['思考如何思考', '/marathon/thinking.html']
       ]}
     ],
     'coaching.html': [
       { head: '教练服务', items: [
-        ['一对一教练', 'coaching.html'],
-        ['团队陪跑', 'coaching.html']
+        ['一对一教练', '/coaching.html'],
+        ['团队陪跑', '/coaching.html']
       ]},
       { head: '专业研究', items: [
-        ['MCC 研究中心', 'coaching.html'],
-        ['核心胜任力', 'coaching.html'],
-        ['PCC Marker 中译', 'coaching.html']
+        ['MCC 研究中心', '/coaching.html'],
+        ['核心胜任力', '/coaching.html'],
+        ['PCC Marker 中译', '/coaching.html']
       ]}
     ],
     'business.html': [
       { head: '课程', items: [
-        ['如何设计我们的产品逻辑', 'business.html'],
-        ['决策沙盘工作坊', 'business.html']
+        ['如何设计我们的产品逻辑', '/business.html'],
+        ['决策沙盘工作坊', '/business.html']
       ]},
       { head: '学员成果', items: [
-        ['MVP 作品集', 'business.html'],
-        ['生命平衡轮仪表盘', 'business.html']
+        ['MVP 作品集', '/business.html'],
+        ['生命平衡轮仪表盘', '/business.html']
       ]}
     ],
     'ai.html': [
       { head: '人工智能', items: [
-        ['Vibe Coding 课', 'ai.html'],
-        ['AI 学习 wiki', 'ai.html']
+        ['Vibe Coding 课', '/ai.html'],
+        ['AI 学习 wiki', '/ai.html']
       ]},
       { head: '共创', items: [
-        ['AI 仪表盘', 'ai.html'],
-        ['用 AI 做一本书', 'ai.html']
+        ['AI 仪表盘', '/ai.html'],
+        ['用 AI 做一本书', '/ai.html']
       ]}
     ],
     'art.html': [
       { head: '艺术鉴赏', items: [
-        ['名画每日一读', 'art.html'],
-        ['小楷与书法', 'art.html']
+        ['名画每日一读', '/art.html'],
+        ['小楷与书法', '/art.html']
       ]},
       { head: '生活之美', items: [
-        ['音乐与诵读', 'art.html'],
-        ['器物之美', 'art.html']
+        ['音乐与诵读', '/art.html'],
+        ['器物之美', '/art.html']
       ]}
     ],
     'philosophy.html': [
       { head: '哲学思考', items: [
-        ['说文解字', 'philosophy.html'],
-        ['哲学精读', 'philosophy.html']
+        ['说文解字', '/philosophy.html'],
+        ['哲学精读', '/philosophy.html']
       ]},
       { head: '追问', items: [
-        ['探寻纯粹的纯粹', 'philosophy.html'],
-        ['每日一问', 'philosophy.html']
+        ['探寻纯粹的纯粹', '/philosophy.html'],
+        ['每日一问', '/philosophy.html']
       ]}
     ],
     'cuisine.html': [
       { head: '私房菜', items: [
-        ['崔老师食谱', 'cuisine.html'],
-        ['饮食与健康', 'cuisine.html']
+        ['崔老师食谱', '/cuisine.html'],
+        ['饮食与健康', '/cuisine.html']
       ]},
       { head: '雅集', items: [
-        ['私宴预约', 'cuisine.html'],
-        ['节气饮食', 'cuisine.html']
+        ['私宴预约', '/cuisine.html'],
+        ['节气饮食', '/cuisine.html']
       ]}
     ]
   };
@@ -136,7 +144,7 @@
     buildPanel();
     var menuLinks = nav.querySelectorAll('.nav-menu a');
     menuLinks.forEach(function (a) {
-      var key = a.getAttribute('href');
+      var key = (a.getAttribute('href') || '').split('/').pop();
       a.addEventListener('mouseenter', function () {
         if (!isMobile()) openMega(key);
       });
@@ -201,6 +209,7 @@
   var NAV_LABELS = {
     'about.html': '2048',
     'library.html': '图书馆',
+    'marathon.html': '早课马拉松',
     'coaching.html': '教练',
     'business.html': '商学院',
     'ai.html': '人工智能',
@@ -219,7 +228,7 @@
     if (!sPanel || !sToggle) return;
 
     var PAGES = Object.keys(NAV_LABELS).map(function (k) {
-      return { title: NAV_LABELS[k], path: k };
+      return { title: NAV_LABELS[k], path: '/' + k };
     });
 
     function openPanel() { sPanel.classList.add('open'); if (sInput) sInput.focus(); }
