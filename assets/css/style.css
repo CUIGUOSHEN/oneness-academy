@@ -946,3 +946,370 @@ body.mobile-open { overflow: hidden; }
   .chapter-body p { font-size: 16px; }
   .timeline-text { font-size: 16px; }
 }
+
+/* ============================================================
+   艺术鉴赏 · 名画每日一读
+   二级索引页 art.html + 三级详情页 art/*.html
+   ============================================================ */
+
+/* ── 索引页 ── */
+.art-wrap { max-width: 860px; margin: 0 auto; text-align: left; }
+.art-lead {
+  font-size: 16px; line-height: 2.0; color: var(--ink-soft);
+  margin-bottom: 14px; text-align: center;
+}
+.art-lead strong { color: var(--brand-red); font-weight: 600; }
+.art-note {
+  font-size: 14px; line-height: 1.9; color: var(--ink-faint);
+  text-align: center; margin-bottom: 44px;
+}
+
+.art-item {
+  display: flex; gap: 22px; align-items: flex-start;
+  padding: 22px 4px; border-bottom: 1px solid var(--hairline);
+  transition: background 0.18s ease;
+}
+.art-item:hover { background: var(--paper); }
+.art-item-thumb {
+  flex: none; width: 168px; height: 112px; overflow: hidden;
+  border-radius: 8px; background: var(--paper);
+  border: 1px solid var(--hairline);
+}
+.art-item-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.art-item-main { flex: 1; min-width: 0; }
+.art-item-no {
+  font-size: 11.5px; font-weight: 600; color: var(--brand-red);
+  letter-spacing: 0.1em; margin-bottom: 5px;
+}
+.art-item-title {
+  font-size: 20px; font-weight: 600; color: var(--ink);
+  letter-spacing: 0.04em; margin-bottom: 7px;
+}
+.art-item-desc {
+  font-size: 14px; line-height: 1.85; color: var(--ink-soft); margin-bottom: 9px;
+}
+.art-item-meta { font-size: 12.5px; color: var(--ink-faint); }
+.art-item-meta span { margin-right: 14px; white-space: nowrap; }
+
+/* ── 详情页 ── */
+.art-body { max-width: 780px; margin: 0 auto; text-align: left; }
+
+.art-facts {
+  display: flex; flex-wrap: wrap; gap: 8px 26px;
+  padding: 18px 0; margin: 26px 0 34px;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  font-size: 13.5px; color: var(--ink-soft);
+}
+.art-facts b { color: var(--ink); font-weight: 600; }
+
+.art-plate { margin: 0 0 12px; }
+.art-plate img {
+  width: 100%; height: auto; display: block;
+  border: 1px solid var(--hairline); border-radius: 8px; background: var(--paper);
+}
+.art-plate figcaption {
+  margin-top: 11px; font-size: 12.5px; line-height: 1.8; color: var(--ink-faint);
+}
+.art-plate figcaption b { color: var(--ink-soft); }
+
+.art-plate-scroll {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--hairline); border-radius: 8px; background: var(--paper);
+  margin-bottom: 12px;
+}
+.art-plate-scroll img { width: 100%; min-width: 900px; height: auto; display: block; }
+.art-scroll-tip { font-size: 11.5px; color: var(--ink-faint); margin-bottom: 30px; }
+
+.art-h2 {
+  font-size: 21px; font-weight: 600; color: var(--ink);
+  letter-spacing: 0.04em; margin: 52px 0 14px;
+  padding-bottom: 10px; border-bottom: 1px solid var(--hairline);
+}
+.art-h2 .no {
+  display: block; font-size: 11px; font-weight: 600;
+  color: var(--brand-red); letter-spacing: 0.16em; margin-bottom: 6px;
+}
+.art-h3 {
+  font-size: 17px; font-weight: 600; color: var(--ink);
+  margin: 32px 0 10px; letter-spacing: 0.03em;
+}
+.art-p { font-size: 16px; line-height: 2.0; margin: 14px 0; color: var(--ink); }
+.art-p em {
+  font-style: normal; background: linear-gradient(transparent 62%, rgba(217,164,65,.28) 62%);
+  padding: 0 2px;
+}
+.art-p strong { font-weight: 600; }
+
+.art-quote {
+  margin: 24px 0; padding: 20px 24px; background: var(--paper);
+  border-left: 3px solid var(--c-gold); border-radius: 0 8px 8px 0;
+  font-size: 16px; line-height: 1.95;
+}
+.art-quote .src {
+  display: block; margin-top: 11px; font-size: 12.5px; color: var(--ink-faint);
+}
+
+/* 对立观点卡 */
+.art-duel { margin: 28px 0; border: 1px solid var(--hairline); border-radius: 10px; overflow: hidden; }
+.art-duel-head {
+  padding: 14px 22px; background: var(--ink); color: #fdfaf3; font-size: 14.5px;
+}
+.art-duel-head .q {
+  display: block; margin-top: 4px; font-size: 12.5px;
+  color: rgba(253,250,243,.65); font-weight: 400;
+}
+.art-duel-body > div { padding: 22px; }
+.art-duel-body > div + div { border-top: 1px solid var(--hairline); }
+.art-duel-who { font-size: 13px; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 3px; }
+.art-duel-who.a { color: var(--c-blue); }
+.art-duel-who.b { color: var(--brand-red); }
+.art-duel-org { font-size: 11.5px; color: var(--ink-faint); margin-bottom: 12px; }
+.art-duel-body p { font-size: 15.5px; line-height: 1.9; margin: 0 0 11px; }
+.art-duel-body p:last-child { margin-bottom: 0; }
+
+/* 证据卡 */
+.art-ev {
+  margin: 22px 0; padding: 20px 22px; background: var(--paper);
+  border: 1px solid var(--hairline); border-radius: 10px;
+}
+.art-ev .lbl { font-size: 11.5px; font-weight: 600; letter-spacing: 0.14em; color: var(--c-blue); margin-bottom: 10px; }
+.art-ev.amber { border-left: 3px solid var(--c-gold); }
+.art-ev.amber .lbl { color: var(--c-ochre); }
+.art-ev.crimson { border-left: 3px solid var(--brand-red); }
+.art-ev.crimson .lbl { color: var(--brand-red); }
+.art-ev p { font-size: 15.5px; line-height: 1.9; margin: 0 0 10px; }
+.art-ev p:last-child { margin-bottom: 0; }
+
+/* 深色要点块 */
+.art-concl {
+  margin: 34px 0; padding: 24px 26px; background: var(--ink); color: #e8e2d9;
+  border-radius: 10px;
+}
+.art-concl .lbl { font-size: 11px; letter-spacing: 0.2em; color: var(--c-gold); font-weight: 600; margin-bottom: 13px; }
+.art-concl p { font-size: 15.5px; line-height: 1.95; margin: 0 0 12px; color: #cfc7bc; }
+.art-concl p:last-child { margin-bottom: 0; }
+.art-concl strong { color: #f0c674; }
+
+/* 共识与存疑表 */
+.art-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 15px; }
+.art-table th, .art-table td { padding: 13px 14px; text-align: left; vertical-align: top; line-height: 1.8; border-bottom: 1px solid var(--hairline); }
+.art-table th { background: var(--ink); color: #fdfaf3; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; }
+.art-table td:first-child { font-weight: 600; color: var(--ink); }
+.art-table-tag {
+  display: inline-block; font-size: 11px; padding: 2px 8px; margin-right: 6px;
+  border: 1px solid currentColor; border-radius: 4px;
+}
+.art-table-tag.debate { color: var(--brand-red); }
+.art-table-tag.pending { color: var(--ink-faint); }
+.art-table-tag.consensus { color: var(--c-teal); }
+
+/* 细节图组 */
+.art-details { margin: 26px 0; }
+.art-detail {
+  margin-bottom: 22px; padding: 16px; background: var(--paper);
+  border: 1px solid var(--hairline); border-radius: 10px;
+}
+.art-detail img {
+  width: 100%; height: auto; display: block; border-radius: 6px;
+}
+.art-detail figcaption { margin-top: 10px; font-size: 13px; line-height: 1.8; color: var(--ink-soft); }
+.art-detail figcaption b { color: var(--ink); }
+
+/* 页尾导航 */
+.art-pagenav {
+  display: flex; justify-content: space-between; gap: 14px;
+  margin: 56px 0 0; padding-top: 26px; border-top: 1px solid var(--hairline);
+}
+.art-pagenav a {
+  font-size: 13.5px; color: var(--ink-soft); text-decoration: none;
+  padding: 11px 16px; border: 1px solid var(--hairline); border-radius: 8px;
+  transition: all 0.15s ease; flex: 1; min-width: 0;
+}
+.art-pagenav a:hover { border-color: var(--brand-red); color: var(--brand-red); }
+.art-pagenav .next { text-align: right; }
+.art-pagenav .lbl2 { display: block; font-size: 11px; color: var(--ink-faint); letter-spacing: 0.1em; margin-bottom: 3px; }
+
+/* 艺术鉴赏 · 移动端 */
+@media (max-width: 834px) {
+  .art-item { gap: 14px; padding: 18px 2px; }
+  .art-item-thumb { width: 108px; height: 74px; }
+  .art-item-title { font-size: 17px; }
+  .art-item-desc { font-size: 13.5px; line-height: 1.75; }
+  .art-item-meta { font-size: 11.5px; }
+  .art-item-meta span { margin-right: 10px; }
+
+  .art-facts { gap: 6px 18px; font-size: 12.5px; padding: 14px 0; margin: 20px 0 26px; }
+  .art-facts span { width: 100%; }
+
+  .art-h2 { font-size: 19px; margin: 40px 0 12px; }
+  .art-h3 { font-size: 16px; margin: 26px 0 8px; }
+  .art-p { font-size: 16px; line-height: 1.95; }
+
+  .art-duel-body > div { padding: 18px; }
+  .art-duel-body p { font-size: 15.5px; line-height: 1.88; }
+  .art-duel-body > div + div { border-top: 2px solid var(--hairline); }
+  .art-ev { padding: 18px; }
+  .art-ev p { font-size: 15.5px; }
+  .art-concl { padding: 20px; }
+  .art-concl p { font-size: 15.5px; }
+
+  .art-quote { padding: 18px 20px; font-size: 16px; }
+
+  /* 表格卡片化（长内容在窄屏不可读） */
+  .art-table { font-size: 14.5px; display: block; }
+  .art-table thead { display: none; }
+  .art-table tr {
+    display: block; margin-bottom: 12px; padding: 12px 16px;
+    background: var(--paper); border: 1px solid var(--hairline); border-radius: 8px;
+  }
+  .art-table td { display: block; border-bottom: none; padding: 4px 0; font-size: 14.5px; }
+  .art-table td:first-child {
+    font-size: 13px; letter-spacing: 0.06em; color: var(--ink-soft);
+    padding-bottom: 6px; margin-bottom: 5px; border-bottom: 1px dashed var(--hairline);
+  }
+
+  .art-pagenav { flex-direction: column; }
+  .art-pagenav .next { text-align: left; }
+}
+
+/* ============================================================
+   艺术页 · 图片与溢出处理（统一规则，勿重复添加）
+   原则：任何图片不得撑破窄屏容器；长卷图例外，走横向滚动容器。
+   ============================================================ */
+.art-body img { max-width: 100%; height: auto; display: block; }
+.art-body table { max-width: 100%; }
+
+/* 细节图卡：竖排，图不溢出 */
+.art-detail { overflow: hidden; }
+.art-detail img { width: 100%; }
+
+/* 全卷长图：横向可拖动容器（长卷被压到手机宽度后完全看不清） */
+.art-plate {
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--hairline); border-radius: 8px; background: var(--paper);
+  padding: 10px;
+}
+.art-plate .art-plate-img { width: 100%; min-width: 880px; max-width: none; border-radius: 0; }
+.art-plate figcaption { padding: 0 4px; }
+.art-plate figcaption b { color: var(--ink-soft); }
+
+/* 长卷拖动提示 */
+.art-plate-hint {
+  display: none; font-size: 11.5px; color: var(--ink-faint);
+  letter-spacing: 0.08em; margin-bottom: 30px;
+}
+@media (max-width: 834px) {
+  .art-plate-hint { display: block; }
+  .art-concl p, .art-ev p, .art-duel-body p, .art-quote, .art-table td {
+    overflow-wrap: break-word; word-break: normal;
+  }
+  .art-h2, .art-h3 { line-height: 1.45; }
+}
+
+/* v3 修正：长卷滚动容器必须真正截住 min-width；长 URL/代码不得撑破窄屏 */
+.art-plate {
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+.art-plate > .art-plate-img {
+  width: auto; max-width: none;
+  min-width: 880px; height: auto; display: block;
+}
+.art-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.86em; line-height: 1.6;
+  word-break: break-all; overflow-wrap: anywhere;
+}
+.art-p code, .art-table code, .art-ev code { word-break: break-all; }
+
+/* ============================================================
+   v5 · 全卷长图最终方案
+   长卷原图本身很宽（洛神 1502px、步辇 1260px、千里 1500px），
+   压到手机宽度就完全看不清。因此：
+     - 容器 .art-plate 固定 width:100% + overflow-x:auto
+     - 图片设固定像素宽（保持原始比例），靠容器横向拖动查看
+   ============================================================ */
+.art-plate {
+  width: 100%; max-width: 100%;
+  overflow-x: auto; overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+}
+.art-plate > .art-plate-img {
+  display: block;
+  width: 1400px;         /* 固定像素宽：足够看清细节，比例由图片自身维持 */
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+@media (max-width: 834px) {
+  .art-plate > .art-plate-img { width: 1300px; }
+}
+
+/* v6 兜底：art-body 内任何块级与行内元素都不得撑破容器
+   （源页面残留的 tag/span 长文本是溢出主因） */
+.art-body p, .art-body li, .art-body figcaption,
+.art-body dd, .art-body dt, .art-body blockquote {
+  overflow-wrap: break-word;
+}
+/* 表格 / 代码 / 标签单独处理，避免 min-width:0 破坏表格布局 */
+.art-body table { max-width: 100%; width: 100%; }
+.art-body td, .art-body th { overflow-wrap: break-word; word-break: normal; }
+.art-body code { word-break: break-all; }
+/* 源页面遗留的标签类（站点未定义，给个中性样式） */
+.art-body .tag {
+  display: inline-block; font-size: 11px; padding: 1px 6px; margin: 0 4px;
+  border: 1px solid currentColor; border-radius: 3px; vertical-align: 1px;
+  white-space: nowrap;
+}
+.art-body .t-pending { color: var(--ink-faint); }
+.art-body .t-debate   { color: var(--brand-red); }
+.art-body .t-consensus { color: var(--c-teal); }
+.art-body .t-infer    { color: var(--c-ochre); }
+/* figcaption 内的长段落注释 */
+.art-plate figcaption > span { display: inline-block; max-width: 100%; }
+
+/* ============================================================
+   宽表（≥3 列）处理：窄屏下横向滚动，不做卡片化
+   卡片化适合 2 列表；3 列以上卡片化后每格独占一行，反而更难读。
+   ============================================================ */
+.art-table-wide { table-layout: auto; }
+.art-table-wide th, .art-table-wide td { min-width: 7em; }
+@media (max-width: 834px) {
+  /* 宽表：整体横向滚动，容器裁切 */
+  .art-table-wide {
+    display: block; width: 100%; max-width: 100%;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--hairline); border-radius: 8px;
+  }
+  .art-table-wide thead { display: table-header-group; }  /* 宽表保留表头 */
+  .art-table-wide tbody, .art-table-wide tr { display: table; width: 100%; table-layout: auto; }
+  .art-table-wide tr { border: none; background: none; padding: 0; margin: 0; }
+  .art-table-wide td { display: table-cell; border-bottom: 1px solid var(--hairline); padding: 10px 12px; }
+  .art-table-wide td:first-child {
+    display: table-cell; font-size: 13.5px; color: var(--ink);
+    border-bottom: none; padding-bottom: 10px; margin: 0;
+  }
+  .art-table-wide th {
+    display: table-cell; background: var(--ink); color: #fdfaf3;
+    font-size: 12px; text-align: left; padding: 9px 12px; white-space: nowrap;
+  }
+}
+
+/* ============================================================
+   v7 · 最终版溢出治理
+   根因：全卷长图与宽表都是「超宽内容」，必须由一个真正形成
+   formatting context 的容器裁切。contain:inline-size 是唯一可靠手段
+   （overflow:auto 单独用时，父级 scrollWidth 仍会按子元素算）。
+   ============================================================ */
+.art-plate,
+.art-table-wide {
+  contain: inline-size;
+  /* 兜底：不支持 contain 时用 clip-path 强制裁切 */
+  clip-path: inset(0);
+}
+@supports (contain: inline-size) {
+  .art-plate, .art-table-wide { clip-path: none; }  /* 支持 contain 就别裁，滚动才可见 */
+}
+html, body { overflow-x: hidden; }

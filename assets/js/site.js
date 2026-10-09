@@ -218,6 +218,14 @@
     'cuisine.html': '私房菜'
   };
 
+  /* 艺术鉴赏 · 名画每日一读各期（三级页面） */
+  var ART_ISSUES = [
+    { title: '千里江山图 · 名画每日一读 001', path: '/art/qianli-jiangshan.html', kw: '王希孟 北宋 青绿山水 千里江山 蔡京 传神' },
+    { title: '洛神赋图 · 名画每日一读 002', path: '/art/luoshen-futu.html', kw: '顾恺之 洛神赋 东晋 摹本 传神写照 曹植' },
+    { title: '步辇图 · 名画每日一读 003', path: '/art/bunian.html', kw: '阎立本 唐 步辇图 吐蕃 松赞干布 文成公主' },
+    { title: '韩熙载夜宴图 · 名画每日一读 004', path: '/art/hanxizai.html', kw: '顾闳中 南唐 五代 韩熙载 夜宴 家具 服饰 断代' }
+  ];
+
   /* ============ 站内搜索（导航放大镜） ============ */
   function initSearch() {
     var sPanel = document.getElementById('search-panel');
@@ -228,8 +236,8 @@
     if (!sPanel || !sToggle) return;
 
     var PAGES = Object.keys(NAV_LABELS).map(function (k) {
-      return { title: NAV_LABELS[k], path: '/' + k };
-    });
+      return { title: NAV_LABELS[k], path: '/' + k, kw: '' };
+    }).concat(ART_ISSUES);
 
     function openPanel() { sPanel.classList.add('open'); if (sInput) sInput.focus(); }
     function closePanel() { sPanel.classList.remove('open'); }
@@ -240,7 +248,10 @@
         sResults.innerHTML = '<li class="search-hint">输入关键词，搜索壹點學園的内容</li>';
         return;
       }
-      var hits = PAGES.filter(function (p) { return p.title.indexOf(kw) >= 0; });
+      var hits = PAGES.filter(function (p) {
+        var hay = p.title + ' ' + (p.kw || '');
+        return hay.toLowerCase().indexOf(kw.toLowerCase()) >= 0;
+      });
       if (!hits.length) {
         sResults.innerHTML = '<li class="search-hint">未找到与「' + kw + '」相关的页面</li>';
         return;
