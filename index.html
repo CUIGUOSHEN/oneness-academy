@@ -3,65 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2048 · 网站建设中</title>
-<style>
-  :root { color-scheme: light; }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    display: grid;
-    place-items: center;
-    background: #ffffff;
-    color: #111;
-    font-family: -apple-system, "SF Pro Display", "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap {
-    text-align: center;
-    padding: 0 24px;
-  }
-  .mark {
-    font-size: clamp(72px, 18vw, 160px);
-    font-weight: 200;
-    letter-spacing: 0.02em;
-    line-height: 1;
-    color: #d0021b;
-  }
-  .sub {
-    margin-top: 24px;
-    font-size: 18px;
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    color: #555;
-  }
-  .en {
-    margin-top: 10px;
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: #999;
-  }
-  .dot {
-    margin-top: 48px;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: #d0021b;
-    display: inline-block;
-    animation: pulse 1.6s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 0.25; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.35); }
-  }
-</style>
+<title>壹點學園 · Oneness Academy — 让我们一起朝向 2048</title>
+<meta name="description" content="壹點學園：学习型组织的入口。用生命丈量时间，探寻纯粹的纯粹。">
+<link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-  <div class="wrap">
-    <div class="mark">2048</div>
-    <div class="sub">网站建设中</div>
-    <div class="en">Coming Soon</div>
-    <span class="dot"></span>
+
+<!-- 顶部全局导航（苹果式） -->
+<nav class="globalnav" aria-label="全局导航">
+  <div class="globalnav-content">
+    <a class="nav-logo" href="index.html" aria-label="壹點學園首页">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="22" height="22">
+    </a>
+    <a href="about.html">关于我们</a>
+    <a href="library.html">图书馆</a>
+    <a href="coaching.html">教练</a>
+    <a href="business.html">商学院</a>
+    <a href="ai.html">人工智能</a>
+    <a href="art.html">艺术鉴赏</a>
+    <a href="philosophy.html">哲学思考</a>
+    <a href="cuisine.html">私房菜</a>
   </div>
+</nav>
+
+<!-- Hero 首屏：logo + 主题句 -->
+<header class="hero">
+  <img class="hero-logo" src="assets/img/logo-red-512.png" alt="壹點學園红色圆环 logo" width="150" height="150">
+  <h1>让我们一起朝向 2048</h1>
+  <p class="hero-sub">
+    用生命丈量时间，探寻纯粹的纯粹。<br>
+    <span class="hero-em">这个世界因为我们的存在而变得越来越好。</span>
+  </p>
+</header>
+
+<main>
+
+  <!-- 01 关于我们 -->
+  <a class="section dark" href="about.html">
+    <div class="section-inner">
+      <h2>关于我们</h2>
+      <p class="section-sub">把人放在问题前面，把书读在讲台后面。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">人</div>
+    </div>
+  </a>
+
+  <!-- 02 图书馆 -->
+  <a class="section light" href="library.html">
+    <div class="section-inner">
+      <h2>图书馆</h2>
+      <p class="section-sub">精读讲义与双语电子书，日积月累的沉淀。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">书</div>
+    </div>
+  </a>
+
+  <!-- 03 教练 -->
+  <a class="section dark" href="coaching.html">
+    <div class="section-inner">
+      <h2>教练</h2>
+      <p class="section-sub">一对一教练与团队陪跑，唤醒而非灌输。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">问</div>
+    </div>
+  </a>
+
+  <!-- 04 商学院 -->
+  <a class="section light" href="business.html">
+    <div class="section-inner">
+      <h2>商学院</h2>
+      <p class="section-sub">把想法做成产品，把产品做成事业。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">商</div>
+    </div>
+  </a>
+
+  <!-- 05 人工智能 -->
+  <a class="section dark" href="ai.html">
+    <div class="section-inner">
+      <h2>人工智能</h2>
+      <p class="section-sub">与 AI 协作的时代，人人都能创造。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">智</div>
+    </div>
+  </a>
+
+  <!-- 06 艺术鉴赏 -->
+  <a class="section light" href="art.html">
+    <div class="section-inner">
+      <h2>艺术鉴赏</h2>
+      <p class="section-sub">在美之中，安顿心灵。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">美</div>
+    </div>
+  </a>
+
+  <!-- 07 哲学思考 -->
+  <a class="section dark" href="philosophy.html">
+    <div class="section-inner">
+      <h2>哲学思考</h2>
+      <p class="section-sub">追问根本，探寻纯粹的纯粹。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">思</div>
+    </div>
+  </a>
+
+  <!-- 08 私房菜 -->
+  <a class="section light" href="cuisine.html">
+    <div class="section-inner">
+      <h2>私房菜</h2>
+      <p class="section-sub">生活的味道，也是一门学问。</p>
+      <span class="learn-more">了解更多 &gt;</span>
+      <div class="giant" aria-hidden="true">味</div>
+    </div>
+  </a>
+
+</main>
+
+<!-- Footer（教育机构通用占位，后续慢慢改） -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="about.html">关于我们</a>
+      <a href="about.html">主理人介绍</a>
+      <a href="#">联系我们</a>
+      <a href="#">招生咨询</a>
+      <a href="#">合作洽谈</a>
+      <a href="#">隐私政策</a>
+      <a href="#">使用条款</a>
+      <a href="#">网站地图</a>
+    </div>
+    <div class="footer-legal">
+      <span>Copyright © 2026 壹點學園 Oneness Academy. 保留所有权利。</span>
+      <span>京ICP备XXXXXXXX号-1（占位，替换为实际备案号）</span>
+    </div>
+    <div class="footer-brand">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="18" height="18">
+      <span>壹點學園 · 学习型组织的入口</span>
+    </div>
+  </div>
+</footer>
+
 </body>
 </html>
