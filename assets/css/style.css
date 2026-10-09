@@ -337,16 +337,194 @@ a { text-decoration: none; color: inherit; }
 
 .footer-brand img { height: 18px; width: auto; }
 
+/* ---------- 二级大菜单（悬停展开 · 苹果式全宽面板） ---------- */
+.mega-panel {
+  position: absolute;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-bottom: 1px solid var(--hairline);
+  box-shadow: 0 28px 56px rgba(43, 38, 34, 0.14);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.26s ease, transform 0.26s ease, visibility 0s linear 0.26s;
+  z-index: 10000;
+}
+.mega-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: opacity 0.26s ease, transform 0.26s ease;
+}
+.mega-inner {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 38px 22px 44px;
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+}
+.mega-col { min-width: 140px; }
+.mega-col + .mega-col {
+  border-left: 1px solid var(--hairline);
+  padding-left: 56px;
+  margin-left: -28px;
+}
+.mega-col-head {
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.mega-col a {
+  display: block;
+  padding: 7px 0;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color 0.2s ease;
+}
+.mega-col a.mega-soft {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+.mega-col a:hover { color: var(--brand-red); }
+
+/* 大菜单展开时页面背景压暗 */
+.dim-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(43, 38, 34, 0.16);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.dim-overlay.show { opacity: 1; }
+
+/* ---------- 汉堡按钮（仅移动端显示） ---------- */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 8px 7px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-burger span {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+body.mobile-open .nav-burger span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+body.mobile-open .nav-burger span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
+
+/* ---------- 移动端全屏菜单（手风琴） ---------- */
+.mobile-menu {
+  position: fixed;
+  top: calc(var(--nav-h) + 4px);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  overflow-y: auto;
+  padding: 12px 28px 48px;
+  display: none;
+  z-index: 9999;
+}
+body.mobile-open .mobile-menu { display: block; }
+body.mobile-open { overflow: hidden; }
+
+.mm-group { border-bottom: 1px solid var(--hairline); }
+.mm-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  text-align: left;
+}
+.mm-head .mm-chevron {
+  width: 12px;
+  height: 12px;
+  border-right: 1.5px solid var(--ink-faint);
+  border-bottom: 1.5px solid var(--ink-faint);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+  flex: none;
+  margin-right: 4px;
+}
+.mm-group.open .mm-chevron { transform: rotate(225deg); }
+.mm-sub { display: none; padding: 0 0 16px; }
+.mm-group.open .mm-sub { display: block; }
+.mm-sub a {
+  display: block;
+  padding: 10px 0;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.mm-sub a:active { color: var(--brand-red); }
+
 /* ---------- 响应式 ---------- */
-@media (max-width: 768px) {
+@media (max-width: 834px) {
+  /* 导航：汉堡菜单取代横排入口 */
+  .nav-menu { display: none; }
+  .nav-burger { display: flex; }
   .globalnav-content { padding: 0 16px; gap: 14px; }
-  .nav-menu { gap: 14px; justify-content: flex-start; overflow-x: auto; }
-  .nav-menu a { flex: none; }
-  .nav-actions { margin-left: auto; flex: none; }
+  .nav-actions { margin-left: auto; flex: none; gap: 12px; }
   .globalnav a { font-size: 12px; }
-  .hero { padding: 68px 20px 60px; }
-  .hero-logo { width: 110px; margin-bottom: 40px; }
-  .section-inner { padding: 68px 20px 60px; }
+  .mega-panel { display: none; }
+
+  /* Hero 首屏 */
+  .hero { padding: 64px 20px 56px; }
+  .hero-logo { width: 104px; margin-bottom: 36px; }
+  .hero h1 { font-size: clamp(34px, 9vw, 44px); }
+  .hero .hero-sub { font-size: clamp(16px, 4.2vw, 20px); }
+
+  /* 板块大卡 */
+  .section-inner { padding: 60px 20px 56px; }
+  .section h2 { font-size: clamp(30px, 8vw, 40px); }
+  .section .section-sub { font-size: clamp(15px, 3.8vw, 18px); }
+  .section .learn-more { font-size: 16px; }
+  .giant { margin-top: 28px; font-size: clamp(80px, 26vw, 130px); }
+
+  /* 二级页 */
+  .page-hero { padding: 64px 20px 56px; }
+  .page-hero .page-logo { width: 52px; margin-bottom: 24px; }
+  .page-body { padding: 56px 20px; }
+
+  /* Footer */
+  .footer { padding: 28px 16px 36px; }
+  .footer-links { gap: 8px 20px; }
+  .footer-legal { flex-direction: column; gap: 6px; }
+
+  /* 登录页 */
+  .login-card { padding: 36px 24px 28px; }
+}
+
+/* 超窄屏（≤380px）再收一档 */
+@media (max-width: 380px) {
+  .hero-logo { width: 88px; }
+  .hero h1 { font-size: 30px; }
+  .nav-login { padding: 5px 12px; }
 }
 
 /* ---------- 登录 / 注册页 ---------- */
