@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的课程 · 壹點學園 Oneness Academy</title>
+<meta name="description" content="壹點學園会员中心：我的专属课程。">
+<link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- 顶部彩虹装饰条 -->
+<div class="rainbow-bar" aria-hidden="true"></div>
+
+<!-- 顶部全局导航 -->
+<nav class="globalnav" aria-label="全局导航">
+  <div class="globalnav-content">
+    <a class="nav-logo" href="index.html" aria-label="壹點學園首页">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="22" height="22">
+    </a>
+    <div class="nav-menu">
+      <a href="about.html">2048</a>
+      <a href="library.html">图书馆</a>
+      <a href="marathon.html">早课马拉松</a>
+      <a href="coaching.html">教练</a>
+      <a href="business.html">商学院</a>
+      <a href="ai.html">人工智能</a>
+      <a href="art.html">艺术鉴赏</a>
+      <a href="philosophy.html">哲学思考</a>
+      <a href="cuisine.html">私房菜</a>
+    </div>
+    <div class="nav-actions">
+      <span class="nav-user" id="nav-user"></span>
+      <a class="nav-login" href="#" id="btn-logout">退出</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 页首 -->
+<header class="page-hero">
+  <img class="page-logo" src="assets/img/logo-red-128.png" alt="" width="64" height="64">
+  <h1>我的课程</h1>
+  <p class="page-sub" id="hero-greet">欢迎回来，让我们一起朝向 2048</p>
+  <div class="page-rule"></div>
+</header>
+
+<main class="member-wrap">
+
+  <!-- 四个标签页 -->
+  <nav class="member-tabs" aria-label="课程分类">
+    <button class="active" type="button" data-tab="all">全部课程</button>
+    <button type="button" data-tab="coaching">教练进阶</button>
+    <button type="button" data-tab="vibe">Vibe Coding</button>
+    <button type="button" data-tab="marathon">早课马拉松</button>
+  </nav>
+
+  <!-- 标签页 1：全部课程 -->
+  <section class="member-panel active" id="panel-all">
+    <div class="course-list">
+      <a class="course-row" style="--accent: #c3272b" href="#">
+        <span class="course-row-mark">P</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>PME 训练营</h3><span class="course-row-count">12 讲</span></div>
+          <p class="course-row-en">PME Training Camp · CC / COE / MSR</p>
+          <p class="course-row-desc">以 ICF 八大核心胜任力为主轴，教练能力进阶实战。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #a65e2e" href="#">
+        <span class="course-row-mark">胜</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>ICF 八大核心胜任力</h3><span class="course-row-count">8 讲</span></div>
+          <p class="course-row-en">CC1–CC8 · 带 MSR 层级标记</p>
+          <p class="course-row-desc">逐条拆解新核心胜任力，标注 MCC / PCC / ACC 层级要求。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #2f8c7c" href="#">
+        <span class="course-row-mark">V</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>《如何设计我们的产品逻辑》</h3><span class="course-row-count">周日班</span></div>
+          <p class="course-row-en">Vibe Coding · 19:30–21:00</p>
+          <p class="course-row-desc">面向非程序员的 Vibe Coding 直播课，把想法做成产品。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #cf7a2a" href="#">
+        <span class="course-row-mark">晨</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>早间马拉松</h3><span class="course-row-count">每日</span></div>
+          <p class="course-row-en">Morning Marathon · 一日一课一论文</p>
+          <p class="course-row-desc">每个清晨一堂课，把读过的书沉淀成一篇篇论文。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 标签页 2：教练进阶 -->
+  <section class="member-panel" id="panel-coaching">
+    <div class="course-list">
+      <a class="course-row" style="--accent: #c3272b" href="#">
+        <span class="course-row-mark">P</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>PME 训练营</h3><span class="course-row-count">12 讲</span></div>
+          <p class="course-row-en">PME Training Camp · CC / COE / MSR</p>
+          <p class="course-row-desc">教练能力进阶实战，唤醒而非灌输。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #a65e2e" href="#">
+        <span class="course-row-mark">胜</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>ICF 八大核心胜任力</h3><span class="course-row-count">8 讲</span></div>
+          <p class="course-row-en">CC1–CC8 · 带 MSR 层级标记</p>
+          <p class="course-row-desc">逐条拆解新核心胜任力，标注 MCC / PCC / ACC 层级要求。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #3b5a7a" href="#">
+        <span class="course-row-mark">红</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>红宝书备考冲刺</h3><span class="course-row-count">11 月 CKA</span></div>
+          <p class="course-row-en">Exam Prep · 考试信息 + 新胜任力 + 考纲变动</p>
+          <p class="course-row-desc">ICF 考试终极资料，自研模拟题库为核心资产。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 标签页 3：Vibe Coding -->
+  <section class="member-panel" id="panel-vibe">
+    <div class="course-list">
+      <a class="course-row" style="--accent: #2f8c7c" href="#">
+        <span class="course-row-mark">V</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>《如何设计我们的产品逻辑》</h3><span class="course-row-count">周日班</span></div>
+          <p class="course-row-en">Vibe Coding · 19:30–21:00</p>
+          <p class="course-row-desc">面向非程序员的 Vibe Coding 直播课，把想法做成产品。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #2f8c7c" href="#">
+        <span class="course-row-mark">G</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>GenDD 方法论</h3><span class="course-row-count">核心课</span></div>
+          <p class="course-row-en">Context → Plan → Confirm → Execute → Validate</p>
+          <p class="course-row-desc">用对话驱动开发，一句话逻辑测试，验收驱动迭代。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #2f8c7c" href="#">
+        <span class="course-row-mark">四</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>四支柱</h3><span class="course-row-count">框架课</span></div>
+          <p class="course-row-en">Vibes · Specs · Skills · Agents</p>
+          <p class="course-row-desc">人把关 30%，AI 协作 70%，稳稳做出能用的产品。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 标签页 4：早课马拉松 -->
+  <section class="member-panel" id="panel-marathon">
+    <div class="course-list">
+      <a class="course-row" style="--accent: #cf7a2a" href="#">
+        <span class="course-row-mark">晨</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>早间马拉松</h3><span class="course-row-count">每日</span></div>
+          <p class="course-row-en">Morning Marathon · 一日一课一论文</p>
+          <p class="course-row-desc">每个清晨一堂课，把读过的书沉淀成一篇篇论文。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #cf7a2a" href="#">
+        <span class="course-row-mark">神</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>《神奇的结构》精读</h3><span class="course-row-count">连载中</span></div>
+          <p class="course-row-en">The Structure of Magic</p>
+          <p class="course-row-desc">NLP 源头经典，逐章精读、逐章产出论文。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+      <a class="course-row" style="--accent: #cf7a2a" href="#">
+        <span class="course-row-mark">语</span>
+        <div class="course-row-main">
+          <div class="course-row-head"><h3>《语言本能》精读</h3><span class="course-row-count">周三晚</span></div>
+          <p class="course-row-en">The Language Instinct · 19:30–21:00</p>
+          <p class="course-row-desc">平克经典，用语言学的眼睛重新看世界。</p>
+        </div>
+        <span class="course-row-go">进入 &gt;</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="about.html">关于我们</a>
+      <a href="about.html">主理人介绍</a>
+      <a href="#">联系我们</a>
+      <a href="#">招生咨询</a>
+      <a href="#">合作洽谈</a>
+      <a href="#">隐私政策</a>
+      <a href="#">使用条款</a>
+      <a href="#">网站地图</a>
+    </div>
+    <div class="footer-legal">
+      <span>Copyright © 2026 壹點學園 Oneness Academy. 保留所有权利。</span>
+      <span>京ICP备XXXXXXXX号-1（占位，替换为实际备案号）</span>
+    </div>
+    <div class="footer-brand">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="18" height="18">
+      <span>壹點學園 · 学习型组织的入口</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // 登录态校验：未登录跳回登录页
+  var sess = null;
+  try { sess = JSON.parse(localStorage.getItem('oneness_login') || 'null'); } catch (e) { sess = null; }
+  if (!sess || !sess.user) {
+    location.replace('login.html');
+    return;
+  }
+
+  // 显示当前用户名
+  var navUser = document.getElementById('nav-user');
+  if (navUser) navUser.textContent = sess.user;
+
+  var greet = document.getElementById('hero-greet');
+  if (greet) greet.textContent = '欢迎回来，' + sess.user + ' · 让我们一起朝向 2048';
+
+  // 退出登录
+  var logout = document.getElementById('btn-logout');
+  if (logout) {
+    logout.addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.removeItem('oneness_login');
+      location.href = 'index.html';
+    });
+  }
+
+  // 标签页切换
+  var tabs = document.querySelectorAll('.member-tabs button');
+  var panels = document.querySelectorAll('.member-panel');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      var key = tab.getAttribute('data-tab');
+      tabs.forEach(function (t) { t.classList.remove('active'); });
+      panels.forEach(function (p) { p.classList.remove('active'); });
+      tab.classList.add('active');
+      var target = document.getElementById('panel-' + key);
+      if (target) target.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

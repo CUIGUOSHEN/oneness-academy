@@ -1313,3 +1313,96 @@ body.mobile-open { overflow: hidden; }
   .art-plate, .art-table-wide { clip-path: none; }  /* 支持 contain 就别裁，滚动才可见 */
 }
 html, body { overflow-x: hidden; }
+
+/* ============================================================
+   会员中心 · 登录页改造 + 用户专属页（member.html）
+   ============================================================ */
+
+/* 登录页 · 错误提示 */
+.login-error {
+  display: none;
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  color: var(--brand-red);
+  text-align: left;
+}
+.login-error:not(:empty) { display: block; }
+
+/* 登录页 · 测试账号提示 */
+.login-demo {
+  margin-top: 16px;
+  padding: 10px 14px;
+  background: var(--paper);
+  border: 1px dashed var(--hairline);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.login-demo code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: var(--brand-red);
+  background: #fff;
+  border: 1px solid var(--hairline);
+  border-radius: 5px;
+  padding: 1px 6px;
+}
+
+/* 会员中心 · 导航用户名 */
+.nav-user {
+  font-size: 12px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+/* 会员中心 · 内容容器 */
+.member-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 8px 22px 72px;
+  background: var(--white);
+}
+
+/* 会员中心 · 标签页 */
+.member-tabs {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 36px;
+  border-bottom: 1px solid var(--hairline);
+}
+.member-tabs button {
+  flex: none;
+  padding: 12px 22px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.member-tabs button:hover { color: var(--brand-red); }
+.member-tabs button.active {
+  color: var(--brand-red);
+  font-weight: 500;
+  border-bottom-color: var(--brand-red);
+}
+
+/* 会员中心 · 面板 */
+.member-panel { display: none; }
+.member-panel.active { display: block; }
+
+/* 会员中心 · 移动端 */
+@media (max-width: 834px) {
+  .member-wrap { padding: 8px 16px 56px; }
+  .member-tabs {
+    gap: 2px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .member-tabs button { padding: 11px 16px; font-size: 14px; white-space: nowrap; }
+}
