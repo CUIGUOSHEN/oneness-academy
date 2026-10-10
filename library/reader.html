@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在线阅读 · A Life of Meaning · 壹點學園 Oneness Academy</title>
+<meta name="description" content="《A Life of Meaning》在线阅读器。">
+<link rel="icon" type="image/png" href="../assets/img/logo-red-128.png">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261010b">
+<style>
+  html, body { height: 100%; }
+  body { display: flex; flex-direction: column; overflow: hidden; }
+
+  .reader-bar {
+    flex: 0 0 auto;
+    display: flex; align-items: center; gap: 14px;
+    padding: 10px 18px;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--paper);
+  }
+  .reader-back {
+    font-size: 13px; color: var(--ink-soft); text-decoration: none;
+    padding: 6px 12px; border: 1px solid var(--hairline); border-radius: 999px;
+    transition: color .18s ease, border-color .18s ease;
+    white-space: nowrap;
+  }
+  .reader-back:hover { color: var(--accent); border-color: var(--accent); }
+  .reader-title {
+    flex: 1; min-width: 0;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    text-align: center;
+  }
+  .reader-chapter {
+    display: block; font-size: 11px; font-weight: 400; color: var(--ink-faint);
+    max-width: 46vw; margin: 0 auto;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .reader-btn {
+    flex: 0 0 auto;
+    font-size: 13px; color: var(--ink-soft);
+    background: none; border: 1px solid var(--hairline); border-radius: 999px;
+    padding: 6px 14px; cursor: pointer;
+    transition: color .18s ease, border-color .18s ease;
+  }
+  .reader-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  .reader-toc {
+    position: fixed; top: 0; right: 0; bottom: 0;
+    width: min(320px, 86vw);
+    background: var(--paper);
+    border-left: 1px solid var(--hairline);
+    box-shadow: -12px 0 34px rgba(43, 38, 34, 0.12);
+    transform: translateX(102%);
+    transition: transform .26s ease;
+    z-index: 60;
+    display: flex; flex-direction: column;
+  }
+  .reader-toc.open { transform: translateX(0); }
+  .reader-toc-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid var(--hairline);
+    font-size: 14px; font-weight: 600; color: var(--ink);
+  }
+  .reader-toc-list {
+    list-style: none; margin: 0; padding: 8px 6px 24px;
+    overflow-y: auto; flex: 1;
+  }
+  .reader-toc-list li a {
+    display: block; padding: 10px 12px;
+    font-size: 13.5px; line-height: 1.5; color: var(--ink-soft);
+    text-decoration: none; border-radius: 8px;
+  }
+  .reader-toc-list li a:hover { background: rgba(43, 38, 34, 0.05); color: var(--accent); }
+
+  .reader-stage { flex: 1 1 auto; position: relative; min-height: 0; }
+  #viewer { width: 100%; height: 100%; }
+
+  .reader-loading {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; color: var(--ink-faint); font-size: 13px;
+    background: var(--paper);
+    transition: opacity .3s ease;
+  }
+  .reader-loading.hide { opacity: 0; pointer-events: none; }
+  .reader-loading .spin {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid var(--hairline); border-top-color: var(--accent);
+    animation: readerspin .8s linear infinite;
+  }
+  @keyframes readerspin { to { transform: rotate(360deg); } }
+
+  .reader-error { display: none; text-align: center; padding: 40px 22px; color: var(--ink-soft); font-size: 14px; line-height: 2; }
+  .reader-error a { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    .reader-bar { padding: 8px 12px; gap: 8px; }
+    .reader-btn { padding: 6px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="rainbow-bar" aria-hidden="true"></div>
+
+<div class="reader-bar">
+  <a class="reader-back" href="a-life-of-meaning.html">‹ 书籍详情</a>
+  <div class="reader-title">
+    A Life of Meaning · 生命的意义
+    <span class="reader-chapter" id="reader-chapter">正在打开…</span>
+  </div>
+  <button class="reader-btn" id="toc-toggle" type="button">目录</button>
+  <button class="reader-btn" id="prev-btn" type="button" aria-label="上一页">‹ 上一页</button>
+  <button class="reader-btn" id="next-btn" type="button" aria-label="下一页">下一页 ›</button>
+</div>
+
+<div class="reader-stage">
+  <div id="viewer"></div>
+  <div class="reader-loading" id="reader-loading">
+    <div class="spin" aria-hidden="true"></div>
+    <div>正在翻开这本书…</div>
+  </div>
+  <div class="reader-error" id="reader-error">
+    阅读器加载失败，请稍后重试。<br>
+    <a href="a-life-of-meaning.html">返回书籍详情页 ›</a>
+  </div>
+</div>
+
+<aside class="reader-toc" id="reader-toc" aria-label="书籍目录">
+  <div class="reader-toc-head">
+    <span>目录</span>
+    <button class="reader-btn" id="toc-close" type="button">关闭</button>
+  </div>
+  <ul class="reader-toc-list" id="toc-list"></ul>
+</aside>
+
+<script src="../assets/js/jszip.min.js"></script>
+<script src="../assets/js/epub.min.js"></script>
+<script>
+(function () {
+  var book = ePub('files/a-life-of-meaning.epub');
+  var rendition = book.renderTo('viewer', {
+    width: '100%',
+    height: '100%',
+    spread: 'auto',
+    flow: 'paginated'
+  });
+
+  var loading = document.getElementById('reader-loading');
+  var errorBox = document.getElementById('reader-error');
+  var chapterEl = document.getElementById('reader-chapter');
+  var tocTitleMap = {}; // href 尾段 -> 目录标题
+
+  function basename(p) { return (p || '').split('/').pop().split('?')[0].split('#')[0]; }
+
+  function updateChapter(section) {
+    if (!section) return;
+    book.loaded.navigation.then(function (nav) {
+      var title = tocTitleMap[basename(section.href)];
+      chapterEl.textContent = title ? '· ' + title : '';
+    });
+  }
+
+  book.loaded.navigation.then(function (nav) {
+    nav.toc.forEach(function (item) {
+      tocTitleMap[basename(item.href)] = item.label.trim().replace(/<[^>]+>/g, '');
+    });
+  });
+
+  rendition.on('rendered', updateChapter);
+
+  rendition.display().then(function () {
+    loading.classList.add('hide');
+  }).catch(function (err) {
+    console.error(err);
+    loading.style.display = 'none';
+    errorBox.style.display = 'block';
+  });
+
+  // 目录
+  var tocPanel = document.getElementById('reader-toc');
+  var tocList = document.getElementById('toc-list');
+  book.loaded.navigation.then(function (nav) {
+    nav.toc.forEach(function (item) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.textContent = item.label.trim().replace(/<[^>]+>/g, '') || item.href;
+      a.href = '#';
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        rendition.display(item.href);
+        tocPanel.classList.remove('open');
+      });
+      li.appendChild(a);
+      tocList.appendChild(li);
+    });
+  });
+
+  document.getElementById('toc-toggle').addEventListener('click', function () {
+    tocPanel.classList.toggle('open');
+  });
+  document.getElementById('toc-close').addEventListener('click', function () {
+    tocPanel.classList.remove('open');
+  });
+
+  // 翻页
+  document.getElementById('prev-btn').addEventListener('click', function () { rendition.prev(); });
+  document.getElementById('next-btn').addEventListener('click', function () { rendition.next(); });
+  document.addEventListener('keyup', function (e) {
+    if (e.key === 'ArrowLeft') rendition.prev();
+    if (e.key === 'ArrowRight') rendition.next();
+  });
+})();
+</script>
+</body>
+</html>
