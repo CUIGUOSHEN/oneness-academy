@@ -6,7 +6,21 @@
 <title>登录 · 壹點學園 Oneness Academy</title>
 <meta name="description" content="登录壹點學園会员中心。">
 <link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
-<link rel="stylesheet" href="assets/css/style.css?v=20261010b">
+<link rel="stylesheet" href="assets/css/style.css?v=20261011a">
+<style>
+  .login-actions { margin: 6px 0 14px; display: flex; flex-direction: column; gap: 12px; }
+  .login-btn {
+    display: block; width: 100%; text-align: center;
+    padding: 13px 16px; border-radius: 12px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: background .15s;
+  }
+  .login-btn-primary { background: #c3272b; color: #fff; }
+  .login-btn-primary:hover { background: #a01f23; }
+  .login-btn-ghost { background: #fff; color: #c3272b; border: 1px solid #c3272b; }
+  .login-btn-ghost:hover { background: rgba(195, 39, 43, .06); text-decoration: none; }
+  .login-note { color: #8a8a8a; font-size: 13px; line-height: 1.6; margin: 4px 0 12px; }
+</style>
 </head>
 <body>
 
@@ -17,49 +31,17 @@
       <h1>欢迎来到壹點學園</h1>
       <p class="login-sub">会员中心 · 让我们一起朝向 2048</p>
 
-      <form class="login-form active" id="form-login" onsubmit="return doLogin(event)">
-        <div class="field">
-          <label for="login-user">用户名</label>
-          <input id="login-user" type="text" placeholder="请输入用户名" autocomplete="username">
-        </div>
-        <div class="field">
-          <label for="login-pass">密码</label>
-          <input id="login-pass" type="password" placeholder="请输入密码" autocomplete="current-password">
-        </div>
-        <p class="login-error" id="login-error" role="alert"></p>
-        <button class="login-submit" type="submit">登录</button>
-      </form>
-
-      <div class="login-demo">
-        测试账号：<code>test</code>　密码：<code>123456</code>
+      <div class="login-actions">
+        <a class="login-btn login-btn-primary" href="https://oneness-academy.app.workbuddy.host/register.html">会员注册</a>
+        <a class="login-btn login-btn-ghost" href="https://oneness-academy.app.workbuddy.host/login.html">会员登录</a>
       </div>
+
+      <p class="login-note">会员系统已全新升级——注册、登录与资料管理统一在会员中心进行，填写姓名、电话、邮箱与生日即可加入。</p>
 
       <a class="login-back" href="index.html">返回首页 &gt;</a>
     </div>
   </main>
 </div>
 
-<script>
-function doLogin(e) {
-  e.preventDefault();
-  var u = document.getElementById('login-user').value.trim();
-  var p = document.getElementById('login-pass').value;
-  var err = document.getElementById('login-error');
-  // 演示级账号表：正式上线需替换为后端校验（见页面说明）
-  var USERS = { 'test': '123456' };
-
-  if (!u || !p) {
-    err.textContent = '请输入用户名和密码';
-    return false;
-  }
-  if (USERS[u] === p) {
-    localStorage.setItem('oneness_login', JSON.stringify({ user: u, ts: Date.now() }));
-    location.href = 'member.html';
-  } else {
-    err.textContent = '用户名或密码错误，请重试';
-  }
-  return false;
-}
-</script>
 </body>
 </html>
