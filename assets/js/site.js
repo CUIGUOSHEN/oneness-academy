@@ -223,7 +223,8 @@
     { title: '千里江山图 · 名画每日一读 001', path: '/art/qianli-jiangshan.html', kw: '王希孟 北宋 青绿山水 千里江山 蔡京 传神' },
     { title: '洛神赋图 · 名画每日一读 002', path: '/art/luoshen-futu.html', kw: '顾恺之 洛神赋 东晋 摹本 传神写照 曹植' },
     { title: '步辇图 · 名画每日一读 003', path: '/art/bunian.html', kw: '阎立本 唐 步辇图 吐蕃 松赞干布 文成公主' },
-    { title: '韩熙载夜宴图 · 名画每日一读 004', path: '/art/hanxizai.html', kw: '顾闳中 南唐 五代 韩熙载 夜宴 家具 服饰 断代' }
+    { title: '韩熙载夜宴图 · 名画每日一读 004', path: '/art/hanxizai.html', kw: '顾闳中 南唐 五代 韩熙载 夜宴 家具 服饰 断代' },
+    { title: '清明上河图 · 名画每日一读 005', path: '/art/qingming-shanghe.html', kw: '张择端 北宋 清明上河图 开封 汴京 虹桥 界画 仇英 苏州片 宣和画谱' }
   ];
 
   /* ============ 站内搜索（导航放大镜） ============ */
