@@ -1540,3 +1540,16 @@ html, body { overflow-x: hidden; }
   .book-toc li { flex-direction: column; gap: 4px; }
   .book-toc .toc-en { font-size: 11.5px; }
 }
+
+/* ── 艺术鉴赏 · 立轴/方幅图（响应式，不走横向滚动） ── */
+.art-img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.art-body figure.art-detail { contain: inline-size; }
+.art-body figure.art-plate { contain: inline-size; }
+.art-body code { word-break: break-all; }
