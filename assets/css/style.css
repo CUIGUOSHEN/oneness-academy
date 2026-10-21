@@ -1787,3 +1787,18 @@ html, body { overflow-x: hidden; }
   .lesson-grid { grid-template-columns: 1fr; }
   .lesson-title { font-size: 15px; }
 }
+
+/* ============================================================
+   全站导航登录态（nav-auth.js 配套）· 2026-10-22
+   ============================================================ */
+.nav-member-link { display: inline-flex; align-items: center; gap: 7px; text-decoration: none; }
+.nav-member-link:hover { text-decoration: none; }
+.nav-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #c3272b; color: #fff;
+  font-size: 13px; font-weight: 600; line-height: 1;
+  flex: none;
+}
+.nav-member-name { font-size: 14px; color: #1d1d1f; max-width: 8em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-member-link:hover .nav-member-name { color: #c3272b; }
