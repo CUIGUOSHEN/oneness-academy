@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>客户界面 · 壹點學園 Oneness Academy</title>
+<meta name="description" content="壹點學園客户界面：按您的专属标签，呈现为您准备的课程。">
+<link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
+<link rel="stylesheet" href="assets/css/style.css?v=20261021a">
+</head>
+<body>
+
+<!-- 顶部彩虹装饰条 -->
+<div class="rainbow-bar" aria-hidden="true"></div>
+
+<!-- 顶部全局导航：登录后此处显示头像与个人信息 -->
+<nav class="globalnav" aria-label="全局导航">
+  <div class="globalnav-content">
+    <a class="nav-logo" href="index.html" aria-label="壹點學園首页">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="22" height="22">
+    </a>
+    <div class="nav-menu">
+      <a href="about.html">2048</a>
+      <a href="library.html">图书馆</a>
+      <a href="marathon.html">早课马拉松</a>
+      <a href="coaching.html">教练</a>
+      <a href="business.html">商学院</a>
+      <a href="ai.html">人工智能</a>
+      <a href="art.html">艺术鉴赏</a>
+      <a href="philosophy.html">哲学思考</a>
+      <a href="cuisine.html">私房菜</a>
+    </div>
+    <div class="nav-actions" id="nav-auth">
+      <!-- JS 渲染：未登录显示「登录」；已登录显示头像 + 昵称 + 个人信息菜单 -->
+      <a class="nav-login" href="login.html">登录</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 页首 -->
+<header class="page-hero page-hero-compact">
+  <h1>我的课程</h1>
+  <p class="page-sub" id="hero-greet">按您的专属标签，为您呈现课程</p>
+  <div class="page-rule"></div>
+</header>
+
+<main class="mh-wrap">
+
+  <!-- 未登录引导 -->
+  <section class="mh-guest" id="view-guest" hidden>
+    <div class="mh-guest-card">
+      <h2>欢迎来到客户界面</h2>
+      <p>登录后，这里会按您的专属标签呈现为您准备的课程。</p>
+      <div class="mh-guest-actions">
+        <a class="mh-btn mh-btn-primary" href="https://oneness-academy.app.workbuddy.host/login.html">会员登录</a>
+        <button class="mh-btn mh-btn-ghost" id="btn-demo" type="button">以演示客户 test 体验</button>
+      </div>
+      <p class="mh-guest-note">演示客户：test / 123456（标签：艺术课 + 早课）</p>
+    </div>
+  </section>
+
+  <!-- 已登录：双栏布局 -->
+  <div class="mh-layout" id="view-member" hidden>
+
+    <!-- 左侧：我的课程列表 -->
+    <aside class="mh-side" aria-label="我的课程列表">
+      <div class="mh-side-head">我的课程</div>
+      <ul class="mh-side-list" id="course-side-list"></ul>
+    </aside>
+
+    <!-- 右侧：课程内容区 -->
+    <section class="mh-main">
+      <div class="mh-toolbar">
+        <div class="mh-toolbar-title" id="toolbar-title">请选择课程</div>
+        <div class="view-toggle" role="group" aria-label="视图切换">
+          <button type="button" class="active" id="view-list" aria-label="列表视图">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+            列表
+          </button>
+          <button type="button" id="view-grid" aria-label="方块视图">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+            方块
+          </button>
+        </div>
+      </div>
+      <div class="mh-content" id="lesson-area"></div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="about.html">关于我们</a>
+      <a href="about.html">主理人介绍</a>
+      <a href="#">联系我们</a>
+      <a href="#">招生咨询</a>
+      <a href="#">合作洽谈</a>
+      <a href="#">隐私政策</a>
+      <a href="#">使用条款</a>
+      <a href="#">网站地图</a>
+    </div>
+    <div class="footer-legal">
+      <span>Copyright © 2026 壹點學園 Oneness Academy. 保留所有权利。</span>
+      <span>京ICP备XXXXXXXX号-1（占位，替换为实际备案号）</span>
+    </div>
+    <div class="footer-brand">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="18" height="18">
+      <span>壹點學園 · 学习型组织的入口</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/member-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  var D = window.ONENESS_DATA;
+
+  /* ---------- 登录态 ---------- */
+  function getSess() {
+    try { return JSON.parse(localStorage.getItem('oneness_login') || 'null'); }
+    catch (e) { return null; }
+  }
+  function setSess(s) { localStorage.setItem('oneness_login', JSON.stringify(s)); }
+
+  /* ---------- 回放链接读取（本地覆盖优先） ---------- */
+  function replayOf(courseId, no) {
+    var v = localStorage.getItem('oneness_replay_' + courseId + '_' + no);
+    return v || '';
+  }
+
+  /* ---------- 视图状态 ---------- */
+  var sess = getSess();
+  var currentCourse = null;
+  var viewMode = localStorage.getItem('oneness_view') || 'list';
+
+  var navAuth = document.getElementById('nav-auth');
+  var viewGuest = document.getElementById('view-guest');
+  var viewMember = document.getElementById('view-member');
+  var heroGreet = document.getElementById('hero-greet');
+  var sideList = document.getElementById('course-side-list');
+  var lessonArea = document.getElementById('lesson-area');
+  var toolbarTitle = document.getElementById('toolbar-title');
+
+  /* ---------- 导航：登录 / 头像 ---------- */
+  function renderNav() {
+    if (!sess || !sess.user) {
+      navAuth.innerHTML = '<a class="nav-login" href="login.html">登录</a>';
+      return;
+    }
+    var initial = (sess.name || sess.user).charAt(0);
+    navAuth.innerHTML =
+      '<div class="nav-member" id="nav-member">' +
+        '<button class="avatar-btn" id="avatar-btn" aria-label="个人信息">' +
+          '<span class="avatar">' + initial + '</span>' +
+          '<span class="avatar-name">' + (sess.name || sess.user) + '</span>' +
+        '</button>' +
+        '<div class="avatar-menu" id="avatar-menu">' +
+          '<div class="am-head">' +
+            '<span class="avatar avatar-lg">' + initial + '</span>' +
+            '<div><div class="am-name">' + (sess.name || sess.user) + '</div>' +
+            '<div class="am-account">账号：' + sess.user + '</div></div>' +
+          '</div>' +
+          '<div class="am-row"><span>会员标签</span><b>' + sess.tags.map(function (t) { return D.TAGS[t] || t; }).join(' · ') + '</b></div>' +
+          '<div class="am-row"><span>加入日期</span><b>' + (sess.joined || '—') + '</b></div>' +
+          '<div class="am-edit"><label>昵称设置</label>' +
+            '<div class="am-edit-row"><input type="text" id="am-nick" value="' + (sess.name || '') + '" maxlength="12">' +
+            '<button type="button" id="am-save">保存</button></div>' +
+          '</div>' +
+          '<button class="am-logout" type="button" id="am-logout">退出登录</button>' +
+        '</div>' +
+      '</div>';
+
+    var btn = document.getElementById('avatar-btn');
+    var menu = document.getElementById('avatar-menu');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      menu.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!menu.contains(e.target)) menu.classList.remove('open');
+    });
+    document.getElementById('am-save').addEventListener('click', function () {
+      var v = document.getElementById('am-nick').value.trim();
+      if (!v) return;
+      sess.name = v; setSess(sess); renderNav();
+      menu.classList.add('open');
+    });
+    document.getElementById('am-logout').addEventListener('click', function () {
+      localStorage.removeItem('oneness_login');
+      location.reload();
+    });
+  }
+
+  /* ---------- 我的课程（按标签过滤） ---------- */
+  function myCourses() {
+    if (!sess) return [];
+    return D.COURSES.filter(function (c) { return sess.tags.indexOf(c.tag) >= 0; });
+  }
+
+  function renderSide() {
+    var list = myCourses();
+    sideList.innerHTML = list.map(function (c) {
+      return '<li><button type="button" class="mh-side-item' + (currentCourse && currentCourse.id === c.id ? ' active' : '') + '" data-id="' + c.id + '">' +
+        '<span class="mh-side-mark" style="background:' + c.color + '">' + c.mark + '</span>' +
+        '<span class="mh-side-text"><b>' + c.title + '</b><i>' + c.lessons.length + ' 讲 · ' + (D.TAGS[c.tag] || '') + '</i></span>' +
+      '</button></li>';
+    }).join('');
+    sideList.querySelectorAll('.mh-side-item').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var id = b.getAttribute('data-id');
+        currentCourse = D.COURSES.find(function (c) { return c.id === id; });
+        renderSide(); renderMain();
+      });
+    });
+  }
+
+  /* ---------- 右侧：课时列表（list / grid） ---------- */
+  function renderMain() {
+    if (!currentCourse) {
+      toolbarTitle.textContent = '请选择课程';
+      lessonArea.innerHTML = '<div class="mh-empty">从左侧选择一门课程，开始您的学习。</div>';
+      return;
+    }
+    var c = currentCourse;
+    toolbarTitle.textContent = c.title;
+    document.getElementById('view-list').classList.toggle('active', viewMode === 'list');
+    document.getElementById('view-grid').classList.toggle('active', viewMode === 'grid');
+
+    var head =
+      '<div class="mh-course-brief" style="--accent:' + c.color + '">' +
+        '<p class="mh-course-en">' + c.en + '</p>' +
+        '<p class="mh-course-desc">' + c.desc + '</p>' +
+      '</div>';
+
+    if (viewMode === 'list') {
+      lessonArea.innerHTML = head + '<div class="lesson-list">' + c.lessons.map(function (l) {
+        var rp = replayOf(c.id, l.no);
+        return '<a class="lesson-row" style="--accent:' + c.color + '" href="course.html?c=' + c.id + '&l=' + l.no + '">' +
+          '<span class="lesson-no">' + l.no + '</span>' +
+          '<span class="lesson-title">' + l.title + '</span>' +
+          '<span class="lesson-badge ' + (rp ? 'has' : '') + '">' + (rp ? '回放已就绪' : '回放待上传') + '</span>' +
+          '<span class="lesson-go">观看 &gt;</span>' +
+        '</a>';
+      }).join('') + '</div>';
+    } else {
+      lessonArea.innerHTML = head + '<div class="lesson-grid">' + c.lessons.map(function (l) {
+        var rp = replayOf(c.id, l.no);
+        return '<a class="lesson-card" style="--accent:' + c.color + '" href="course.html?c=' + c.id + '&l=' + l.no + '">' +
+          '<span class="lesson-card-no">' + l.no + '</span>' +
+          '<span class="lesson-card-title">' + l.title + '</span>' +
+          '<span class="lesson-badge ' + (rp ? 'has' : '') + '">' + (rp ? '回放已就绪' : '回放待上传') + '</span>' +
+        '</a>';
+      }).join('') + '</div>';
+    }
+  }
+
+  /* ---------- 视图切换 ---------- */
+  document.getElementById('view-list').addEventListener('click', function () {
+    viewMode = 'list'; localStorage.setItem('oneness_view', viewMode); renderMain();
+  });
+  document.getElementById('view-grid').addEventListener('click', function () {
+    viewMode = 'grid'; localStorage.setItem('oneness_view', viewMode); renderMain();
+  });
+
+  /* ---------- 演示客户一键体验 ---------- */
+  document.getElementById('btn-demo').addEventListener('click', function () {
+    var m = D.MEMBERS.test;
+    setSess({ user: 'test', name: m.name, tags: m.tags, joined: m.joined, isAdmin: m.isAdmin, ts: Date.now() });
+    location.reload();
+  });
+
+  /* ---------- 云端登录跳转：from=cloud&email&name&tags ---------- */
+  (function absorbCloudSession() {
+    var qs = new URLSearchParams(location.search);
+    if (qs.get('from') !== 'cloud' || !qs.get('email')) return;
+    var email = qs.get('email').trim();
+    var name = (qs.get('name') || '').trim() || email.split('@')[0];
+    var cloudTags = (qs.get('tags') || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    var local = D.MEMBERS[email];
+    // 标签优先级：云端后台所打标签 > 本地客户表 > 默认（全部课程）
+    var tags = cloudTags.length ? cloudTags : (local ? local.tags : D.DEFAULT_TAGS);
+    // 崔老师邮箱：强制全课程 + 管理员
+    var isAdmin = !!(local && local.isAdmin);
+    if (email === 'cuiguoshen@pku.edu.cn') {
+      tags = ['art', 'marathon', 'coaching', 'vibe'];
+      isAdmin = true;
+    }
+    setSess({
+      user: email,
+      name: (local && local.name) || name,
+      tags: tags,
+      joined: (local && local.joined) || new Date().toISOString().slice(0, 10),
+      isAdmin: isAdmin,
+      ts: Date.now()
+    });
+    // 清掉地址栏参数后重载，进入干净的个人中心
+    history.replaceState(null, '', location.pathname);
+    location.reload();
+  })();
+
+  /* ---------- 启动 ---------- */
+  if (sess && sess.user) {
+    viewMember.hidden = false;
+    heroGreet.textContent = '欢迎回来，' + (sess.name || sess.user) + ' · 您的标签：' + sess.tags.map(function (t) { return D.TAGS[t] || t; }).join(' / ');
+    currentCourse = myCourses()[0] || null;
+    renderSide(); renderMain();
+  } else {
+    viewGuest.hidden = false;
+  }
+  renderNav();
+})();
+</script>
+</body>
+</html>
