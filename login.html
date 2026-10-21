@@ -6,7 +6,16 @@
 <title>登录 · 壹點學園 Oneness Academy</title>
 <meta name="description" content="登录壹點學園会员中心。">
 <link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
-<link rel="stylesheet" href="assets/css/style.css?v=20261011a">
+<link rel="stylesheet" href="assets/css/style.css?v=20261022a">
+<script>
+/* 已登录用户直达个人中心，无需再走引导页 */
+(function () {
+  try {
+    var s = JSON.parse(localStorage.getItem('oneness_login') || 'null');
+    if (s && s.user && Array.isArray(s.tags)) location.replace('member-home.html');
+  } catch (e) {}
+})();
+</script>
 <style>
   .login-actions { margin: 6px 0 14px; display: flex; flex-direction: column; gap: 12px; }
   .login-btn {
