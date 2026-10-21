@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程观看 · 壹點學園 Oneness Academy</title>
+<meta name="description" content="壹點學園课程观看页：腾讯会议回放与图文讲义。">
+<link rel="icon" type="image/png" href="assets/img/logo-red-128.png">
+<link rel="stylesheet" href="assets/css/style.css?v=20261021a">
+</head>
+<body>
+
+<div class="rainbow-bar" aria-hidden="true"></div>
+
+<nav class="globalnav" aria-label="全局导航">
+  <div class="globalnav-content">
+    <a class="nav-logo" href="index.html" aria-label="壹點學園首页">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="22" height="22">
+    </a>
+    <div class="nav-menu">
+      <a href="about.html">2048</a>
+      <a href="library.html">图书馆</a>
+      <a href="marathon.html">早课马拉松</a>
+      <a href="coaching.html">教练</a>
+      <a href="business.html">商学院</a>
+      <a href="ai.html">人工智能</a>
+      <a href="art.html">艺术鉴赏</a>
+      <a href="philosophy.html">哲学思考</a>
+      <a href="cuisine.html">私房菜</a>
+    </div>
+    <div class="nav-actions" id="nav-auth">
+      <a class="nav-login" href="login.html">登录</a>
+    </div>
+  </div>
+</nav>
+
+<main class="cw-wrap">
+  <div class="cw-inner" id="cw-inner">
+    <!-- JS 渲染 -->
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-links">
+      <a href="about.html">关于我们</a>
+      <a href="about.html">主理人介绍</a>
+      <a href="#">联系我们</a>
+      <a href="#">招生咨询</a>
+      <a href="#">合作洽谈</a>
+      <a href="#">隐私政策</a>
+      <a href="#">使用条款</a>
+      <a href="#">网站地图</a>
+    </div>
+    <div class="footer-legal">
+      <span>Copyright © 2026 壹點學園 Oneness Academy. 保留所有权利。</span>
+      <span>京ICP备XXXXXXXX号-1（占位，替换为实际备案号）</span>
+    </div>
+    <div class="footer-brand">
+      <img src="assets/img/logo-red-128.png" alt="壹點學園" width="18" height="18">
+      <span>壹點學園 · 学习型组织的入口</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/member-data.js"></script>
+<script>
+(function () {
+  'use strict';
+  var D = window.ONENESS_DATA;
+
+  function getSess() {
+    try { return JSON.parse(localStorage.getItem('oneness_login') || 'null'); }
+    catch (e) { return null; }
+  }
+  var sess = getSess();
+
+  /* 导航头像（与 member-home 同一套简化版） */
+  var navAuth = document.getElementById('nav-auth');
+  if (sess && sess.user) {
+    var initial = (sess.name || sess.user).charAt(0);
+    navAuth.innerHTML =
+      '<a class="nav-member-mini" href="member-home.html">' +
+        '<span class="avatar">' + initial + '</span>' +
+        '<span class="avatar-name">' + (sess.name || sess.user) + '</span>' +
+      '</a>';
+  }
+
+  /* 解析参数 */
+  var qs = new URLSearchParams(location.search);
+  var cid = qs.get('c'), lno = qs.get('l');
+  var course = D.COURSES.find(function (c) { return c.id === cid; });
+  var inner = document.getElementById('cw-inner');
+
+  if (!sess || !sess.user) {
+    inner.innerHTML =
+      '<div class="mh-guest-card cw-guest">' +
+        '<h2>请先登录</h2><p>登录后即可观看课程回放。</p>' +
+        '<div class="mh-guest-actions"><a class="mh-btn mh-btn-primary" href="member-home.html">前往客户界面</a></div>' +
+      '</div>';
+    return;
+  }
+  if (!course) {
+    inner.innerHTML = '<div class="mh-guest-card cw-guest"><h2>未找到课程</h2>' +
+      '<div class="mh-guest-actions"><a class="mh-btn mh-btn-ghost" href="member-home.html">返回我的课程</a></div></div>';
+    return;
+  }
+  if (sess.tags.indexOf(course.tag) < 0) {
+    inner.innerHTML = '<div class="mh-guest-card cw-guest"><h2>本课程未包含在您的标签中</h2>' +
+      '<p>如需开通，请联系小管家。</p>' +
+      '<div class="mh-guest-actions"><a class="mh-btn mh-btn-ghost" href="member-home.html">返回我的课程</a></div></div>';
+    return;
+  }
+
+  var idx = course.lessons.findIndex(function (l) { return l.no === lno; });
+  if (idx < 0) idx = 0;
+  var lesson = course.lessons[idx];
+
+  var rkey = 'oneness_replay_' + course.id + '_' + lesson.no;
+  var replay = localStorage.getItem(rkey) || lesson.replay || '';
+
+  /* 渲染 */
+  var prev = course.lessons[idx - 1], next = course.lessons[idx + 1];
+  inner.innerHTML =
+    '<nav class="cw-crumb"><a href="member-home.html">我的课程</a><span> / </span><a href="member-home.html">' + course.title + '</a></nav>' +
+    '<header class="cw-head" style="--accent:' + course.color + '">' +
+      '<span class="cw-no">第 ' + lesson.no + ' 讲</span>' +
+      '<h1>' + lesson.title + '</h1>' +
+      '<p class="cw-sub">' + course.title + ' · ' + course.en + '</p>' +
+    '</header>' +
+
+    '<section class="cw-replay" style="--accent:' + course.color + '">' +
+      '<h2>课程回放</h2>' +
+      (replay
+        ? '<a class="cw-watch" href="' + replay + '" target="_blank" rel="noopener">' +
+          '<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
+          '观看腾讯会议回放</a>' +
+          '<p class="cw-link">回放链接：<span>' + replay + '</span></p>'
+        : '<p class="cw-pending">回放链接待上传——管理员可在下方「课程内容设置」中粘贴腾讯会议回放链接。</p>') +
+    '</section>' +
+
+    (lesson.page
+      ? '<section class="cw-notes"><h2>图文讲义</h2>' +
+        '<a class="cw-notes-link" href="' + lesson.page + '">阅读本期图文讲义《' + lesson.title + '》 &gt;</a></section>'
+      : '') +
+
+    (sess.isAdmin
+      ? '<section class="cw-admin"><h2>课程内容设置 <i>（仅管理员可见）</i></h2>' +
+        '<p class="cw-admin-tip">将腾讯会议课程回放链接粘贴到下面，保存后本页即显示「观看回放」入口。</p>' +
+        '<div class="cw-admin-row">' +
+          '<input type="url" id="replay-input" placeholder="https://meeting.tencent.com/..." value="' + replay + '">' +
+          '<button type="button" id="replay-save">保存</button>' +
+        '</div>' +
+        '<p class="cw-admin-status" id="replay-status"></p></section>'
+      : '') +
+
+    '<nav class="cw-pager">' +
+      (prev ? '<a href="course.html?c=' + course.id + '&l=' + prev.no + '">&lt; 上一讲 · ' + prev.title + '</a>' : '<span></span>') +
+      (next ? '<a href="course.html?c=' + course.id + '&l=' + next.no + '">下一讲 · ' + next.title + ' &gt;</a>' : '<span></span>') +
+    '</nav>' +
+
+    '<section class="cw-all"><h2>本课程全部课时</h2><div class="lesson-list">' +
+      course.lessons.map(function (l) {
+        var rp = localStorage.getItem('oneness_replay_' + course.id + '_' + l.no) || l.replay || '';
+        return '<a class="lesson-row' + (l.no === lesson.no ? ' current' : '') + '" style="--accent:' + course.color + '" href="course.html?c=' + course.id + '&l=' + l.no + '">' +
+          '<span class="lesson-no">' + l.no + '</span>' +
+          '<span class="lesson-title">' + l.title + '</span>' +
+          '<span class="lesson-badge ' + (rp ? 'has' : '') + '">' + (rp ? '回放已就绪' : '回放待上传') + '</span>' +
+          '<span class="lesson-go">观看 &gt;</span></a>';
+      }).join('') +
+    '</div></section>';
+
+  /* 管理员保存回放链接 */
+  var saveBtn = document.getElementById('replay-save');
+  if (saveBtn) {
+    saveBtn.addEventListener('click', function () {
+      var v = document.getElementById('replay-input').value.trim();
+      if (v) localStorage.setItem(rkey, v); else localStorage.removeItem(rkey);
+      document.getElementById('replay-status').textContent = '已保存，正在刷新…';
+      setTimeout(function () { location.reload(); }, 400);
+    });
+  }
+})();
+</script>
+</body>
+</html>
