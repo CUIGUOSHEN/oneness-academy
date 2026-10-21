@@ -75,6 +75,12 @@
   }
   var sess = getSess();
 
+  /* 会话格式校验：旧格式/缺字段一律清除，安全降级到登录引导 */
+  if (sess && (!sess.user || !Array.isArray(sess.tags))) {
+    localStorage.removeItem('oneness_login');
+    sess = null;
+  }
+
   /* 导航头像（与 member-home 同一套简化版） */
   var navAuth = document.getElementById('nav-auth');
   if (sess && sess.user) {
